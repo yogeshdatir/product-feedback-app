@@ -1,7 +1,7 @@
 import express from "express";
-import feedbackControllers from "../controllers/feedbackController";
+import feedbackController from "../controllers/feedbackController";
 
-const { getAllFeedbacks } = feedbackControllers;
+const { getAllFeedbacks } = feedbackController;
 
 const feedbackRouter = express.Router();
 

@@ -18,8 +18,8 @@ CREATE DATABASE feedback_app
 
 CREATE TABLE IF NOT EXISTS public.categories
 (
-    id character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
-    name character varying(30)[] COLLATE pg_catalog."default" NOT NULL,
+    id uuid NOT NULL,
+    name character varying(30) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT categories_pkey PRIMARY KEY (id),
     CONSTRAINT "unique category name" UNIQUE (name)
 )
@@ -36,8 +36,8 @@ ALTER TABLE IF EXISTS public.categories
 
 CREATE TABLE IF NOT EXISTS public.status
 (
-    id character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
-    name character varying(30)[] COLLATE pg_catalog."default" NOT NULL,
+    id uuid NOT NULL,
+    name character varying(30) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT status_pkey PRIMARY KEY (id),
     CONSTRAINT "unique status name" UNIQUE (name)
 )
@@ -54,22 +54,20 @@ ALTER TABLE IF EXISTS public.status
 
 CREATE TABLE IF NOT EXISTS public.feedbacks
 (
-    id character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
-    title character varying(100)[] COLLATE pg_catalog."default" NOT NULL,
+    id uuid NOT NULL,
+    title text COLLATE pg_catalog."default" NOT NULL,
     detail text COLLATE pg_catalog."default" NOT NULL,
-    category character varying[] COLLATE pg_catalog."default" NOT NULL,
-    status character varying[] COLLATE pg_catalog."default" NOT NULL,
+    status uuid NOT NULL,
+    category uuid NOT NULL,
     CONSTRAINT feedbacks_pkey PRIMARY KEY (id),
     CONSTRAINT category FOREIGN KEY (category)
         REFERENCES public.categories (id) MATCH SIMPLE
         ON UPDATE CASCADE
-        ON DELETE CASCADE
-        NOT VALID,
+        ON DELETE CASCADE,
     CONSTRAINT status FOREIGN KEY (status)
         REFERENCES public.status (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
-        NOT VALID
 )
 
 TABLESPACE pg_default;

@@ -2,14 +2,15 @@ import express from "express";
 import feedbackRouter from "./routes/feedbackRoutes";
 import * as dotenv from "dotenv";
 import { Pool } from "pg";
+import statusRouter from "./routes/statusRoutes";
 
 dotenv.config();
 
-const DEV_DB_HOST: string = process.env.DEV_DB_HOST as string;
-const DEV_DB_USERNAME: string = process.env.DEV_DB_USERNAME as string;
-const DEV_DB_PORT: number = Number(process.env.DEV_DB_PORT);
-const DEV_DB_PASSWORD: string = `${process.env.DEV_DB_PASSWORD}` || "";
-const DEV_DB_NAME: string = process.env.DEV_DB_NAME as string;
+const DEV_DB_HOST = process.env.DEV_DB_HOST;
+const DEV_DB_USERNAME = process.env.DEV_DB_USERNAME;
+const DEV_DB_PORT = Number(process.env.DEV_DB_PORT);
+const DEV_DB_PASSWORD = process.env.DEV_DB_PASSWORD || "";
+const DEV_DB_NAME = process.env.DEV_DB_NAME;
 
 export const pool = new Pool({
   host: DEV_DB_HOST,
@@ -26,6 +27,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 5000;
 
 app.use("/feedbacks", feedbackRouter);
+app.use("/status", statusRouter);
 
 app.listen(PORT, () =>
   console.log(`server running at http://localhost:${PORT}`)
