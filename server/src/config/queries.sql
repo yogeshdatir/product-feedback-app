@@ -74,3 +74,13 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.feedbacks
     OWNER to postgres;
+
+-- Constraint: unique_feedback_title
+
+-- ALTER TABLE IF EXISTS public.feedbacks DROP CONSTRAINT IF EXISTS unique_feedback_title;
+
+ALTER TABLE IF EXISTS public.feedbacks
+    ADD CONSTRAINT unique_feedback_title UNIQUE (title);
+
+COMMENT ON CONSTRAINT unique_feedback_title ON public.feedbacks
+    IS 'Feedback title should be unique';

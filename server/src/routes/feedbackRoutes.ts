@@ -1,10 +1,15 @@
 import express from "express";
 import feedbackController from "../controllers/feedbackController";
 
-const { getAllFeedbacks } = feedbackController;
+const { getAllFeedbacks, addFeedback, updateFeedback, deleteFeedback } =
+  feedbackController;
 
 const feedbackRouter = express.Router();
 
-feedbackRouter.get("/", getAllFeedbacks);
+feedbackRouter
+  .get("/", getAllFeedbacks)
+  .post("/", addFeedback)
+  .put("/", updateFeedback)
+  .delete("/", deleteFeedback);
 
 export default feedbackRouter;
