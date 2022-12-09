@@ -3,6 +3,7 @@ import feedbackRouter from "./routes/feedbackRoutes";
 import * as dotenv from "dotenv";
 import { Pool } from "pg";
 import statusRouter from "./routes/statusRoutes";
+import categoryRouter from "./routes/categoryRoutes";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use("/feedbacks", feedbackRouter);
 app.use("/status", statusRouter);
+app.use("/categories", categoryRouter);
 
 app.listen(PORT, () =>
   console.log(`server running at http://localhost:${PORT}`)
