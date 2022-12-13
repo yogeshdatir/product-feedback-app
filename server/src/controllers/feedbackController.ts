@@ -7,7 +7,7 @@ const feedbackController = {
   getAllFeedbacks: async (req: Request, res: Response) => {
     try {
       const result: QueryResult = await pool.query("select * from feedbacks");
-      res.status(200).json({ data: result.rows });
+      res.status(200).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: "something went wrong..." });
@@ -27,7 +27,7 @@ const feedbackController = {
         defaultStatus,
         category,
       ]);
-      res.status(201).json({ data: result.rows });
+      res.status(201).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: "something went wrong..." });
@@ -45,7 +45,7 @@ const feedbackController = {
         category,
         id,
       ]);
-      res.status(200).json({ data: result.rows });
+      res.status(200).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: "something went wrong..." });
@@ -56,7 +56,7 @@ const feedbackController = {
     const query = "DELETE FROM feedbacks WHERE id = $1 RETURNING *";
     try {
       const result: QueryResult = await pool.query(query, [id]);
-      res.status(202).json({ data: result.rows });
+      res.status(202).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: "something went wrong..." });

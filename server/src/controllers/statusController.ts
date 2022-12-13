@@ -7,7 +7,7 @@ const statusController = {
   getAllStatus: async (req: Request, res: Response) => {
     try {
       const result: QueryResult = await pool.query("select * from status");
-      res.status(200).json({ data: result.rows });
+      res.status(200).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: "something went wrong..." });
@@ -21,7 +21,7 @@ const statusController = {
         "INSERT INTO status VALUES ($1, $2) RETURNING *",
         [id, statusName]
       );
-      res.status(201).json({ data: result.rows });
+      res.status(201).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: "something went wrong..." });
@@ -32,7 +32,7 @@ const statusController = {
     const query = `UPDATE status SET name = $1 WHERE id = $2 RETURNING *`;
     try {
       const result: QueryResult = await pool.query(query, [statusName, id]);
-      res.status(200).json({ data: result.rows });
+      res.status(200).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: "something went wrong..." });
@@ -46,7 +46,7 @@ const statusController = {
     const queryArgs = id ? [id] : [statusName];
     try {
       const result: QueryResult = await pool.query(query, queryArgs);
-      res.status(202).json({ data: result.rows });
+      res.status(202).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: "something went wrong..." });
