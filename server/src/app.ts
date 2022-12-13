@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 import { Pool } from "pg";
 import statusRouter from "./routes/statusRoutes";
 import categoryRouter from "./routes/categoryRoutes";
+import cors from "cors";
 
 dotenv.config();
 
@@ -24,6 +25,8 @@ export const pool = new Pool({
 const app: express.Application = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
