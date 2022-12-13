@@ -1,16 +1,15 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap");
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+* {
+  box-sizing: border-box;
+  font-family: jost, sans-serif;
+  padding: 0;
+  margin: 0;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+body {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 4rem 0;
+  background: #f2f2f2;
 }
