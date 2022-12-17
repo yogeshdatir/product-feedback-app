@@ -14,8 +14,8 @@ const feedbackController = {
     }
   },
   addFeedback: async (req: Request, res: Response) => {
-    const { title, detail, category } = req.body;
-    const defaultStatus = "planned";
+    const { title, description, category, status } = req.body;
+    const defaultStatus = "suggestion";
     const id = uuidv4();
     const query =
       "INSERT INTO feedbacks VALUES ($1, $2, $3, (SELECT id FROM status where name = $4), (SELECT id FROM categories where name = $5)) RETURNING *";
@@ -23,8 +23,8 @@ const feedbackController = {
       const result: QueryResult = await pool.query(query, [
         id,
         title,
-        detail,
-        defaultStatus,
+        description,
+        status || defaultStatus,
         category,
       ]);
       res.status(201).json(result.rows);
@@ -34,13 +34,13 @@ const feedbackController = {
     }
   },
   updateFeedback: async (req: Request, res: Response) => {
-    const { id, title, detail, status, category } = req.body;
+    const { id, title, description, status, category } = req.body;
     const query =
-      "UPDATE feedbacks SET title = $1, detail = $2, status = (SELECT id FROM status where name = $3), category = (SELECT id FROM categories where name = $4) WHERE id = $5 RETURNING *";
+      "UPDATE feedbacks SET title = $1, description = $2, status = (SELECT id FROM status where name = $3), category = (SELECT id FROM categories where name = $4) WHERE id = $5 RETURNING *";
     try {
       const result: QueryResult = await pool.query(query, [
         title,
-        detail,
+        description,
         status,
         category,
         id,
