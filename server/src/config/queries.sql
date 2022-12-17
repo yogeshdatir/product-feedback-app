@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS public.feedbacks
 (
     id uuid NOT NULL,
     title text COLLATE pg_catalog."default" NOT NULL,
-    detail text COLLATE pg_catalog."default" NOT NULL,
+    description text COLLATE pg_catalog."default" NOT NULL,
     status uuid NOT NULL,
     category uuid NOT NULL,
     CONSTRAINT feedbacks_pkey PRIMARY KEY (id),

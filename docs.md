@@ -17,7 +17,7 @@ Tables: feedbacks, users, categories, status
 | title       | varchar(100) |         | false    |         |            |
 | category    |              |         | false    | foreign |            |
 | status      |              |         | false    | foreign |            |
-| detail      | text         |         | false    |         |            |
+| description      | text         |         | false    |         |            |
 
 
 
