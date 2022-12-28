@@ -13,6 +13,19 @@ const feedbackController = {
       res.status(500).json({ error: "something went wrong..." });
     }
   },
+  getFeedback: async (req: Request, res: Response) => {
+    const { id } = req.body;
+    try {
+      const result: QueryResult = await pool.query(
+        "select * from feedbacks where id = $1",
+        [id]
+      );
+      res.status(200).json(result.rows);
+    } catch (err: any) {
+      console.log(err.stack, err.code);
+      res.status(500).json({ error: "something went wrong..." });
+    }
+  },
   addFeedback: async (req: Request, res: Response) => {
     const { title, description, category, status } = req.body;
     const defaultStatus = "suggestion";
