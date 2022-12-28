@@ -5,9 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 
 const feedbackController = {
   getAllFeedbacks: async (req: Request, res: Response) => {
-    console.log("id");
     try {
-      const result: QueryResult = await pool.query("select * from feedbacks");
+      const result: QueryResult = await pool.query(
+        "select f.id, f.title, f.description, s.name as status, c.name as category from feedbacks as f inner join status as s on f.status = s.id inner join categories as c on f.category = c.id"
+      );
       res.status(200).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
@@ -16,10 +17,9 @@ const feedbackController = {
   },
   getFeedbackById: async (req: Request, res: Response) => {
     const { id } = req.params;
-    console.log(id);
     try {
       const result: QueryResult = await pool.query(
-        "select * from feedbacks where id = $1",
+        "select f.id, f.title, f.description, s.name as status, c.name as category from feedbacks as f inner join status as s on f.status = s.id inner join categories as c on f.category = c.id where f.id = $1",
         [id]
       );
       res.status(200).json(result.rows);
