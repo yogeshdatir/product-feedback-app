@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const feedbackController = {
   getAllFeedbacks: async (req: Request, res: Response) => {
+    console.log("id");
     try {
       const result: QueryResult = await pool.query("select * from feedbacks");
       res.status(200).json(result.rows);
@@ -13,8 +14,9 @@ const feedbackController = {
       res.status(500).json({ error: "something went wrong..." });
     }
   },
-  getFeedback: async (req: Request, res: Response) => {
-    const { id } = req.body;
+  getFeedbackById: async (req: Request, res: Response) => {
+    const { id } = req.params;
+    console.log(id);
     try {
       const result: QueryResult = await pool.query(
         "select * from feedbacks where id = $1",
