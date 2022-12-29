@@ -4,12 +4,13 @@ import { getAllFeedbacks } from "../../../services/apis";
 import { IFeedback } from "../../../types";
 import EmptyState from "./EmptyState";
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 interface Props {}
 
 const FeedbackList = (props: Props) => {
-  const [loading, setLoading] = useState(true);
   const [feedbackList, setFeedbackList] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchFeedbackList = async () => {
@@ -41,7 +42,9 @@ const FeedbackList = (props: Props) => {
       {feedbackList.map((feedback: IFeedback) => {
         return (
           <div key={uuidv4()}>
-            <p>{feedback.title}</p>
+            <Link to={`/${feedback.id}`}>
+              <p>{feedback.title}</p>
+            </Link>
           </div>
         );
       })}
