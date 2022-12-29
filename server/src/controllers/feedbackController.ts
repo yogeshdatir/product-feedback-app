@@ -39,8 +39,8 @@ const feedbackController = {
         id,
         title,
         description,
-        status || defaultStatus,
-        category,
+        status.toLowerCase() || defaultStatus,
+        category.toLowerCase(),
       ]);
       res.status(201).json(result.rows);
     } catch (err: any) {
@@ -56,8 +56,8 @@ const feedbackController = {
       const result: QueryResult = await pool.query(query, [
         title,
         description,
-        status,
-        category,
+        status.toLowerCase(),
+        category.toLowerCase(),
         id,
       ]);
       res.status(200).json(result.rows);
