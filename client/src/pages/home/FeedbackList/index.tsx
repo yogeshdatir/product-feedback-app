@@ -5,6 +5,13 @@ import { IFeedback } from "../../../types";
 import EmptyState from "./EmptyState";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
+import {
+  FeedbackCard,
+  FeedbackDescription,
+  FeedbackTitle,
+  ContentWrapper,
+} from "./FeedbackList.styled";
+import Badge from "../../../components/Badge";
 
 interface Props {}
 
@@ -38,17 +45,23 @@ const FeedbackList = (props: Props) => {
   }
 
   return (
-    <div>
+    <ContentWrapper>
       {feedbackList.map((feedback: IFeedback) => {
         return (
-          <div key={uuidv4()}>
-            <Link to={`/${feedback.id}`}>
-              <p>{feedback.title}</p>
-            </Link>
-          </div>
+          <Link to={`/${feedback.id}`} key={uuidv4()}>
+            <FeedbackCard>
+              <FeedbackTitle>{feedback.title}</FeedbackTitle>
+              <FeedbackDescription style={{ marginTop: "0.25rem" }}>
+                {feedback.description}
+              </FeedbackDescription>
+              <Badge style={{ marginTop: "0.75rem" }}>
+                {feedback.category}
+              </Badge>
+            </FeedbackCard>
+          </Link>
         );
       })}
-    </div>
+    </ContentWrapper>
   );
 };
 

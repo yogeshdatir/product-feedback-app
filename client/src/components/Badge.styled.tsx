@@ -10,4 +10,9 @@ export const Container = styled.span`
 
   background: #f2f4ff;
   border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  width: max-content;
+  text-transform: capitalize;
 `;

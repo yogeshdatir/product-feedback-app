@@ -1,8 +1,22 @@
+import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Badge from "../../components/Badge";
+import { ActionHeader } from "../../components/Common.styled";
 import { getFeedback } from "../../services/apis";
 import { IFeedback } from "../../types";
 import { GoBackButton } from "../feedbackForm/FeedbackForm.styled";
+import {
+  FeedbackCard,
+  FeedbackTitle,
+  FeedbackDescription,
+  ContentWrapper,
+} from "../home/FeedbackList/FeedbackList.styled";
+
+const Container = styled.div`
+  width: 730px;
+  margin: auto;
+`;
 
 interface Props {}
 
@@ -31,8 +45,8 @@ const Feedback = (props: Props) => {
   }, [id]);
 
   return (
-    <div>
-      <div>
+    <Container>
+      <ActionHeader>
         <GoBackButton>
           <Link to="/">Go Back</Link>
         </GoBackButton>
@@ -41,6 +55,8 @@ const Feedback = (props: Props) => {
             <Link to={`/editfeedback/${id}`}>Edit Feedback</Link>
           </button>
         )}
+      </ActionHeader>
+      <ContentWrapper>
         {loading ? (
           <p>loading</p>
         ) : error ? (
@@ -48,10 +64,16 @@ const Feedback = (props: Props) => {
         ) : !feedback ? (
           <p>Not found</p>
         ) : (
-          <p>{feedback.title}</p>
+          <FeedbackCard>
+            <FeedbackTitle>{feedback.title}</FeedbackTitle>
+            <FeedbackDescription style={{ marginTop: "0.25rem" }}>
+              {feedback.description}
+            </FeedbackDescription>
+            <Badge style={{ marginTop: "0.75rem" }}>{feedback.category}</Badge>
+          </FeedbackCard>
         )}
-      </div>
-    </div>
+      </ContentWrapper>
+    </Container>
   );
 };
 
