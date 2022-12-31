@@ -13,6 +13,7 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
+import { ActionHeader } from "../../components/Common.styled";
 import {
   addFeedback,
   getFeedback,
@@ -20,7 +21,14 @@ import {
   deleteFeedback,
 } from "../../services/apis";
 import { IFeedback, INewFeedback } from "../../types";
-import { Form, GoBackButton } from "./FeedbackForm.styled";
+import {
+  FeedbackFormWrapper,
+  Form,
+  FormActionsWrapper,
+  FormField,
+  FormWrapper,
+  GoBackButton,
+} from "./FeedbackForm.styled";
 
 interface Props {
   isEdit?: boolean;
@@ -110,84 +118,92 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
   };
 
   return (
-    <div>
-      <GoBackButton>
-        <Link to="/">Go Back</Link>
-      </GoBackButton>
-      {isEdit && loading ? (
-        <p>loading</p>
-      ) : isEdit && error ? (
-        <p>error</p>
-      ) : isEdit && !feedback ? (
-        <p>Not Found</p>
-      ) : (
-        <Form onSubmit={handleSubmit}>
-          <h1>
-            {feedback ? `Editing ${feedback.title}` : `Create New Feedback`}
-          </h1>
-          <div>
-            <label>Feedback Title</label>
-            <input
-              type="text"
-              name="title"
-              onChange={handleChange}
-              value={formState.title}
-            />
-          </div>
-          <div>
-            <label>Category</label>
-            <select
-              name="category"
-              onChange={handleChange}
-              value={formState.category}
-            >
-              <option>Feature</option>
-              <option>Enhancement</option>
-              <option>Bug</option>
-            </select>
-          </div>
-          {feedback && (
-            <div>
-              <label>Status</label>
-              <select
-                name="status"
+    <FeedbackFormWrapper>
+      <ActionHeader>
+        <GoBackButton>
+          <Link to="/">Go Back</Link>
+        </GoBackButton>
+      </ActionHeader>
+      <FormWrapper>
+        {isEdit && loading ? (
+          <p>loading</p>
+        ) : isEdit && error ? (
+          <p>error</p>
+        ) : isEdit && !feedback ? (
+          <p>Not Found</p>
+        ) : (
+          <Form onSubmit={handleSubmit}>
+            <h1>
+              {feedback ? `Editing ${feedback.title}` : `Create New Feedback`}
+            </h1>
+            <FormField>
+              <label>Feedback Title</label>
+              <input
+                type="text"
+                name="title"
                 onChange={handleChange}
-                value={formState.status}
+                value={formState.title}
+              />
+            </FormField>
+            <FormField>
+              <label>Category</label>
+              <select
+                name="category"
+                onChange={handleChange}
+                value={formState.category}
               >
-                <option>suggestion</option>
-                <option>planned</option>
-                <option>in-progress</option>
-                <option>live</option>
+                <option>Feature</option>
+                <option>Enhancement</option>
+                <option>Bug</option>
               </select>
-            </div>
-          )}
-          <div>
-            <label>Feedback Detail</label>
-            <textarea
-              name="description"
-              onChange={handleChange}
-              value={formState.description}
-            />
-          </div>
-          <div>
+            </FormField>
             {feedback && (
-              <button
-                type="button"
-                onClick={(e) => handleDelete(e, feedback.id)}
-              >
-                Delete
-              </button>
+              <FormField>
+                <label>Status</label>
+                <select
+                  name="status"
+                  onChange={handleChange}
+                  value={formState.status}
+                >
+                  <option>suggestion</option>
+                  <option>planned</option>
+                  <option>in-progress</option>
+                  <option>live</option>
+                </select>
+              </FormField>
             )}
-            <button type="button" onClick={handleCancel}>
-              Cancel
-            </button>
-            <button type="submit">
-              {feedback ? `Update Feedback` : `Add Feedback`}
-            </button>
-          </div>
-        </Form>
-      )}
-    </div>
+            <FormField>
+              <label>Feedback Detail</label>
+              <textarea
+                name="description"
+                onChange={handleChange}
+                value={formState.description}
+              />
+            </FormField>
+            <FormActionsWrapper>
+              {feedback && (
+                <button
+                  type="button"
+                  onClick={(e) => handleDelete(e, feedback.id)}
+                >
+                  Delete
+                </button>
+              )}
+              <button
+                style={{ marginLeft: "auto" }}
+                type="button"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+              <button type="submit">
+                {feedback ? `Update Feedback` : `Add Feedback`}
+              </button>
+            </FormActionsWrapper>
+          </Form>
+        )}
+      </FormWrapper>
+    </FeedbackFormWrapper>
   );
 };
 
