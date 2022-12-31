@@ -30,25 +30,27 @@ const Feedback = (props: Props) => {
     }
   }, [id]);
 
-  if (loading) {
-    return <p>loading</p>;
-  } else if (error) {
-    return <p>error</p>;
-  } else if (!feedback) {
-    return <p>Not found</p>;
-  }
-
   return (
     <div>
       <div>
         <GoBackButton>
           <Link to="/">Go Back</Link>
         </GoBackButton>
-        <button>
-          <Link to={`/editfeedback/${id}`}>Edit Feedback</Link>
-        </button>
+        {feedback && (
+          <button>
+            <Link to={`/editfeedback/${id}`}>Edit Feedback</Link>
+          </button>
+        )}
+        {loading ? (
+          <p>loading</p>
+        ) : error ? (
+          <p>error</p>
+        ) : !feedback ? (
+          <p>Not found</p>
+        ) : (
+          <p>{feedback.title}</p>
+        )}
       </div>
-      {feedback.title}
     </div>
   );
 };
