@@ -48,7 +48,7 @@ const FeedbackList = (props: Props) => {
     <ContentWrapper>
       {feedbackList.map((feedback: IFeedback) => {
         return (
-          <Link to={`/${feedback.id}`} key={uuidv4()}>
+          <Link to={`/view/${feedback.id}`} key={uuidv4()}>
             <FeedbackCard>
               <FeedbackTitle>{feedback.title}</FeedbackTitle>
               <FeedbackDescription style={{ marginTop: "0.25rem" }}>

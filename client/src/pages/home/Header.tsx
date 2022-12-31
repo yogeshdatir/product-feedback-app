@@ -9,7 +9,7 @@ const Header = (props: Props) => {
     <Wrapper>
       <h3>6 Suggestions</h3>
       <AddFeedbackButton>
-        <Link to="/addfeedback">Add feedback</Link>
+        <Link to="/add">Add feedback</Link>
       </AddFeedbackButton>
     </Wrapper>
   );

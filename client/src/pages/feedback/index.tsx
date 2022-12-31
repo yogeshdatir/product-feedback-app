@@ -52,7 +52,7 @@ const Feedback = (props: Props) => {
         </GoBackButton>
         {feedback && (
           <button>
-            <Link to={`/editfeedback/${id}`}>Edit Feedback</Link>
+            <Link to={`/edit/${id}`}>Edit Feedback</Link>
           </button>
         )}
       </ActionHeader>

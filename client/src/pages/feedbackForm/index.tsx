@@ -111,10 +111,11 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
 
     if (feedback) {
       updateFeedback(formState);
-      return;
+      navigate(-1);
+    } else {
+      addFeedback(formState);
+      navigate("/");
     }
-
-    addFeedback(formState);
   };
 
   return (

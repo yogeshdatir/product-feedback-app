@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 
 export const ContentWrapper = styled.div`
   margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 `;
 
 export const FeedbackCard = styled.div`

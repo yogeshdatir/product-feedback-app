@@ -8,9 +8,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/addfeedback" element={<FeedbackForm />} />
-        <Route path="/editfeedback/:id" element={<FeedbackForm isEdit />} />
-        <Route path="/:id" element={<Feedback />} />
+        <Route path="/add" element={<FeedbackForm />} />
+        <Route path="/edit/:id" element={<FeedbackForm isEdit />} />
+        <Route path="/view/:id" element={<Feedback />} />
+        <Route path="*" element={<p>Wrong URL</p>}></Route>
       </Routes>
     </>
   );
