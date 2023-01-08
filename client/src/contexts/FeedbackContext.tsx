@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { getAllFeedbacks, deleteFeedback } from "../services/apis";
+import {
+  getAllFeedbacks,
+  deleteFeedback,
+  updateFeedback,
+} from "../services/apis";
 import { IFeedback } from "../types";
 
 const FeedbackContext = createContext<any>(null);
@@ -46,9 +50,31 @@ export default function FeedbackContextProvider(props: any) {
     }
   };
 
+  const updateOrAddToFeedbackList = (
+    updatedOrNewFeedback: IFeedback,
+    add: boolean = false
+  ) => {
+    if (add) {
+      setFeedbackList((prevFeedbackList: IFeedback[]) => {
+        return [...prevFeedbackList, updatedOrNewFeedback];
+      });
+      return;
+    }
+    setFeedbackList((prevFeedbackList: IFeedback[]) => {
+      return [
+        ...prevFeedbackList.map((feedback: IFeedback) =>
+          feedback.id === updatedOrNewFeedback.id
+            ? updatedOrNewFeedback
+            : feedback
+        ),
+      ];
+    });
+  };
+
   const FeedbackContextState = {
     feedbackList,
     removeFeedback,
+    updateOrAddToFeedbackList,
     loading,
     error,
   };

@@ -12,6 +12,7 @@ import {
   FeedbackDescription,
   ContentWrapper,
 } from "../home/FeedbackList/FeedbackList.styled";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 const Container = styled.div`
   width: 730px;
@@ -25,16 +26,28 @@ const Feedback = (props: Props) => {
   const [feedback, setFeedback] = useState<IFeedback | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { feedbackList } = useFeedbacks();
 
   const fetchFeedback = async (id: IFeedback["id"]) => {
-    try {
-      const result = await getFeedback(id);
-      setFeedback(result.data[0]);
+    const feedbackFromContext = await feedbackList.find(
+      (feedback: IFeedback) => {
+        if (feedback.id === id) return feedback;
+      }
+    );
+
+    if (feedbackFromContext) {
+      setFeedback(feedbackFromContext);
       setLoading(false);
-    } catch (err: any) {
-      console.log(err);
-      setError(error);
-      setLoading(false);
+    } else {
+      try {
+        const result = await getFeedback(id);
+        setFeedback(result.data[0]);
+        setLoading(false);
+      } catch (err: any) {
+        console.log(err);
+        setError(error);
+        setLoading(false);
+      }
     }
   };
 

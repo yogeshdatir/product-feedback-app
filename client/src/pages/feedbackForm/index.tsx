@@ -50,7 +50,8 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { feedbackList, removeFeedback } = useFeedbacks();
+  const { feedbackList, removeFeedback, updateOrAddToFeedbackList } =
+    useFeedbacks();
 
   const fetchFeedback = async (id: IFeedback["id"]) => {
     const feedbackFromContext = await feedbackList.find(
@@ -111,15 +112,31 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (feedback) {
-      updateFeedback(formState);
-      navigate(-1);
+      try {
+        const result = await updateFeedback(formState);
+        updateOrAddToFeedbackList(result.data[0]);
+        setLoading(false);
+        navigate(-1);
+      } catch (error: any) {
+        setError(error);
+        console.error(error);
+        setLoading(false);
+      }
     } else {
-      addFeedback(formState);
-      navigate("/");
+      try {
+        const result = await addFeedback(formState);
+        updateOrAddToFeedbackList(result.data[0], true);
+        setLoading(false);
+        navigate("/");
+      } catch (error: any) {
+        setError(error);
+        console.error(error);
+        setLoading(false);
+      }
     }
   };
 
