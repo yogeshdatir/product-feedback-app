@@ -1,12 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { getAllFeedbacks } from "../services/apis";
+import { useNavigate } from "react-router";
+import { getAllFeedbacks, deleteFeedback } from "../services/apis";
+import { IFeedback } from "../types";
 
 const FeedbackContext = createContext<any>(null);
 
 export default function FeedbackContextProvider(props: any) {
-  const [feedbackList, setFeedbackList] = useState([]);
+  const [feedbackList, setFeedbackList] = useState<IFeedback[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const fetchFeedbackList = async () => {
     try {
@@ -24,9 +27,28 @@ export default function FeedbackContextProvider(props: any) {
     fetchFeedbackList();
   }, []);
 
+  const removeFeedback = async (id: IFeedback["id"]) => {
+    try {
+      const result = await deleteFeedback(id);
+      setFeedbackList((prevFeedbackList: IFeedback[]) => {
+        return [
+          ...prevFeedbackList.filter(
+            (feedback: IFeedback) => feedback.id !== id
+          ),
+        ];
+      });
+      setLoading(false);
+      navigate("/");
+    } catch (error: any) {
+      setError(error);
+      console.error(error);
+      setLoading(false);
+    }
+  };
+
   const FeedbackContextState = {
     feedbackList,
-    setFeedbackList,
+    removeFeedback,
     loading,
     error,
   };

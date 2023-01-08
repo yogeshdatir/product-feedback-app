@@ -14,6 +14,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { ActionHeader } from "../../components/Common.styled";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 import {
   addFeedback,
   getFeedback,
@@ -21,6 +22,7 @@ import {
   deleteFeedback,
 } from "../../services/apis";
 import { IFeedback, INewFeedback } from "../../types";
+import FeedbackList from "../home/FeedbackList/index";
 import {
   FeedbackFormWrapper,
   Form,
@@ -48,31 +50,34 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { feedbackList, removeFeedback } = useFeedbacks();
 
   const fetchFeedback = async (id: IFeedback["id"]) => {
-    try {
-      const result = await getFeedback(id);
-      setFeedback(result.data[0]);
+    const feedbackFromContext = await feedbackList.find(
+      (feedback: IFeedback) => {
+        if (feedback.id === id) return feedback;
+      }
+    );
+
+    if (feedbackFromContext) {
+      setFeedback(feedbackFromContext);
       setFormState({
-        ...result.data[0],
+        ...feedbackFromContext,
       });
       setLoading(false);
-    } catch (error: any) {
-      setError(error);
-      console.error(error);
-      setLoading(false);
-    }
-  };
-
-  const removeFeedback = async (id: IFeedback["id"]) => {
-    try {
-      const result = await deleteFeedback(id);
-      setLoading(false);
-      navigate("/");
-    } catch (error: any) {
-      setError(error);
-      console.error(error);
-      setLoading(false);
+    } else {
+      try {
+        const result = await getFeedback(id);
+        setFeedback(result.data[0]);
+        setFormState({
+          ...result.data[0],
+        });
+        setLoading(false);
+      } catch (error: any) {
+        setError(error);
+        console.error(error);
+        setLoading(false);
+      }
     }
   };
 
