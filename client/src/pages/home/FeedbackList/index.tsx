@@ -1,6 +1,3 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { getAllFeedbacks } from "../../../services/apis";
 import { IFeedback } from "../../../types";
 import EmptyState from "./EmptyState";
 import { v4 as uuidv4 } from "uuid";
@@ -12,29 +9,12 @@ import {
   ContentWrapper,
 } from "./FeedbackList.styled";
 import Badge from "../../../components/Badge";
+import { useFeedbacks } from "../../../contexts/FeedbackContext";
 
 interface Props {}
 
 const FeedbackList = (props: Props) => {
-  const [feedbackList, setFeedbackList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchFeedbackList = async () => {
-    try {
-      const result = await getAllFeedbacks();
-      setFeedbackList(result.data);
-      setLoading(false);
-    } catch (error: any) {
-      setError(error);
-      console.error(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchFeedbackList();
-  }, []);
+  const { feedbackList, loading, error } = useFeedbacks();
 
   if (loading) {
     return <p>loading</p>;
