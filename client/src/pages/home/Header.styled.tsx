@@ -9,6 +9,8 @@ export const Wrapper = styled.div`
   padding: 1rem;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 4rem;
 `;
 
 export const AddFeedbackButton = styled.button`

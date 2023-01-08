@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Badge from "../../components/Badge";
 import { ActionHeader } from "../../components/Common.styled";
-import { getFeedback } from "../../services/apis";
+import { getFeedback } from "../../services/feedbackAPIs";
 import { IFeedback } from "../../types";
 import { GoBackButton } from "../feedbackForm/FeedbackForm.styled";
 import {

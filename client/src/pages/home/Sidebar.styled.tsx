@@ -2,10 +2,12 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 16rem;
-
+  height: max-content;
   display: flex;
   flex-direction: column;
   gap: 1.5rem 0;
+  position: sticky;
+  top: 4rem;
 `;
 
 export const SidebarCard = styled.div`

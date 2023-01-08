@@ -20,7 +20,7 @@ import {
   getFeedback,
   updateFeedback,
   deleteFeedback,
-} from "../../services/apis";
+} from "../../services/feedbackAPIs";
 import { IFeedback, INewFeedback } from "../../types";
 import FeedbackList from "../home/FeedbackList/index";
 import {

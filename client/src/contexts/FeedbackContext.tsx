@@ -4,13 +4,18 @@ import {
   getAllFeedbacks,
   deleteFeedback,
   updateFeedback,
-} from "../services/apis";
+} from "../services/feedbackAPIs";
 import { IFeedback } from "../types";
 
+// TODO: Add context state type
 const FeedbackContext = createContext<any>(null);
 
 export default function FeedbackContextProvider(props: any) {
   const [feedbackList, setFeedbackList] = useState<IFeedback[]>([]);
+  const [categoryToFilter, setCategoryToFilter] = useState<string>("");
+  const [filteredFeedbackList, setFilteredFeedbackList] = useState<IFeedback[]>(
+    []
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -71,10 +76,23 @@ export default function FeedbackContextProvider(props: any) {
     });
   };
 
+  const filterFeedbackList = (category: IFeedback["category"]) => {
+    setCategoryToFilter(category);
+    if (!category) return feedbackList;
+    const filteredList = feedbackList.filter((feedback: IFeedback) => {
+      if (feedback.category === category) return feedback;
+    });
+
+    setFilteredFeedbackList(filteredList);
+  };
+
   const FeedbackContextState = {
     feedbackList,
     removeFeedback,
     updateOrAddToFeedbackList,
+    categoryToFilter,
+    filteredFeedbackList,
+    filterFeedbackList,
     loading,
     error,
   };

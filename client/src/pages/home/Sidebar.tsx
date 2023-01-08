@@ -1,15 +1,22 @@
 import React from "react";
 import Badge from "../../components/Badge";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
+import { useCategories } from "../../contexts/CategoryContext";
 import {
   CategoryFilterCard,
   CategoryTable,
   SidebarCard,
   Wrapper,
 } from "./Sidebar.styled";
+import { ICategory } from "../../types";
+import { v4 as uuidv4 } from "uuid";
 
 interface Props {}
 
 const Sidebar = (props: Props) => {
+  const { filterFeedbackList } = useFeedbacks();
+  const { categories } = useCategories();
+
   return (
     <Wrapper>
       <SidebarCard>
@@ -17,12 +24,25 @@ const Sidebar = (props: Props) => {
         <span>Feedback Board</span>
       </SidebarCard>
       <CategoryFilterCard>
-        <Badge>All</Badge>
-        <Badge>UI</Badge>
-        <Badge>UX</Badge>
-        <Badge>Enhancement</Badge>
-        <Badge>Feature</Badge>
-        <Badge>Bug</Badge>
+        <Badge
+          onClick={() => {
+            filterFeedbackList("");
+          }}
+        >
+          All
+        </Badge>
+        {categories.map((category: ICategory) => {
+          return (
+            <Badge
+              key={uuidv4()}
+              onClick={() => {
+                filterFeedbackList(category.name);
+              }}
+            >
+              {category.name}
+            </Badge>
+          );
+        })}
       </CategoryFilterCard>
       <SidebarCard>
         <CategoryTable>

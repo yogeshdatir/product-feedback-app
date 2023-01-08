@@ -15,4 +15,5 @@ export const Container = styled.span`
   align-items: center;
   width: max-content;
   text-transform: capitalize;
+  cursor: pointer;
 `;
