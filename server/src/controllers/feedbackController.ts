@@ -33,7 +33,7 @@ const feedbackController = {
     const defaultStatus = "suggestion";
     const id = uuidv4();
     const query =
-      "INSERT INTO feedbacks VALUES ($1, $2, $3, (SELECT id FROM status where name = $4), (SELECT id FROM categories where name = $5)) RETURNING *";
+      "WITH added_feedback AS (INSERT INTO feedbacks VALUES ($1, $2, $3, (SELECT id FROM status where name = $4), (SELECT id FROM categories where name = $5)) RETURNING *) select f.id, f.title, f.description, s.name as status, c.name as category from added_feedback as f inner join status as s on f.status = s.id inner join categories as c on f.category = c.id";
     try {
       const result: QueryResult = await pool.query(query, [
         id,
@@ -51,7 +51,7 @@ const feedbackController = {
   updateFeedback: async (req: Request, res: Response) => {
     const { id, title, description, status, category } = req.body;
     const query =
-      "UPDATE feedbacks SET title = $1, description = $2, status = (SELECT id FROM status where name = $3), category = (SELECT id FROM categories where name = $4) WHERE id = $5 RETURNING *";
+      "WITH updated_feedback AS (UPDATE feedbacks SET title = $1, description = $2, status = (SELECT id FROM status where name = $3), category = (SELECT id FROM categories where name = $4) WHERE id = $5 RETURNING *) select f.id, f.title, f.description, s.name as status, c.name as category from updated_feedback as f inner join status as s on f.status = s.id inner join categories as c on f.category = c.id";
     try {
       const result: QueryResult = await pool.query(query, [
         title,
