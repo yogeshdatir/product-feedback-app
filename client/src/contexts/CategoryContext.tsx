@@ -1,12 +1,13 @@
 import React, { useEffect, createContext, useContext, useState } from "react";
 import { getAllCategories } from "../services/categoryAPIs";
+import { ICategory } from "../types";
 
 // TODO: Add context state type
 const CategoryContext = createContext<any>(null);
 
 export default function CategoryContextProvider(props: any) {
   // TODO: Add category state type
-  const [categories, setCategories] = useState<any>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

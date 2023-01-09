@@ -1,20 +1,21 @@
 import React from "react";
-import Badge from "../../components/Badge";
-import { useFeedbacks } from "../../contexts/FeedbackContext";
-import { useCategories } from "../../contexts/CategoryContext";
+import Badge from "../../../components/Badge";
+import { useFeedbacks } from "../../../contexts/FeedbackContext";
+import { useCategories } from "../../../contexts/CategoryContext";
 import {
   CategoryFilterCard,
-  CategoryTable,
+  StatusTable,
   SidebarCard,
   Wrapper,
 } from "./Sidebar.styled";
-import { ICategory } from "../../types";
+import { ICategory, IFeedback } from "../../../types";
 import { v4 as uuidv4 } from "uuid";
+import StatusCard from "./StatusCard";
 
 interface Props {}
 
 const Sidebar = (props: Props) => {
-  const { filterFeedbackList } = useFeedbacks();
+  const { statusCounts, filterFeedbackList } = useFeedbacks();
   const { categories } = useCategories();
 
   return (
@@ -44,30 +45,7 @@ const Sidebar = (props: Props) => {
           );
         })}
       </CategoryFilterCard>
-      <SidebarCard>
-        <CategoryTable>
-          <thead>
-            <tr>
-              <th>Roadmap</th>
-              <th>View</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Planned</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>In-Progress</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>Live</td>
-              <td>4</td>
-            </tr>
-          </tbody>
-        </CategoryTable>
-      </SidebarCard>
+      <StatusCard />
     </Wrapper>
   );
 };

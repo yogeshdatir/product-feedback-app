@@ -19,17 +19,29 @@ export default function FeedbackContextProvider(props: any) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  // let statusCounts = {};
+  const [statusCounts, setStatusCounts] = useState({});
 
   const fetchFeedbackList = async () => {
     try {
       const result = await getAllFeedbacks();
       setFeedbackList(result.data);
+      getStatusCounts(result.data);
       setLoading(false);
     } catch (error: any) {
       setError(error);
       console.error(error);
       setLoading(false);
     }
+  };
+
+  const getStatusCounts = (feedbackList: IFeedback[]) => {
+    let tempStatusCounts: any = {};
+    feedbackList.forEach((feedback: IFeedback) => {
+      const statusName = feedback.status;
+      tempStatusCounts[statusName] = (tempStatusCounts[statusName] || 0) + 1;
+    });
+    setStatusCounts({ ...tempStatusCounts });
   };
 
   useEffect(() => {
@@ -39,13 +51,16 @@ export default function FeedbackContextProvider(props: any) {
   const removeFeedback = async (id: IFeedback["id"]) => {
     try {
       const result = await deleteFeedback(id);
+      let updatedFeedbackList: IFeedback[] = [];
       setFeedbackList((prevFeedbackList: IFeedback[]) => {
-        return [
+        updatedFeedbackList = [
           ...prevFeedbackList.filter(
             (feedback: IFeedback) => feedback.id !== id
           ),
         ];
+        return updatedFeedbackList;
       });
+      getStatusCounts(updatedFeedbackList);
       setLoading(false);
       navigate("/");
     } catch (error: any) {
@@ -59,20 +74,25 @@ export default function FeedbackContextProvider(props: any) {
     updatedOrNewFeedback: IFeedback,
     add: boolean = false
   ) => {
+    let updatedFeedbackList: IFeedback[] = [];
     if (add) {
       setFeedbackList((prevFeedbackList: IFeedback[]) => {
-        return [...prevFeedbackList, updatedOrNewFeedback];
+        updatedFeedbackList = [...prevFeedbackList, updatedOrNewFeedback];
+        return updatedFeedbackList;
       });
+      getStatusCounts(updatedFeedbackList);
       return;
     }
     setFeedbackList((prevFeedbackList: IFeedback[]) => {
-      return [
+      updatedFeedbackList = [
         ...prevFeedbackList.map((feedback: IFeedback) =>
           feedback.id === updatedOrNewFeedback.id
             ? updatedOrNewFeedback
             : feedback
         ),
       ];
+      getStatusCounts(updatedFeedbackList);
+      return updatedFeedbackList;
     });
   };
 
@@ -87,6 +107,7 @@ export default function FeedbackContextProvider(props: any) {
   };
 
   const FeedbackContextState = {
+    statusCounts,
     feedbackList,
     removeFeedback,
     updateOrAddToFeedbackList,

@@ -12,3 +12,8 @@ export type ICategory = {
   id: string;
   name: string;
 };
+
+export type IStatus = {
+  id: string;
+  name: string;
+};

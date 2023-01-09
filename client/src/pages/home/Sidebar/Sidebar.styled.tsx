@@ -24,4 +24,4 @@ export const CategoryFilterCard = styled(SidebarCard)`
   gap: 14px 8px;
 `;
 
-export const CategoryTable = styled.table``;
+export const StatusTable = styled.table``;
