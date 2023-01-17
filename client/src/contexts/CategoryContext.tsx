@@ -1,6 +1,6 @@
 import React, { useEffect, createContext, useContext, useState } from "react";
 import { getAllCategories } from "../services/categoryAPIs";
-import { ICategory } from "../types";
+import { ICategory } from "../utils/types";
 
 // TODO: Add context state type
 const CategoryContext = createContext<any>(null);

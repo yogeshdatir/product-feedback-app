@@ -21,7 +21,7 @@ import {
   updateFeedback,
   deleteFeedback,
 } from "../../services/feedbackAPIs";
-import { IFeedback, INewFeedback } from "../../types";
+import { IFeedback, INewFeedback } from "../../utils/types";
 import FeedbackList from "../home/FeedbackList/index";
 import {
   FeedbackFormWrapper,

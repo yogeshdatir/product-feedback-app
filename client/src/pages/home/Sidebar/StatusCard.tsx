@@ -1,9 +1,19 @@
 import React from "react";
-import { SidebarCard, StatusTable } from "./Sidebar.styled";
+import {
+  FeedbackCount,
+  SidebarCard,
+  StatusDot,
+  StatusTable,
+  StatusTableBody,
+  StatusTableRow,
+  Title,
+  ViewButton,
+} from "./Sidebar.styled";
 import { useFeedbacks } from "../../../contexts/FeedbackContext";
-import { IFeedback, IStatus } from "../../../types";
+import { IFeedback, IStatus } from "../../../utils/types";
 import { v4 as uuidv4 } from "uuid";
 import { useStatus } from "../../../contexts/StatusContext";
+import { StatusTableHeaderRow, StatusName } from "./Sidebar.styled";
 
 interface Props {}
 
@@ -14,22 +24,22 @@ const StatusCard = (props: Props) => {
   return (
     <SidebarCard>
       <StatusTable>
-        <thead>
-          <tr>
-            <th>Roadmap</th>
-            <th>View</th>
-          </tr>
-        </thead>
-        <tbody>
+        <StatusTableHeaderRow>
+          <Title>Roadmap</Title>
+          <ViewButton>View</ViewButton>
+        </StatusTableHeaderRow>
+        <StatusTableBody>
           {status.map(({ name }: IStatus) => {
+            if (name === "suggestion") return;
             return (
-              <tr key={uuidv4()}>
-                <td>{name}</td>
-                <td>{statusCounts[name] || 0}</td>
-              </tr>
+              <StatusTableRow key={uuidv4()}>
+                <StatusDot name={name} />
+                <StatusName>{name}</StatusName>
+                <FeedbackCount>{statusCounts[name] || 0}</FeedbackCount>
+              </StatusTableRow>
             );
           })}
-        </tbody>
+        </StatusTableBody>
       </StatusTable>
     </SidebarCard>
   );

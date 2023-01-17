@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Badge from "../../components/Badge";
 import { ActionHeader } from "../../components/Common.styled";
 import { getFeedback } from "../../services/feedbackAPIs";
-import { IFeedback } from "../../types";
+import { IFeedback } from "../../utils/types";
 import { GoBackButton } from "../feedbackForm/FeedbackForm.styled";
 import {
   FeedbackCard,

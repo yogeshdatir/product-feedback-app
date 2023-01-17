@@ -5,7 +5,7 @@ import {
   deleteFeedback,
   updateFeedback,
 } from "../services/feedbackAPIs";
-import { IFeedback } from "../types";
+import { IFeedback } from "../utils/types";
 
 // TODO: Add context state type
 const FeedbackContext = createContext<any>(null);

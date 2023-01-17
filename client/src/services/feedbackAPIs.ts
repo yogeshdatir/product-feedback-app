@@ -1,4 +1,4 @@
-import { IFeedback, INewFeedback } from "../types/index";
+import { IFeedback, INewFeedback } from "../utils/types";
 import AxiosCommon from "./AxiosCommon";
 
 export const getAllFeedbacks = () => {

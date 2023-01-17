@@ -8,7 +8,7 @@ import {
   SidebarCard,
   Wrapper,
 } from "./Sidebar.styled";
-import { ICategory, IFeedback } from "../../../types";
+import { ICategory, IFeedback } from "../../../utils/types";
 import { v4 as uuidv4 } from "uuid";
 import StatusCard from "./StatusCard";
 

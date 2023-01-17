@@ -1,6 +1,6 @@
 import React, { useEffect, createContext, useContext, useState } from "react";
 import { getAllStatus } from "../services/statusAPIs";
-import { IStatus } from "../types";
+import { IStatus } from "../utils/types";
 
 // TODO: Add context state type
 const StatusContext = createContext<any>(null);
