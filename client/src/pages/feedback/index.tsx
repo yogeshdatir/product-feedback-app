@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Badge from "../../components/Badge";
-import { ActionHeader } from "../../components/Common.styled";
+import { ActionHeader, ViewBadge } from "../../components/Common.styled";
 import { getFeedback } from "../../services/feedbackAPIs";
 import { IFeedback } from "../../utils/types";
 import { GoBackButton } from "../feedbackForm/FeedbackForm.styled";
@@ -82,7 +81,7 @@ const Feedback = (props: Props) => {
             <FeedbackDescription style={{ marginTop: "0.25rem" }}>
               {feedback.description}
             </FeedbackDescription>
-            <Badge style={{ marginTop: "0.75rem" }}>{feedback.category}</Badge>
+            <ViewBadge>{feedback.category}</ViewBadge>
           </FeedbackCard>
         )}
       </ContentWrapper>

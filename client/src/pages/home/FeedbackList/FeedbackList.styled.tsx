@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ITheme } from "../../../utils/types";
 
 export const ContentWrapper = styled.div`
   margin: 1.5rem 0;
@@ -7,22 +8,26 @@ export const ContentWrapper = styled.div`
   gap: 1.25rem;
 `;
 
-export const FeedbackCard = styled.div`
-  padding: 28px 32px;
+export const FeedbackCard = styled.div(
+  ({ theme: { colors } }: { theme: ITheme }) => ({
+    padding: "28px 32px",
+    background: colors.white,
+    borderRadius: "10px",
+    color: colors.americanBlue,
 
-  background: #ffffff;
-  border-radius: 10px;
-`;
+    ":hover": {
+      "${FeedbackTitle}": {
+        color: colors.royalBlue,
+      },
+    },
+  })
+);
 
 export const FeedbackTitle = styled.p`
   font-weight: 700;
   font-size: 18px;
   line-height: 26px;
-  /* identical to box height */
-
   letter-spacing: -0.25px;
-
-  color: #3a4374;
 `;
 
 export const FeedbackDescription = styled.p`

@@ -10,6 +10,7 @@ import {
 } from "./FeedbackList.styled";
 import Badge from "../../../components/Badge";
 import { useFeedbacks } from "../../../contexts/FeedbackContext";
+import { ViewBadge } from "../../../components/Common.styled";
 
 interface Props {}
 
@@ -44,7 +45,9 @@ const FeedbackList = (props: Props) => {
                   <FeedbackDescription style={{ marginTop: "0.25rem" }}>
                     {feedback.description}
                   </FeedbackDescription>
-                  <Badge style={{ marginTop: "0.75rem" }}>
+                  <Badge
+                    style={{ marginTop: "0.75rem", pointerEvents: "none" }}
+                  >
                     {feedback.category}
                   </Badge>
                 </FeedbackCard>
@@ -59,9 +62,7 @@ const FeedbackList = (props: Props) => {
                   <FeedbackDescription style={{ marginTop: "0.25rem" }}>
                     {feedback.description}
                   </FeedbackDescription>
-                  <Badge style={{ marginTop: "0.75rem" }}>
-                    {feedback.category}
-                  </Badge>
+                  <ViewBadge>{feedback.category}</ViewBadge>
                 </FeedbackCard>
               </Link>
             );

@@ -5,7 +5,7 @@ const Typography: ITypography = {
   fontWeight: {
     bold: 700,
     semiBold: 600,
-    regular: 400,
+    regular: 500,
   },
   h1: {
     fontSize: "24px",
@@ -44,6 +44,8 @@ export const themes: IThemes = {
       darkBlueGray: "#647196",
       planned: "#F49F85",
       live: "#62BCFA",
+      lavenderBlue: "#CFD7FF",
+      lightCobaltBlue: "#8397F8",
     },
     typography: { ...Typography },
   },

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { IStatus, ITheme } from "../../../utils/types";
+import DesktopBackgroundHeader from "../../../assets/suggestions/desktop/background-header.png";
 
 export const Wrapper = styled.div`
   width: 16rem;
@@ -11,15 +12,37 @@ export const Wrapper = styled.div`
   top: 4rem;
 `;
 
-export const SidebarCard = styled.div`
+export const SidebarCard = styled.div<any>`
   width: 100%;
   padding: 1.5rem;
 
   display: flex;
   flex-wrap: wrap;
-  background: #ffffff;
+  background: ${({ src }) => (src ? `url(${src})` : "#fff")};
   border-radius: 10px;
 `;
+
+export const ProductName = styled.h2(
+  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+    paddingTop: "2.5rem",
+
+    color: colors.white,
+    fontSize: typography.h2.fontSize,
+    fontWeight: typography.fontWeight.bold,
+    lineHeight: typography.h2.lineHeight,
+    letterSpacing: typography.h2.letterSpacing,
+  })
+);
+
+export const PageName = styled.span(
+  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+    color: colors.white,
+    mixBlendMode: "normal",
+    fontSize: typography.body2.fontSize,
+    fontWeight: typography.fontWeight.regular,
+    lineHeight: typography.body2.lineHeight,
+  })
+);
 
 export const CategoryFilterCard = styled(SidebarCard)`
   gap: 14px 8px;
@@ -47,11 +70,14 @@ export const ViewButton = styled.button(
     textDecorationLine: "underline",
     color: colors.royalBlue,
     mixBlendMode: "normal",
-    opacity: 0.25,
     border: "none",
     background: "transparent",
     cursor: "pointer",
     marginLeft: "auto",
+
+    ":hover": {
+      color: colors.lightCobaltBlue,
+    },
   })
 );
 

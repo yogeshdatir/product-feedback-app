@@ -1,12 +1,17 @@
 import React, { useEffect, createContext, useContext, useState } from "react";
 import { getAllCategories } from "../services/categoryAPIs";
-import { ICategory } from "../utils/types";
+import { ICategory, IContextProps } from "../utils/types";
 
-// TODO: Add context state type
-const CategoryContext = createContext<any>(null);
+interface ICategoryContextState {
+  categories: ICategory[];
+  setCategories: React.Dispatch<React.SetStateAction<ICategory[]>>;
+  loading: boolean;
+  error: any;
+}
 
-export default function CategoryContextProvider(props: any) {
-  // TODO: Add category state type
+const CategoryContext = createContext<ICategoryContextState | null>(null);
+
+export default function CategoryContextProvider(props: IContextProps) {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,6 +35,8 @@ export default function CategoryContextProvider(props: any) {
   const CategoryContextState = {
     categories,
     setCategories,
+    loading,
+    error,
   };
 
   return (

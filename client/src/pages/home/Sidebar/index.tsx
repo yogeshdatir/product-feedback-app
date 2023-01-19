@@ -7,25 +7,29 @@ import {
   StatusTable,
   SidebarCard,
   Wrapper,
+  ProductName,
+  PageName,
 } from "./Sidebar.styled";
 import { ICategory, IFeedback } from "../../../utils/types";
 import { v4 as uuidv4 } from "uuid";
 import StatusCard from "./StatusCard";
+import DesktopBackgroundHeader from "../../../assets/suggestions/desktop/background-header.png";
 
 interface Props {}
 
 const Sidebar = (props: Props) => {
-  const { statusCounts, filterFeedbackList } = useFeedbacks();
+  const { filterFeedbackList, categoryToFilter } = useFeedbacks();
   const { categories } = useCategories();
 
   return (
     <Wrapper>
-      <SidebarCard>
-        <span>Frontend Mentor</span>
-        <span>Feedback Board</span>
+      <SidebarCard src={DesktopBackgroundHeader}>
+        <ProductName>Frontend Mentor</ProductName>
+        <PageName>Feedback Board</PageName>
       </SidebarCard>
       <CategoryFilterCard>
         <Badge
+          isActive={categoryToFilter === ""}
           onClick={() => {
             filterFeedbackList("");
           }}
@@ -35,6 +39,7 @@ const Sidebar = (props: Props) => {
         {categories.map((category: ICategory) => {
           return (
             <Badge
+              isActive={category.name === categoryToFilter}
               key={uuidv4()}
               onClick={() => {
                 filterFeedbackList(category.name);

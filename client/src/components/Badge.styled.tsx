@@ -1,19 +1,23 @@
 import styled from "@emotion/styled";
+import { ITheme } from "../utils/types";
 
-export const Container = styled.span`
-  padding: 5px 1rem;
+export const Container = styled.span(
+  ({ theme: { colors, typography }, isActive }: any) => ({
+    fontWeight: typography.fontWeight.semiBold,
+    fontSize: typography.body3.fontSize,
+    lineHeight: typography.body3.lineHeight,
+    color: isActive ? colors.white : colors.royalBlue,
+    background: isActive ? colors.royalBlue : colors.aliceBlue,
+    padding: "5px 1rem",
+    borderRadius: "10px",
+    display: "flex",
+    alignItems: "center",
+    width: "max-content",
+    textTransform: "capitalize",
+    cursor: "pointer",
 
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 19px;
-  color: #4661e6;
-
-  background: #f2f4ff;
-  border-radius: 10px;
-
-  display: flex;
-  align-items: center;
-  width: max-content;
-  text-transform: capitalize;
-  cursor: pointer;
-`;
+    ":hover": {
+      background: isActive ? colors.royalBlue : colors.lavenderBlue,
+    },
+  })
+);

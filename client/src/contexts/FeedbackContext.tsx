@@ -1,16 +1,29 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import {
-  getAllFeedbacks,
-  deleteFeedback,
-  updateFeedback,
-} from "../services/feedbackAPIs";
-import { IFeedback } from "../utils/types";
+import { getAllFeedbacks, deleteFeedback } from "../services/feedbackAPIs";
+import { IContextProps, IFeedback } from "../utils/types";
 
-// TODO: Add context state type
-const FeedbackContext = createContext<any>(null);
+interface IFeedbackContextState {
+  // TODO: add types for any
+  statusCounts: any;
+  feedbackList: IFeedback[];
+  removeFeedback: (id: IFeedback["id"]) => Promise<void>;
+  updateOrAddToFeedbackList: (
+    updatedOrNewFeedback: IFeedback,
+    add?: boolean
+  ) => void;
+  categoryToFilter: string;
+  filteredFeedbackList: IFeedback[];
+  filterFeedbackList: (
+    category: IFeedback["category"]
+  ) => IFeedback[] | undefined;
+  loading: boolean;
+  error: any;
+}
 
-export default function FeedbackContextProvider(props: any) {
+const FeedbackContext = createContext<IFeedbackContextState | null>(null);
+
+export default function FeedbackContextProvider(props: IContextProps) {
   const [feedbackList, setFeedbackList] = useState<IFeedback[]>([]);
   const [categoryToFilter, setCategoryToFilter] = useState<string>("");
   const [filteredFeedbackList, setFilteredFeedbackList] = useState<IFeedback[]>(
@@ -19,7 +32,6 @@ export default function FeedbackContextProvider(props: any) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  // let statusCounts = {};
   const [statusCounts, setStatusCounts] = useState({});
 
   const fetchFeedbackList = async () => {

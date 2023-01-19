@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type IFeedback = {
   id: string;
   title: string;
@@ -18,6 +20,10 @@ export type IStatus = {
   name: string;
 };
 
+export interface IContextProps {
+  children: ReactNode;
+}
+
 export interface IThemes {
   light: ITheme;
 }
@@ -37,6 +43,8 @@ export interface IColors {
   darkBlueGray: string;
   planned: string;
   live: string;
+  lavenderBlue: string;
+  lightCobaltBlue: string;
 }
 
 export interface ITypography {

@@ -2,11 +2,16 @@ import React, { useEffect, createContext, useContext, useState } from "react";
 import { getAllStatus } from "../services/statusAPIs";
 import { IStatus } from "../utils/types";
 
-// TODO: Add context state type
-const StatusContext = createContext<any>(null);
+interface IStatusContextState {
+  status: IStatus[];
+  setStatus: React.Dispatch<React.SetStateAction<IStatus[]>>;
+  loading: boolean;
+  error: null;
+}
+
+const StatusContext = createContext<IStatusContextState | null>(null);
 
 export default function StatusContextProvider(props: any) {
-  // TODO: Add status state type
   const [status, setStatus] = useState<IStatus[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,6 +35,8 @@ export default function StatusContextProvider(props: any) {
   const StatusContextState = {
     status,
     setStatus,
+    loading,
+    error,
   };
 
   return (
