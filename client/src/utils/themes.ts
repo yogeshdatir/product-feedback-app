@@ -36,6 +36,7 @@ export const themes: IThemes = {
   light: {
     colors: {
       "in-progress": "#AD1FEA",
+      heliotrope: "#C75AF6",
       royalBlue: "#4661E6",
       americanBlue: "#373F68",
       white: "#FFFFFF",

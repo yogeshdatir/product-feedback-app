@@ -1,15 +1,27 @@
 import React from "react";
-import { AddFeedbackButton, Wrapper } from "./Header.styled";
-import { Outlet, Link } from "react-router-dom";
+import { AddFeedbackButton, HeaderTitle, Wrapper } from "./Header.styled";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
+import SuggestionsIcon from "../../assets/suggestions/icon-suggestions.svg";
 
 interface Props {}
 
 const Header = (props: Props) => {
+  const { filteredFeedbackList, feedbackList, categoryToFilter } =
+    useFeedbacks();
+  const suggestionCount = categoryToFilter
+    ? filteredFeedbackList.length
+    : feedbackList.length;
   return (
     <Wrapper>
-      <h3>6 Suggestions</h3>
-      <AddFeedbackButton>
-        <Link to="/add">Add feedback</Link>
+      <img src={SuggestionsIcon} />
+      <HeaderTitle>{`${suggestionCount} Suggestions`}</HeaderTitle>
+      <AddFeedbackButton
+        style={{
+          marginLeft: "auto",
+        }}
+        to="/add"
+      >
+        + Add feedback
       </AddFeedbackButton>
     </Wrapper>
   );

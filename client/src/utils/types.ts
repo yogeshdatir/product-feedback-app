@@ -35,6 +35,7 @@ export interface ITheme {
 
 export interface IColors {
   "in-progress": string;
+  heliotrope: string;
   royalBlue: string;
   americanBlue: string;
   white: string;
