@@ -32,20 +32,24 @@ ALTER TABLE IF EXISTS public.categories
 
 -- Table: public.status
 
--- DROP TABLE IF EXISTS public.status;
+-- DROP TABLE public.status;
 
-CREATE TABLE IF NOT EXISTS public.status
+CREATE TABLE public.status
 (
     id uuid NOT NULL,
     name character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    description text COLLATE pg_catalog."default",
     CONSTRAINT status_pkey PRIMARY KEY (id),
     CONSTRAINT "unique status name" UNIQUE (name)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.status
+ALTER TABLE public.status
     OWNER to postgres;
+
+COMMENT ON COLUMN public.status.description
+    IS 'short description of the status';
 
 
 -- Table: public.feedbacks

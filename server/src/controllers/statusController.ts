@@ -28,10 +28,14 @@ const statusController = {
     }
   },
   updateStatus: async (req: Request, res: Response) => {
-    const { id, statusName } = req.body;
-    const query = `UPDATE status SET name = $1 WHERE id = $2 RETURNING *`;
+    const { id, name, description } = req.body;
+    const query = `UPDATE status SET name = $1, description = $2 WHERE id = $3 RETURNING *`;
     try {
-      const result: QueryResult = await pool.query(query, [statusName, id]);
+      const result: QueryResult = await pool.query(query, [
+        name,
+        description,
+        id,
+      ]);
       res.status(200).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
