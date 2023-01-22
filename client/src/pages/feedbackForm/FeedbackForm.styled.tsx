@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
 
-export const GoBackButton = styled.button``;
-
 export const FeedbackFormWrapper = styled.div`
   width: 540px;
   margin: auto;

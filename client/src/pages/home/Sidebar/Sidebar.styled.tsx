@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
-import { IStatus, ITheme } from "../../../utils/types";
-import DesktopBackgroundHeader from "../../../assets/suggestions/desktop/background-header.png";
+import { ITheme } from "../../../utils/types";
+import {
+  Body1Typography,
+  Body2Typography,
+  H2,
+  H3,
+} from "../../../components/Common.styled";
 
 export const Wrapper = styled.div`
   width: 16rem;
@@ -22,25 +27,18 @@ export const SidebarCard = styled.div<any>`
   border-radius: 10px;
 `;
 
-export const ProductName = styled.h2(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+export const ProductName = styled(H2)(
+  ({ theme: { colors } }: { theme: ITheme }) => ({
     paddingTop: "2.5rem",
 
     color: colors.white,
-    fontSize: typography.h2.fontSize,
-    fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.h2.lineHeight,
-    letterSpacing: typography.h2.letterSpacing,
   })
 );
 
-export const PageName = styled.span(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+export const PageName = styled(Body2Typography)(
+  ({ theme: { colors } }: { theme: ITheme }) => ({
     color: colors.white,
     mixBlendMode: "normal",
-    fontSize: typography.body2.fontSize,
-    fontWeight: typography.fontWeight.regular,
-    lineHeight: typography.body2.lineHeight,
   })
 );
 
@@ -52,16 +50,11 @@ export const StatusTable = styled.div`
   width: 100%;
 `;
 
-export const Title = styled.h3(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
-    color: colors.americanBlue,
-    fontSize: typography.h3.fontSize,
-    fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.h3.lineHeight,
-    letterSpacing: typography.h3.letterSpacing,
-  })
-);
+export const Title = styled(H3)(({ theme: { colors } }: { theme: ITheme }) => ({
+  color: colors.americanBlue,
+}));
 
+// TODO: reuse Body3Typography
 export const ViewButton = styled.button(
   ({ theme: { colors, typography } }: { theme: ITheme }) => ({
     fontWeight: typography.fontWeight.semiBold,
@@ -97,29 +90,17 @@ export const StatusTableHeaderRow = styled(StatusTableRow)`
   padding-bottom: 1rem;
 `;
 
-export const StatusDot = styled.div<any>`
-  border-radius: 50%;
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: ${({ theme, name }) => theme.colors[name]};
-`;
-
-export const StatusName = styled.span(
+export const StatusName = styled(Body1Typography)(
   ({ theme: { colors, typography } }: { theme: ITheme }) => ({
     padding: "0 1rem",
-    fontWeight: typography.fontWeight.regular,
-    fontSize: typography.body1.fontSize,
-    lineHeight: typography.body1.lineHeight,
     color: colors.darkBlueGray,
   })
 );
 
-export const FeedbackCount = styled.span(
+export const FeedbackCount = styled(Body1Typography)(
   ({ theme: { colors, typography } }: { theme: ITheme }) => ({
     marginLeft: "auto",
     fontWeight: typography.fontWeight.bold,
-    fontSize: typography.body1.fontSize,
-    lineHeight: typography.body1.lineHeight,
     color: colors.darkBlueGray,
   })
 );

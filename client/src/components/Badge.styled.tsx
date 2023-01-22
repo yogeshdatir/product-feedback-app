@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { ITheme } from "../utils/types";
 
+// TODO: reuse Body3Typography
 export const Container = styled.span(
   ({ theme: { colors, typography }, isActive }: any) => ({
     fontWeight: typography.fontWeight.semiBold,

@@ -18,6 +18,7 @@ export type ICategory = {
 export type IStatus = {
   id: string;
   name: string;
+  description?: string;
 };
 
 export interface IContextProps {

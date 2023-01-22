@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ActionHeader, ViewBadge } from "../../components/Common.styled";
 import { getFeedback } from "../../services/feedbackAPIs";
 import { IFeedback } from "../../utils/types";
-import { GoBackButton } from "../feedbackForm/FeedbackForm.styled";
 import {
   FeedbackCard,
   FeedbackTitle,
@@ -12,6 +11,7 @@ import {
   ContentWrapper,
 } from "../home/FeedbackList/FeedbackList.styled";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
+import GoBackButton from "../../components/GoBackButton";
 
 const Container = styled.div`
   width: 730px;
@@ -59,9 +59,7 @@ const Feedback = (props: Props) => {
   return (
     <Container>
       <ActionHeader>
-        <GoBackButton>
-          <Link to="/">Go Back</Link>
-        </GoBackButton>
+        <GoBackButton />
         {feedback && (
           <button>
             <Link to={`/edit/${id}`}>Edit Feedback</Link>

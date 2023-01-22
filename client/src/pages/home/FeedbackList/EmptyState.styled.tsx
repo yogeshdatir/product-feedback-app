@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Body1Typography, H1 } from "../../../components/Common.styled";
 import { ITheme } from "../../../utils/types";
 
 export const Container = styled.div`
@@ -12,23 +13,16 @@ export const Container = styled.div`
   }
 `;
 
-export const EmptyStateTitle = styled.h1(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+export const EmptyStateTitle = styled(H1)(
+  ({ theme: { colors } }: { theme: ITheme }) => ({
     color: colors.americanBlue,
-    fontSize: typography.h1.fontSize,
-    fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.h1.lineHeight,
-    letterSpacing: typography.h1.letterSpacing,
     textAlign: "center",
   })
 );
 
-export const EmptyStateContent = styled.p(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+export const EmptyStateContent = styled(Body1Typography)(
+  ({ theme: { colors } }: { theme: ITheme }) => ({
     color: colors.darkBlueGray,
-    fontSize: typography.body1.fontSize,
-    fontWeight: typography.fontWeight.regular,
-    lineHeight: typography.body1.lineHeight,
     textAlign: "center",
 
     padding: "1rem 0 4rem 0",

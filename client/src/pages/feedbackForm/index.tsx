@@ -5,31 +5,22 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import {
-  Outlet,
-  Link,
-  useParams,
-  redirect,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ActionHeader } from "../../components/Common.styled";
+import GoBackButton from "../../components/GoBackButton";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import {
   addFeedback,
   getFeedback,
   updateFeedback,
-  deleteFeedback,
 } from "../../services/feedbackAPIs";
 import { IFeedback, INewFeedback } from "../../utils/types";
-import FeedbackList from "../home/FeedbackList/index";
 import {
   FeedbackFormWrapper,
   Form,
   FormActionsWrapper,
   FormField,
   FormWrapper,
-  GoBackButton,
 } from "./FeedbackForm.styled";
 
 interface Props {
@@ -143,9 +134,7 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
   return (
     <FeedbackFormWrapper>
       <ActionHeader>
-        <GoBackButton>
-          <Link to="/">Go Back</Link>
-        </GoBackButton>
+        <GoBackButton />
       </ActionHeader>
       <FormWrapper>
         {isEdit && loading ? (

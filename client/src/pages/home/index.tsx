@@ -1,6 +1,6 @@
 import React from "react";
+import Header from "../../components/Header";
 import FeedbackList from "./FeedbackList";
-import Header from "./Header";
 import { Container, ContentWrapper } from "./Home.styled";
 import Sidebar from "./Sidebar";
 

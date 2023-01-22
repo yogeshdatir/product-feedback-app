@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { ITheme } from "../../utils/types";
+import { H1, H3 } from "./Common.styled";
+import { ITheme } from "../utils/types";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 4.5rem;
+  padding: 1.75rem 2rem;
 
   background: #373f68;
   border-radius: 10px;
@@ -15,17 +16,14 @@ export const Wrapper = styled.div`
   top: 4rem;
 `;
 
-export const HeaderTitle = styled.h3(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+export const HeaderTitle = styled(H3)(
+  ({ theme: { colors } }: { theme: ITheme }) => ({
     padding: "0 1rem",
     color: colors.white,
-    fontSize: typography.h3.fontSize,
-    fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.h3.lineHeight,
-    letterSpacing: typography.h3.letterSpacing,
   })
 );
 
+// TODO: reuse Body1Typography
 export const AddFeedbackButton = styled(Link)(
   ({ theme: { colors, typography } }: { theme: ITheme }) => ({
     padding: "0.75rem 1.5rem",
@@ -40,5 +38,12 @@ export const AddFeedbackButton = styled(Link)(
     ":hover": {
       background: colors.heliotrope,
     },
+  })
+);
+
+export const RoadmapTitle = styled(H1)(
+  ({ theme: { colors } }: { theme: ITheme }) => ({
+    color: colors.white,
+    paddingTop: "0.25rem",
   })
 );

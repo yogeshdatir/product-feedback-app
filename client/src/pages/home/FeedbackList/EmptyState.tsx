@@ -1,5 +1,5 @@
 import React from "react";
-import { AddFeedbackButton } from "../Header.styled";
+import { AddFeedbackButton } from "../../../components/Header.styled";
 import {
   Container,
   EmptyStateContent,
