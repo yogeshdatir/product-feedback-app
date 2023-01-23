@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
 import { ActionHeader } from "../../components/Common.styled";
 import GoBackButton from "../../components/GoBackButton";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
@@ -14,6 +15,7 @@ import {
   getFeedback,
   updateFeedback,
 } from "../../services/feedbackAPIs";
+import { goBack } from "../../utils/sharedFunctions";
 import { IFeedback, INewFeedback } from "../../utils/types";
 import {
   FeedbackFormWrapper,
@@ -194,23 +196,34 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
             </FormField>
             <FormActionsWrapper>
               {feedback && (
-                <button
+                <Button
+                  backgroundColor="error"
+                  color="buttonPrimary"
                   type="button"
                   onClick={(e) => handleDelete(e, feedback.id)}
                 >
                   Delete
-                </button>
+                </Button>
               )}
-              <button
+              <Button
+                backgroundColor="secondary"
+                color="buttonPrimary"
                 style={{ marginLeft: "auto" }}
                 type="button"
                 onClick={handleCancel}
               >
                 Cancel
-              </button>
-              <button type="submit">
+              </Button>
+              <Button
+                type="submit"
+                backgroundColor="primary"
+                color="buttonPrimary"
+                onClick={() => {
+                  goBack(navigate);
+                }}
+              >
                 {feedback ? `Update Feedback` : `Add Feedback`}
-              </button>
+              </Button>
             </FormActionsWrapper>
           </Form>
         )}

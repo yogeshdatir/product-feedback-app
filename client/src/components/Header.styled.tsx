@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { H1, H3 } from "./Common.styled";
 import { ITheme } from "../utils/types";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ isRoadmapPage?: boolean }>`
   width: 100%;
-  padding: 1.75rem 2rem;
+  padding: ${({ isRoadmapPage }) => (isRoadmapPage ? "1.75rem 2rem" : "1rem")};
 
   background: #373f68;
   border-radius: 10px;
-  padding: 1rem;
   display: flex;
   align-items: center;
   position: sticky;
@@ -20,24 +19,6 @@ export const HeaderTitle = styled(H3)(
   ({ theme: { colors } }: { theme: ITheme }) => ({
     padding: "0 1rem",
     color: colors.white,
-  })
-);
-
-// TODO: reuse Body1Typography
-export const AddFeedbackButton = styled(Link)(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
-    padding: "0.75rem 1.5rem",
-    borderRadius: "10px",
-    background: colors["in-progress"],
-
-    fontSize: typography.h4.fontSize,
-    fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.h4.lineHeight,
-    color: colors.aliceBlue,
-
-    ":hover": {
-      background: colors.heliotrope,
-    },
   })
 );
 

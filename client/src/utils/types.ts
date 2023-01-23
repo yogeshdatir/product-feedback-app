@@ -31,6 +31,7 @@ export interface IThemes {
 
 export interface ITheme {
   colors: IColors;
+  pallette: IPallette;
   typography: ITypography;
 }
 
@@ -38,6 +39,7 @@ export interface IColors {
   "in-progress": string;
   heliotrope: string;
   royalBlue: string;
+  royalBlueHovered: string;
   americanBlue: string;
   white: string;
   aliceBlue: string;
@@ -47,6 +49,40 @@ export interface IColors {
   live: string;
   lavenderBlue: string;
   lightCobaltBlue: string;
+}
+
+export interface IPallette {
+  common: ICommon;
+  primary: IColorShades;
+  secondary: IColorShades;
+  error: IColorShades;
+  info: IColorShades;
+  grey: IColorShades;
+  text: ITextColorShades;
+  status: IStatusPallette;
+}
+
+export interface ICommon {
+  black: string;
+  white: string;
+}
+
+export interface IColorShades {
+  main: string;
+  light: string;
+  dark?: string;
+}
+
+export interface ITextColorShades extends IColorShades {
+  buttonPrimary: string;
+  black: string;
+  white: string;
+}
+
+export interface IStatusPallette {
+  planned: string;
+  "in-progress": string;
+  live: string;
 }
 
 export interface ITypography {

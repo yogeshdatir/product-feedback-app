@@ -1,13 +1,11 @@
 import React from "react";
-import {
-  AddFeedbackButton,
-  HeaderTitle,
-  RoadmapTitle,
-  Wrapper,
-} from "./Header.styled";
-import SuggestionsIcon from "../assets/suggestions/icon-suggestions.svg";
+import { HeaderTitle, RoadmapTitle, Wrapper } from "./Header.styled";
+import { ReactComponent as SuggestionsIcon } from "../assets/suggestions/icon-suggestions.svg";
 import { useFeedbacks } from "../contexts/FeedbackContext";
 import GoBackButton from "./GoBackButton";
+import Button from "./Button";
+import { goBack } from "../utils/sharedFunctions";
+import { useNavigate } from "react-router";
 
 interface Props {
   forRoadmap?: boolean;
@@ -16,42 +14,35 @@ interface Props {
 const Header = ({ forRoadmap }: Props) => {
   const { filteredFeedbackList, feedbackList, categoryToFilter } =
     useFeedbacks();
+  const navigate = useNavigate();
 
   const suggestionCount = categoryToFilter
     ? filteredFeedbackList.length
     : feedbackList.length;
 
   return (
-    <Wrapper>
+    <Wrapper isRoadmapPage={forRoadmap}>
       {forRoadmap ? (
-        <>
-          <div>
-            <GoBackButton isLightThemed />
-            <RoadmapTitle>Roadmap</RoadmapTitle>
-          </div>
-          <AddFeedbackButton
-            style={{
-              marginLeft: "auto",
-            }}
-            to="/add"
-          >
-            + Add feedback
-          </AddFeedbackButton>
-        </>
+        <div>
+          <GoBackButton isLightThemed />
+          <RoadmapTitle>Roadmap</RoadmapTitle>
+        </div>
       ) : (
         <>
-          <img src={SuggestionsIcon} />
+          <SuggestionsIcon />
           <HeaderTitle>{`${suggestionCount} Suggestions`}</HeaderTitle>
-          <AddFeedbackButton
-            style={{
-              marginLeft: "auto",
-            }}
-            to="/add"
-          >
-            + Add feedback
-          </AddFeedbackButton>
         </>
       )}
+      <Button
+        style={{ marginLeft: "auto" }}
+        backgroundColor="primary"
+        color="buttonPrimary"
+        onClick={() => {
+          goBack(navigate);
+        }}
+      >
+        + Add Feedback
+      </Button>
     </Wrapper>
   );
 };

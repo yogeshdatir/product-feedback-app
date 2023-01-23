@@ -25,4 +25,5 @@ export const FormField = styled.div`
 
 export const FormActionsWrapper = styled.div`
   display: flex;
+  gap: 1rem;
 `;

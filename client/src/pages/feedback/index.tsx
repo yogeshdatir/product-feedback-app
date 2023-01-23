@@ -12,6 +12,7 @@ import {
 } from "../home/FeedbackList/FeedbackList.styled";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import GoBackButton from "../../components/GoBackButton";
+import EditButton from "./EditButton";
 
 const Container = styled.div`
   width: 730px;
@@ -60,11 +61,7 @@ const Feedback = (props: Props) => {
     <Container>
       <ActionHeader>
         <GoBackButton />
-        {feedback && (
-          <button>
-            <Link to={`/edit/${id}`}>Edit Feedback</Link>
-          </button>
-        )}
+        {feedback && <EditButton feedbackId={id} />}
       </ActionHeader>
       <ContentWrapper>
         {loading ? (
