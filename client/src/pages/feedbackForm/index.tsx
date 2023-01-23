@@ -218,9 +218,6 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
                 type="submit"
                 backgroundColor="primary"
                 color="buttonPrimary"
-                onClick={() => {
-                  goBack(navigate);
-                }}
               >
                 {feedback ? `Update Feedback` : `Add Feedback`}
               </Button>

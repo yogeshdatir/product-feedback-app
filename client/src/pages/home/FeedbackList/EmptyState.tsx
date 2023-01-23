@@ -26,7 +26,7 @@ const EmptyState = (props: Props) => {
         backgroundColor="primary"
         color="buttonPrimary"
         onClick={() => {
-          goBack(navigate);
+          navigate("/add");
         }}
       >
         + Add Feedback

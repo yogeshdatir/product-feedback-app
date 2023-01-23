@@ -38,7 +38,7 @@ const Header = ({ forRoadmap }: Props) => {
         backgroundColor="primary"
         color="buttonPrimary"
         onClick={() => {
-          goBack(navigate);
+          navigate("/add");
         }}
       >
         + Add Feedback
