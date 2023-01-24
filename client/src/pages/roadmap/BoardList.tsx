@@ -8,6 +8,7 @@ import {
   BoardFeedbackCardWrapper,
   BoardFeedbackCard,
   FeedbackCardHeader,
+  ListWrapper,
 } from "./Roadmap.styled";
 import { Link } from "react-router-dom";
 import {
@@ -26,7 +27,7 @@ const BoardList = ({
   statusForList,
 }: Props) => {
   return (
-    <div>
+    <ListWrapper>
       <ListHeader>
         <ListTitle>
           {statusForList.name} {`(${statusWiseFilteredFeedbackList.length})`}
@@ -54,7 +55,7 @@ const BoardList = ({
           );
         }
       )}
-    </div>
+    </ListWrapper>
   );
 };
 

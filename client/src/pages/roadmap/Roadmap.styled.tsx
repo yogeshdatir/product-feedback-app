@@ -60,3 +60,7 @@ export const FeedbackCardHeader = styled.div(
     color: colors.darkBlueGray,
   })
 );
+
+export const ListWrapper = styled.div`
+  width: 100%;
+`;

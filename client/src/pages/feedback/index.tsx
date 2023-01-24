@@ -71,7 +71,7 @@ const Feedback = (props: Props) => {
         ) : !feedback ? (
           <p>Not found</p>
         ) : (
-          <FeedbackCard>
+          <FeedbackCard isForView>
             <FeedbackTitle>{feedback.title}</FeedbackTitle>
             <FeedbackDescription style={{ marginTop: "0.25rem" }}>
               {feedback.description}

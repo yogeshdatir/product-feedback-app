@@ -9,7 +9,7 @@ export const ContentWrapper = styled.div`
 `;
 
 export const FeedbackCard = styled.div(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
+  ({ theme: { colors }, isForView }: any) => ({
     padding: "28px 32px",
     background: colors.white,
     borderRadius: "10px",
@@ -17,7 +17,7 @@ export const FeedbackCard = styled.div(
 
     ":hover": {
       "${FeedbackTitle}": {
-        color: colors.royalBlue,
+        color: isForView ? colors.americanBlue : colors.royalBlue,
       },
     },
   })
