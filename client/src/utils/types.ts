@@ -8,7 +8,7 @@ export type IFeedback = {
   status: string;
 };
 
-export type INewFeedback = Omit<IFeedback, "id">;
+export type IFeedbackFormState = Omit<IFeedback, "id">;
 
 export type ICategory = {
   id: string;

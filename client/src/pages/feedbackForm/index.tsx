@@ -15,21 +15,33 @@ import {
   getFeedback,
   updateFeedback,
 } from "../../services/feedbackAPIs";
-import { goBack } from "../../utils/sharedFunctions";
-import { IFeedback, INewFeedback } from "../../utils/types";
+import {
+  IFeedback,
+  IFeedbackFormState,
+  IStatus,
+  ICategory,
+} from "../../utils/types";
 import {
   FeedbackFormWrapper,
   Form,
   FormActionsWrapper,
   FormField,
+  FormTitle,
   FormWrapper,
 } from "./FeedbackForm.styled";
+import { ReactComponent as EditFeedbackIcon } from "../../assets/shared/icon-edit-feedback1.svg";
+import { ReactComponent as NewFeedbackIcon } from "../../assets/shared/icon-new-feedback.svg";
+import InputField from "./InputField";
+import TextareaField from "./TextareaField";
+import SelectField, { IOption } from "../../components/selectField";
+import { useStatus } from "../../contexts/StatusContext";
+import { useCategories } from "../../contexts/CategoryContext";
 
 interface Props {
   isEdit?: boolean;
 }
 
-const EmptyFeedbackForm: INewFeedback = {
+const EmptyFeedbackForm: IFeedbackFormState = {
   title: "",
   category: "feature",
   description: "",
@@ -38,13 +50,24 @@ const EmptyFeedbackForm: INewFeedback = {
 
 const FeedbackForm = ({ isEdit = false }: Props) => {
   const { id } = useParams();
-  const [formState, setFormState] = useState<INewFeedback>(EmptyFeedbackForm);
+  const [formState, setFormState] =
+    useState<IFeedbackFormState>(EmptyFeedbackForm);
   const [feedback, setFeedback] = useState<IFeedback | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { feedbackList, removeFeedback, updateOrAddToFeedbackList } =
     useFeedbacks();
+  const { status } = useStatus();
+  const statusDropdownOptions = status.map(({ name }: IStatus) => ({
+    value: name,
+    displayValue: name,
+  }));
+  const { categories } = useCategories();
+  const categoryDropdownOptions = categories.map(({ name }: ICategory) => ({
+    value: name,
+    displayValue: name,
+  }));
 
   const fetchFeedback = async (id: IFeedback["id"]) => {
     const feedbackFromContext = await feedbackList.find(
@@ -84,10 +107,26 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormState({
+    setFormState((formState: IFeedbackFormState) => ({
       ...formState,
       [e.target.name]: e.target.value,
-    });
+    }));
+  };
+
+  const updateSelectedStatus = (selectedStatus: IOption) => {
+    // TODO: remove toString by correcting types
+    setFormState((formState: IFeedbackFormState) => ({
+      ...formState,
+      status: selectedStatus.displayValue.toString(),
+    }));
+  };
+
+  const updateSelectedCategory = (selectedCategory: IOption) => {
+    // TODO: remove toString by correcting types
+    setFormState((formState: IFeedbackFormState) => ({
+      ...formState,
+      category: selectedCategory.displayValue.toString(),
+    }));
   };
 
   const handleDelete = (
@@ -147,53 +186,52 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
           <p>Not Found</p>
         ) : (
           <Form onSubmit={handleSubmit}>
-            <h1>
-              {feedback ? `Editing ${feedback.title}` : `Create New Feedback`}
-            </h1>
-            <FormField>
-              <label>Feedback Title</label>
-              <input
-                type="text"
-                name="title"
-                onChange={handleChange}
-                value={formState.title}
-              />
-            </FormField>
-            <FormField>
-              <label>Category</label>
-              <select
-                name="category"
-                onChange={handleChange}
-                value={formState.category}
-              >
-                <option>Feature</option>
-                <option>Enhancement</option>
-                <option>Bug</option>
-              </select>
-            </FormField>
-            {feedback && (
-              <FormField>
-                <label>Status</label>
-                <select
-                  name="status"
-                  onChange={handleChange}
-                  value={formState.status}
-                >
-                  <option>suggestion</option>
-                  <option>planned</option>
-                  <option>in-progress</option>
-                  <option>live</option>
-                </select>
-              </FormField>
+            {feedback ? (
+              <EditFeedbackIcon className="feedback-icon" />
+            ) : (
+              <NewFeedbackIcon />
             )}
-            <FormField>
-              <label>Feedback Detail</label>
-              <textarea
-                name="description"
-                onChange={handleChange}
-                value={formState.description}
+            <FormTitle>
+              {feedback ? `Editing ${feedback.title}` : `Create New Feedback`}
+            </FormTitle>
+            <InputField
+              label="Feedback Title"
+              subLabel="Add a short, descriptive headline"
+              type="text"
+              name="title"
+              onChange={handleChange}
+              value={formState.title}
+            />
+            <SelectField
+              label="Category"
+              subLabel="Choose a category for your feedback"
+              selectedOption={{
+                value: formState.category,
+                displayValue: formState.category,
+              }}
+              setSelectedOption={updateSelectedCategory}
+              options={categoryDropdownOptions}
+            />
+            {feedback && (
+              <SelectField
+                label="Update Status"
+                subLabel="Change feature state"
+                selectedOption={{
+                  value: formState.status,
+                  displayValue: formState.status,
+                }}
+                setSelectedOption={updateSelectedStatus}
+                options={statusDropdownOptions}
               />
-            </FormField>
+            )}
+            <TextareaField
+              label="Feedback Detail"
+              subLabel="Include any specific comments on what should be improved, added, etc."
+              rows={4}
+              name="description"
+              onChange={handleChange}
+              value={formState.description}
+            />
             <FormActionsWrapper>
               {feedback && (
                 <Button
