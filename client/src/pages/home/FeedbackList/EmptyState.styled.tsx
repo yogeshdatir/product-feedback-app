@@ -3,7 +3,9 @@ import { Body1Typography, H1 } from "../../../components/Common.styled";
 import { ITheme } from "../../../utils/types";
 
 export const Container = styled.div`
-  padding: 7rem 13rem;
+  padding-top: 7rem;
+  margin: 0 auto;
+  max-width: 26rem;
   display: flex;
   flex-direction: column;
   align-items: center;

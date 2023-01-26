@@ -1,17 +1,26 @@
 import styled from "@emotion/styled";
-import { Body1Typography, H3 } from "../../components/Common.styled";
+import { Body1Typography, H3, ViewBadge } from "../../components/Common.styled";
+import { mq } from "../../utils/themes";
 import { ITheme } from "../../utils/types";
-import { FeedbackCard } from "../home/FeedbackList/FeedbackList.styled";
+import {
+  FeedbackCard,
+  FeedbackDescription,
+} from "../home/FeedbackList/FeedbackList.styled";
 
 export const Container = styled.div``;
 
-export const BoardContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem 0;
-  gap: 2rem;
-`;
+export const BoardContainer = styled.div(
+  {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "2rem 0",
+    gap: "2rem",
+  },
+  mq({
+    gap: ["10px", "10px", "10px", "2rem"],
+  })
+);
 
 export const ListHeader = styled.div`
   padding-bottom: 1rem;
@@ -34,6 +43,9 @@ export const ListDescription = styled(Body1Typography)(
 export const BoardFeedbackCardWrapper = styled.div(
   ({ theme: { colors } }: { theme: ITheme }) => ({
     padding: "1rem 0",
+  }),
+  mq({
+    padding: ["0.5rem 0", "0.5rem 0", "0.5rem 0", "1rem 0"],
   })
 );
 
@@ -42,6 +54,9 @@ export const BoardFeedbackCard = styled(FeedbackCard)(
     padding: "2rem",
     borderRadius: "5px",
     borderTop: `6px solid ${colors[statusName]}`,
+  }),
+  mq({
+    padding: ["1.5rem 1.25rem", "1.5rem 1.25rem", "1.5rem 1.25rem", "2rem"],
   })
 );
 
@@ -58,6 +73,21 @@ export const FeedbackCardHeader = styled.div(
     fontSize: typography.body1.fontSize,
     lineHeight: typography.body1.lineHeight,
     color: colors.darkBlueGray,
+  }),
+  mq({
+    paddingBottom: ["1rem", "1rem", "1rem", "0.5rem"],
+  })
+);
+
+export const RoadmapFeedbackCardDescription = styled(FeedbackDescription)(
+  mq({
+    marginTop: ["0.75rem", "0.75rem", "0.75rem", "0.25rem"],
+  })
+);
+
+export const RoadmapViewBadge = styled(ViewBadge)(
+  mq({
+    marginTop: ["1.5rem", "1.5rem", "1.5rem", "0.75rem"],
   })
 );
 

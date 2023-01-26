@@ -6,26 +6,41 @@ import {
   H2,
   H3,
 } from "../../../components/Common.styled";
+import { mq } from "../../../utils/themes";
 
-export const Wrapper = styled.div`
-  width: 16rem;
-  height: max-content;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem 0;
-  position: sticky;
-  top: 4rem;
-`;
+export const Wrapper = styled.div(
+  {
+    height: "max-content",
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.5rem 0",
+    position: "sticky",
+    top: "4rem",
+    margin: "0 auto",
+  },
+  mq({
+    flexDirection: ["column", "column", "row", "column"],
+    // width: ["100%", "100%", "100%", "16rem"],
+    flex: [1, 1, 1, 1],
+    gap: ["10px", "10px", "10px", "1.5rem 0"],
+    position: ["relative", "relative", "relative", "sticky"],
+    top: ["0", "0", "0", "4rem"],
+  })
+);
 
-export const SidebarCard = styled.div<any>`
-  width: 100%;
-  padding: 1.5rem;
-
-  display: flex;
-  flex-wrap: wrap;
-  background: ${({ src }) => (src ? `url(${src})` : "#fff")};
-  border-radius: 10px;
-`;
+export const SidebarCard = styled.div(
+  ({ theme: { colors }, src }: any) => ({
+    width: "100%",
+    padding: "1.5rem",
+    display: "flex",
+    flexWrap: "wrap",
+    borderRadius: "10px",
+    background: src ? `url(${src})` : "#fff",
+  }),
+  mq({
+    padding: ["1.2rem", "1.2rem", "1.2rem", "1.5rem"],
+  })
+);
 
 export const ProductName = styled(H2)(
   ({ theme: { colors } }: { theme: ITheme }) => ({
@@ -87,7 +102,7 @@ export const StatusTableRow = styled.div`
 `;
 
 export const StatusTableHeaderRow = styled(StatusTableRow)`
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
 `;
 
 export const StatusName = styled(Body1Typography)(

@@ -1,5 +1,13 @@
 import { IThemes, ITypography } from "./types";
+import facepaint from "facepaint";
 
+const breakpoints = [375, 768, 1200];
+
+export const mq = facepaint(
+  breakpoints.map((bp) => `@media (min-width: ${bp}px)`)
+);
+
+// TODO: Find way to share common css properties
 const Typography: ITypography = {
   fontFamily: "Jost, Raleway, Arial",
   fontWeight: {

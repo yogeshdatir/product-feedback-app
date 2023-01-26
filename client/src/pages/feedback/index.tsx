@@ -13,11 +13,17 @@ import {
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import GoBackButton from "../../components/GoBackButton";
 import EditButton from "./EditButton";
+import { mq } from "../../utils/themes";
 
-const Container = styled.div`
-  width: 730px;
-  margin: auto;
-`;
+const Container = styled.div(
+  {
+    width: "730px",
+    margin: "auto",
+  },
+  mq({
+    width: ["689px", "689px", "689px", "730px"],
+  })
+);
 
 interface Props {}
 

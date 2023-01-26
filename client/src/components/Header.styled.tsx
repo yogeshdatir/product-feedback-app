@@ -2,18 +2,18 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { H1, H3 } from "./Common.styled";
 import { ITheme } from "../utils/types";
+import { mq } from "../utils/themes";
 
-export const Wrapper = styled.div<{ isRoadmapPage?: boolean }>`
-  width: 100%;
-  padding: ${({ isRoadmapPage }) => (isRoadmapPage ? "1.75rem 2rem" : "1rem")};
-
-  background: #373f68;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 4rem;
-`;
+export const Wrapper = styled.div(
+  ({ theme: { colors }, isRoadmapPage }: any) => ({
+    width: "100%",
+    padding: isRoadmapPage ? "1.75rem 2rem" : "1rem",
+    background: "#373f68",
+    borderRadius: "10px",
+    display: "flex",
+    alignItems: "center",
+  })
+);
 
 export const HeaderTitle = styled(H3)(
   ({ theme: { colors } }: { theme: ITheme }) => ({
