@@ -29,6 +29,10 @@ interface Props
   options: IOption[];
 }
 
+// TODO: Add validations (error handling) feature
+// TODO: Add placeholder feature (with and without showing placeholder in dropdown)
+// TODO: Add option groups feature
+
 const SelectField = ({
   label,
   subLabel,
@@ -37,13 +41,18 @@ const SelectField = ({
   options,
   ...ulAttributes
 }: Props) => {
+  const selectedOptionIndex: number = options.findIndex(
+    (option: IOption) => option.value === selectedOption.value
+  );
   const wrapperRef = useRef(null);
   useClickOutside(wrapperRef, () => {
     if (openDropdown) setOpenDropdown(!openDropdown);
   });
 
   const [openDropdown, setOpenDropdown] = useState<boolean>(false);
-  const [highlightedIndex, setHighlightedIndex] = useState<number>(0);
+  const [highlightedIndex, setHighlightedIndex] = useState<number>(
+    selectedOptionIndex < 0 ? 0 : selectedOptionIndex
+  );
 
   const toggleDropdown = () => {
     setOpenDropdown((openDropdown: boolean) => !openDropdown);

@@ -1,17 +1,18 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { ITheme } from "../../utils/types";
-import { StyledLabel, StyledSubLabel } from "./InputField";
+import { ErrorMessage, StyledLabel, StyledSubLabel } from "./InputField";
 
 interface Props
   extends React.ClassAttributes<HTMLTextAreaElement>,
     React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   subLabel: string;
+  error?: string;
 }
 
 export const StyledTextarea = styled.textarea(
-  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
+  ({ theme: { pallette, typography }, error }: any) => ({
     fontWeight: typography.fontWeight.regular,
     fontSize: typography.body2.fontSize,
     lineHeight: typography.body2.lineHeight,
@@ -26,17 +27,26 @@ export const StyledTextarea = styled.textarea(
       display: "none",
     },
     ":focus": {
-      outline: `1.5px solid ${pallette.info.main}`,
+      outline: error
+        ? `1.5px solid ${pallette.error.main}`
+        : `1.5px solid ${pallette.info.main}`,
     },
+    outline: error ? `1.5px solid ${pallette.error.main}` : ``,
   })
 );
 
-const TextareaField = ({ label, subLabel, ...textareaAttributes }: Props) => {
+const TextareaField = ({
+  label,
+  subLabel,
+  error,
+  ...textareaAttributes
+}: Props) => {
   return (
     <div>
       <StyledLabel as="label">{label}</StyledLabel>
       <StyledSubLabel as="p">{subLabel}</StyledSubLabel>
-      <StyledTextarea {...textareaAttributes} />
+      <StyledTextarea error={error} {...textareaAttributes} />
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </div>
   );
 };

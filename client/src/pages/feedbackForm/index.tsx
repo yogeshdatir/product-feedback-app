@@ -53,6 +53,7 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
   const [formState, setFormState] =
     useState<IFeedbackFormState>(EmptyFeedbackForm);
   const [feedback, setFeedback] = useState<IFeedback | null>(null);
+  const [formError, setFormError] = useState(EmptyFeedbackForm);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -129,10 +130,7 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
     }));
   };
 
-  const handleDelete = (
-    e: MouseEvent<HTMLButtonElement>,
-    id: IFeedback["id"]
-  ) => {
+  const handleDelete = (id: IFeedback["id"]) => {
     removeFeedback(id);
   };
 
@@ -144,8 +142,33 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
     }
   };
 
+  const validateForm = () => {
+    let isError = false;
+    Object.keys(formError).forEach((formStatePropertyName: string) => {
+      if (!feedback && formStatePropertyName === "status") return;
+      if (
+        !formState[formStatePropertyName as keyof IFeedbackFormState].trim()
+      ) {
+        setFormError((prevState: IFeedbackFormState) => ({
+          ...prevState,
+          [formStatePropertyName]: "Can't be empty",
+        }));
+        isError = isError || true;
+      } else {
+        setFormError((prevState: IFeedbackFormState) => ({
+          ...prevState,
+          [formStatePropertyName]: "",
+        }));
+        isError = isError || false;
+      }
+    });
+    return isError;
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const isError = validateForm();
+    if (isError) return;
 
     if (feedback) {
       try {
@@ -201,6 +224,7 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
               name="title"
               onChange={handleChange}
               value={formState.title}
+              error={formError.title}
             />
             <SelectField
               label="Category"
@@ -231,6 +255,7 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
               name="description"
               onChange={handleChange}
               value={formState.description}
+              error={formError.description}
             />
             <FormActionsWrapper>
               {feedback && (
@@ -238,7 +263,7 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
                   backgroundColor="error"
                   color="buttonPrimary"
                   type="button"
-                  onClick={(e) => handleDelete(e, feedback.id)}
+                  onClick={(e) => handleDelete(feedback.id)}
                 >
                   Delete
                 </Button>

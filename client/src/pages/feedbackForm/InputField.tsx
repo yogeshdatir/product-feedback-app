@@ -9,6 +9,7 @@ interface Props
     React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   subLabel: string;
+  error?: string;
 }
 
 export const StyledLabel = styled(H4)(
@@ -26,7 +27,7 @@ export const StyledSubLabel = styled(H4)(
 );
 
 export const StyledInput = styled.input(
-  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
+  ({ theme: { pallette, typography }, error }: any) => ({
     backgroundColor: pallette.grey.light,
     padding: "0.75rem 1.5rem",
     border: "none",
@@ -37,17 +38,30 @@ export const StyledInput = styled.input(
     lineHeight: typography.body2.lineHeight,
     color: pallette.text.main,
     ":focus": {
-      outline: `1.5px solid ${pallette.info.main}`,
+      outline: error
+        ? `1.5px solid ${pallette.error.main}`
+        : `1.5px solid ${pallette.info.main}`,
     },
+    outline: error ? `1.5px solid ${pallette.error.main}` : ``,
   })
 );
 
-const InputField = ({ label, subLabel, ...inputAttributes }: Props) => {
+export const ErrorMessage = styled.span(
+  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
+    fontWeight: typography.fontWeight.regular,
+    fontSize: typography.body2.fontSize,
+    lineHeight: typography.body2.lineHeight,
+    color: pallette.error.main,
+  })
+);
+
+const InputField = ({ label, subLabel, error, ...inputAttributes }: Props) => {
   return (
     <div>
       <StyledLabel as="label">{label}</StyledLabel>
       <StyledSubLabel as="p">{subLabel}</StyledSubLabel>
-      <StyledInput {...inputAttributes} />
+      <StyledInput error={error} {...inputAttributes} />
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </div>
   );
 };
