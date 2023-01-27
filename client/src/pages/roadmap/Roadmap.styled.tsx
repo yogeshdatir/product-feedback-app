@@ -14,11 +14,10 @@ export const BoardContainer = styled.div(
     width: "100%",
     display: "flex",
     justifyContent: "space-between",
-    padding: "2rem 0",
-    gap: "2rem",
   },
   mq({
     gap: ["10px", "10px", "10px", "2rem"],
+    padding: ["1.5rem", "1.5rem", "2rem 0", "2rem 0"],
   })
 );
 

@@ -7,15 +7,16 @@ import { mq } from "../utils/themes";
 export const Wrapper = styled.div(
   ({ theme: { colors }, isRoadmapPage }: any) => ({
     width: "100%",
-    padding: isRoadmapPage ? "1.75rem 2rem" : "1rem",
     background: "#373f68",
     borderRadius: "10px",
     display: "flex",
     alignItems: "center",
   }),
-  mq({
-    borderRadius: [0, 0, "10px", "10px"],
-  })
+  ({ isRoadmapPage }: any) =>
+    mq({
+      borderRadius: [0, 0, "10px", "10px"],
+      padding: isRoadmapPage ? ["1.5rem", "1.75rem 2rem"] : ["1rem"],
+    })
 );
 
 export const HeaderTitle = styled(H3)(

@@ -5,9 +5,12 @@ import BoardList from "./BoardList";
 import { BoardContainer } from "./Roadmap.styled";
 import { useStatus } from "../../contexts/StatusContext";
 
-interface Props {}
+interface Props {
+  activeTabIndex: number;
+  isMobileDevice: boolean;
+}
 
-const Board = (props: Props) => {
+const Board = ({ activeTabIndex, isMobileDevice }: Props) => {
   const { feedbackList } = useFeedbacks();
   const { status } = useStatus();
 
@@ -24,6 +27,19 @@ const Board = (props: Props) => {
     <BoardContainer>
       {status.map((statusObj: IStatus, index: number) => {
         if (statusObj.name === "suggestion") return;
+        if (!isMobileDevice) {
+          return (
+            <BoardList
+              key={index}
+              statusWiseFilteredFeedbackList={statusWiseFilteredFeedbackList(
+                statusObj.name
+              )}
+              statusForList={statusObj}
+            />
+          );
+        } else if (index !== activeTabIndex) {
+          return;
+        }
         return (
           <BoardList
             key={index}
