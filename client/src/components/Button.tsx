@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { CSSProperties, ReactNode } from "react";
+import { mq } from "../utils/themes";
 import {
   IColorShades,
   ICommon,
@@ -41,7 +42,18 @@ export const StyledButton = styled.button(
         ? pallette[backgroundColor].light
         : "transparent",
     },
-  })
+  }),
+  ({ theme: { typography } }: any) =>
+    mq({
+      padding: [
+        "0.7rem 1rem",
+        "0.7rem 1rem",
+        "0.75rem 1.5rem",
+        "0.75rem 1.5rem",
+      ],
+      fontSize: [typography.body3.fontSize, typography.h4.fontSize],
+      lineHeight: [typography.body3.lineHeight, typography.h4.lineHeight],
+    })
 );
 
 export interface IButtonColors {

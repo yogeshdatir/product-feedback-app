@@ -21,6 +21,11 @@ export const GlobalStyles = css`
       margin: 0 auto;
       padding: 3rem 0;
     }
+
+    @media only screen and (max-width: 767px) {
+      max-width: 100%;
+      padding: 0;
+    }
   }
 
   a {

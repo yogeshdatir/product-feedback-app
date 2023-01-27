@@ -12,6 +12,9 @@ export const Wrapper = styled.div(
     borderRadius: "10px",
     display: "flex",
     alignItems: "center",
+  }),
+  mq({
+    borderRadius: [0, 0, "10px", "10px"],
   })
 );
 

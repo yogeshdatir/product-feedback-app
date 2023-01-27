@@ -6,6 +6,7 @@ import GoBackButton from "./GoBackButton";
 import Button from "./Button";
 import { goBack } from "../utils/sharedFunctions";
 import { useNavigate } from "react-router";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 interface Props {
   forRoadmap?: boolean;
@@ -15,6 +16,7 @@ const Header = ({ forRoadmap }: Props) => {
   const { filteredFeedbackList, feedbackList, categoryToFilter } =
     useFeedbacks();
   const navigate = useNavigate();
+  const isMobileDevice = useMediaQuery("(max-width: 767px)");
 
   const suggestionCount = categoryToFilter
     ? filteredFeedbackList.length
@@ -28,10 +30,12 @@ const Header = ({ forRoadmap }: Props) => {
           <RoadmapTitle>Roadmap</RoadmapTitle>
         </div>
       ) : (
-        <>
-          <SuggestionsIcon />
-          <HeaderTitle>{`${suggestionCount} Suggestions`}</HeaderTitle>
-        </>
+        !isMobileDevice && (
+          <>
+            <SuggestionsIcon />
+            <HeaderTitle>{`${suggestionCount} Suggestions`}</HeaderTitle>
+          </>
+        )
       )}
       <Button
         style={{ marginLeft: "auto" }}

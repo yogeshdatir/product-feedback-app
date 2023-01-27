@@ -38,7 +38,7 @@ export const SidebarCard = styled.div(
     background: src ? `url(${src})` : "#fff",
   }),
   mq({
-    padding: ["1.2rem", "1.2rem", "1.2rem", "1.5rem"],
+    padding: ["1.1rem", "1.1rem", "1.2rem", "1.5rem"],
   })
 );
 

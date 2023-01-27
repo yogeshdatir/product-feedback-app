@@ -9,7 +9,8 @@ export const Container = styled.div(
   },
   mq({
     flexDirection: ["column", "column", "column", "row"],
-    width: ["375px", "689px", "689px", "1110px"],
+    width: ["100%", "100%", "689px", "1110px"],
+    gap: [0, 0, "2rem", "2rem"],
   })
 );
 

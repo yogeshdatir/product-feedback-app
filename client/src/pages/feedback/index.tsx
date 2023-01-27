@@ -21,7 +21,7 @@ const Container = styled.div(
     margin: "auto",
   },
   mq({
-    width: ["689px", "689px", "689px", "730px"],
+    width: ["100%", "100%", "689px", "730px"],
   })
 );
 

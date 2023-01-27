@@ -22,6 +22,7 @@ import {
   ICategory,
 } from "../../utils/types";
 import {
+  CancelButton,
   FeedbackFormWrapper,
   Form,
   FormActionsWrapper,
@@ -213,7 +214,7 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
             {feedback ? (
               <EditFeedbackIcon className="feedback-icon" />
             ) : (
-              <NewFeedbackIcon />
+              <NewFeedbackIcon className="feedback-icon" />
             )}
             <FormTitle>
               {feedback ? `Editing ${feedback.title}` : `Create New Feedback`}
@@ -269,15 +270,14 @@ const FeedbackForm = ({ isEdit = false }: Props) => {
                   Delete
                 </Button>
               )}
-              <Button
+              <CancelButton
                 backgroundColor="secondary"
                 color="buttonPrimary"
-                style={{ marginLeft: "auto" }}
                 type="button"
                 onClick={handleCancel}
               >
                 Cancel
-              </Button>
+              </CancelButton>
               <Button
                 type="submit"
                 backgroundColor="primary"

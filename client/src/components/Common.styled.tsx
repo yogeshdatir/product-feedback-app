@@ -1,11 +1,17 @@
 import styled from "@emotion/styled";
+import { mq } from "../utils/themes";
 import { ITheme } from "../utils/types";
 import Badge from "./Badge";
 
-export const ActionHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+export const ActionHeader = styled.div(
+  {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  mq({
+    margin: ["1.5rem 1rem", "1.5rem 1rem", 0],
+  })
+);
 
 export const StatusDot = styled.div<any>`
   border-radius: 50%;

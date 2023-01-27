@@ -1,30 +1,43 @@
 import styled from "@emotion/styled";
+import Button from "../../components/Button";
 import { H1 } from "../../components/Common.styled";
+import { mq } from "../../utils/themes";
 import { ITheme } from "../../utils/types";
 
 export const FeedbackFormWrapper = styled.div`
-  width: 540px;
+  max-width: 540px;
   margin: auto;
 `;
 
-export const FormWrapper = styled.div`
-  margin-top: 4.25rem;
-  padding: 2.625rem 3.25rem;
-  background: #ffffff;
-  border-radius: 10px;
-`;
+export const FormWrapper = styled.div(
+  {
+    marginTop: "4.25rem",
+    padding: "2.625rem 3.25rem",
+    background: "#ffffff",
+    borderRadius: "10px",
+  },
+  mq({
+    margin: ["0 1.5rem", "0 1.5rem", 0],
+    marginTop: ["3rem", "3rem", "4.25rem"],
+    padding: ["3rem 1.5rem", "3rem 1.5rem", "2.625rem 3.25rem"],
+  })
+);
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  position: relative;
-
-  .feedback-icon {
-    position: absolute;
-    top: -68px;
-  }
-`;
+export const Form = styled.form(
+  {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.5rem",
+    position: "relative",
+  },
+  mq({
+    ".feedback-icon": [
+      { position: "absolute", top: "-75px" },
+      { position: "absolute", top: "-75px" },
+      { position: "absolute", top: "-70px" },
+    ],
+  })
+);
 
 export const FormTitle = styled(H1)(
   ({ theme: { pallette } }: { theme: ITheme }) => ({
@@ -37,7 +50,18 @@ export const FormField = styled.div`
   flex-direction: column;
 `;
 
-export const FormActionsWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
+export const FormActionsWrapper = styled.div(
+  {
+    display: "flex",
+    gap: "1rem",
+  },
+  mq({
+    flexDirection: ["column", "column", "row"],
+  })
+);
+
+export const CancelButton = styled(Button)(
+  mq({
+    marginLeft: ["none", "none", "auto"],
+  })
+);
