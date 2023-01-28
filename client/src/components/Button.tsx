@@ -1,11 +1,7 @@
 import styled from "@emotion/styled";
 import React, { CSSProperties, ReactNode } from "react";
-import {
-  IColorShades,
-  ICommon,
-  ITextColorShades,
-  ITheme,
-} from "../utils/types";
+import { mq, TypographyStyles } from "../utils/themes";
+import { IPallette, ITextColorShades, ITheme } from "../utils/types";
 
 type TCustomHTMLButtonAttributes = Omit<
   React.DetailedHTMLProps<
@@ -21,6 +17,13 @@ interface Props extends TCustomHTMLButtonAttributes, IButtonColors {
 }
 
 // TODO: reuse Body1Typography
+interface IStyledButton {
+  theme: ITheme;
+  backgroundColor?: keyof Omit<IPallette, "common" | "status">;
+  color?: keyof ITextColorShades;
+}
+
+// TODO: remove any type, colors property
 export const StyledButton = styled.button(
   ({ theme: { typography, pallette }, backgroundColor, color }: any) => ({
     padding: "0.75rem 1.5rem",
@@ -31,9 +34,7 @@ export const StyledButton = styled.button(
     border: "none",
     cursor: "pointer",
 
-    fontSize: typography.h4.fontSize,
     fontWeight: typography.fontWeight.bold,
-    lineHeight: typography.h4.lineHeight,
     color: color ? pallette.text[color] : "",
 
     ":hover": {
@@ -41,7 +42,19 @@ export const StyledButton = styled.button(
         ? pallette[backgroundColor].light
         : "transparent",
     },
-  })
+  }),
+  TypographyStyles.h4,
+  ({ theme: { typography } }: Pick<IStyledButton, "theme">) =>
+    mq({
+      padding: [
+        "0.7rem 1rem",
+        "0.7rem 1rem",
+        "0.75rem 1.5rem",
+        "0.75rem 1.5rem",
+      ],
+      fontSize: [typography.body3.fontSize, typography.h4.fontSize],
+      lineHeight: [typography.body3.lineHeight, typography.h4.lineHeight],
+    })
 );
 
 export interface IButtonColors {

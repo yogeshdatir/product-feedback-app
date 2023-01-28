@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
+import { TypographyStyles } from "../utils/themes";
 
-// TODO: reuse Body3Typography
+// TODO: remove any type, colors property
 export const Container = styled.span(
   ({ theme: { colors, typography }, isActive }: any) => ({
     fontWeight: typography.fontWeight.semiBold,
-    fontSize: typography.body3.fontSize,
-    lineHeight: typography.body3.lineHeight,
     color: isActive ? colors.white : colors.royalBlue,
     background: isActive ? colors.royalBlue : colors.aliceBlue,
     padding: "5px 1rem",
@@ -19,5 +18,6 @@ export const Container = styled.span(
     ":hover": {
       background: isActive ? colors.royalBlue : colors.lavenderBlue,
     },
-  })
+  }),
+  TypographyStyles.body3
 );

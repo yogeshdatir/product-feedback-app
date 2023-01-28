@@ -9,6 +9,8 @@ import {
   BoardFeedbackCard,
   FeedbackCardHeader,
   ListWrapper,
+  RoadmapFeedbackCardDescription,
+  RoadmapViewBadge,
 } from "./Roadmap.styled";
 import { Link } from "react-router-dom";
 import {
@@ -45,10 +47,10 @@ const BoardList = ({
                     {status.replace("-", " ")}
                   </FeedbackCardHeader>
                   <FeedbackTitle>{title}</FeedbackTitle>
-                  <FeedbackDescription style={{ marginTop: "0.25rem" }}>
+                  <RoadmapFeedbackCardDescription>
                     {description}
-                  </FeedbackDescription>
-                  <ViewBadge>{category}</ViewBadge>
+                  </RoadmapFeedbackCardDescription>
+                  <RoadmapViewBadge>{category}</RoadmapViewBadge>
                 </BoardFeedbackCard>
               </Link>
             </BoardFeedbackCardWrapper>

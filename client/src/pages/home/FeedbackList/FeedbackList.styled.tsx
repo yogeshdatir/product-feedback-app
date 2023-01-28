@@ -1,12 +1,18 @@
 import styled from "@emotion/styled";
+import { mq } from "../../../utils/themes";
 import { ITheme } from "../../../utils/types";
 
-export const ContentWrapper = styled.div`
-  margin: 1.5rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-`;
+export const ContentWrapper = styled.div(
+  {
+    margin: "1.5rem 0",
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.25rem",
+  },
+  mq({
+    margin: ["1.5rem 1rem", "1.5rem 1rem", "1.5rem 0"],
+  })
+);
 
 export const FeedbackCard = styled.div(
   ({ theme: { colors }, isForView }: any) => ({
@@ -20,6 +26,9 @@ export const FeedbackCard = styled.div(
         color: isForView ? colors.americanBlue : colors.royalBlue,
       },
     },
+  }),
+  mq({
+    padding: ["1.5rem", "1.5rem", "28px 32px"],
   })
 );
 

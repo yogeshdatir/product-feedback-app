@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
+import { TypographyStyles } from "../../utils/themes";
 import { ITheme } from "../../utils/types";
 
-// TODO: refactor styles to use theme
 export const StyledSelect = styled.div(
-  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
     backgroundColor: pallette.grey.light,
     border: "none",
     borderRadius: "5px",
@@ -24,8 +24,6 @@ export const StyledSelectInput = styled.div(
     justifyContent: "space-between",
     alignItems: "center",
     fontWeight: typography.fontWeight.regular,
-    fontSize: typography.body2.fontSize,
-    lineHeight: typography.body2.lineHeight,
     color: pallette.text.main,
     textTransform: "capitalize",
     cursor: "pointer",
@@ -39,7 +37,8 @@ export const StyledSelectInput = styled.div(
       paddingTop: "3px",
       height: "10px",
     },
-  })
+  }),
+  TypographyStyles.body2
 );
 
 export const SelectDropdown = styled.ul`
@@ -54,28 +53,23 @@ export const SelectDropdown = styled.ul`
   z-index: 99;
 `;
 
-export const StyledOption = styled.li<{ isHighlightedIndex: boolean }>`
-  padding: 0.75rem 1.5rem;
-  text-transform: capitalize;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-
-  color: ${({ isHighlightedIndex }: { isHighlightedIndex: boolean }) =>
-    isHighlightedIndex ? "#ad1fea" : "#647196"};
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  &:not(:last-child) {
-    border-bottom: 1.5px solid rgba(58, 67, 116, 0.15);
-  }
-
-  :hover {
-    color: #ad1fea;
-  }
-`;
+export const StyledOption = styled.li(
+  ({ theme: { pallette }, isHighlightedIndex }: any) => ({
+    padding: "0.75rem 1.5rem",
+    textTransform: "capitalize",
+    fontWeight: 400,
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    color: isHighlightedIndex ? pallette.text.dark : pallette.text.light,
+    "&:not(:last-child)": {
+      borderBottom: "1.5px solid rgba(58, 67, 116, 0.15)",
+    },
+    ":hover": { color: pallette.text.dark },
+  }),
+  TypographyStyles.body1
+);
 
 interface IStyledArrowDown {
   openDropdown: boolean;

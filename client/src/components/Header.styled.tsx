@@ -1,30 +1,38 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
-import { H1, H3 } from "./Common.styled";
 import { ITheme } from "../utils/types";
+import { mq, TypographyStyles } from "../utils/themes";
 
-export const Wrapper = styled.div<{ isRoadmapPage?: boolean }>`
-  width: 100%;
-  padding: ${({ isRoadmapPage }) => (isRoadmapPage ? "1.75rem 2rem" : "1rem")};
+interface IHeaderWrapper {
+  isRoadmapPage?: boolean;
+}
 
-  background: #373f68;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 4rem;
-`;
+export const Wrapper = styled.div(
+  ({ theme: { colors } }: { theme: ITheme }) => ({
+    width: "100%",
+    background: colors.americanBlue,
+    display: "flex",
+    alignItems: "center",
+  }),
+  ({ isRoadmapPage }: IHeaderWrapper) =>
+    mq({
+      borderRadius: [0, 0, "10px"],
+      padding: isRoadmapPage ? ["1.5rem", "1.75rem 2rem"] : ["1rem"],
+      marginTop: ["83px", "83px", 0],
+    })
+);
 
-export const HeaderTitle = styled(H3)(
+export const HeaderTitle = styled("h3")(
   ({ theme: { colors } }: { theme: ITheme }) => ({
     padding: "0 1rem",
     color: colors.white,
-  })
+  }),
+  TypographyStyles.h3
 );
 
-export const RoadmapTitle = styled(H1)(
+export const RoadmapTitle = styled("h1")(
   ({ theme: { colors } }: { theme: ITheme }) => ({
     color: colors.white,
     paddingTop: "0.25rem",
-  })
+  }),
+  TypographyStyles.h1
 );

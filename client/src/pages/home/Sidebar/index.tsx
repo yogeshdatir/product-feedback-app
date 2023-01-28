@@ -1,55 +1,35 @@
 import React from "react";
-import Badge from "../../../components/Badge";
-import { useFeedbacks } from "../../../contexts/FeedbackContext";
-import { useCategories } from "../../../contexts/CategoryContext";
 import {
-  CategoryFilterCard,
-  StatusTable,
   SidebarCard,
   Wrapper,
   ProductName,
   PageName,
+  ProductWrapper,
 } from "./Sidebar.styled";
-import { ICategory, IFeedback } from "../../../utils/types";
-import { v4 as uuidv4 } from "uuid";
 import StatusCard from "./StatusCard";
 import DesktopBackgroundHeader from "../../../assets/suggestions/desktop/background-header.png";
+import TabletBackgroundHeader from "../../../assets/suggestions/tablet/background-header.png";
+import CategoryCard from "./CategoryCard";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 
 interface Props {}
 
 const Sidebar = (props: Props) => {
-  const { filterFeedbackList, categoryToFilter } = useFeedbacks();
-  const { categories } = useCategories();
-
+  const isTabletDevice = useMediaQuery(
+    "(min-width: 767px) and (max-width: 1109px)"
+  );
+  console.log(isTabletDevice);
   return (
     <Wrapper>
-      <SidebarCard src={DesktopBackgroundHeader}>
-        <ProductName>Frontend Mentor</ProductName>
-        <PageName>Feedback Board</PageName>
+      <SidebarCard
+        src={isTabletDevice ? TabletBackgroundHeader : DesktopBackgroundHeader}
+      >
+        <ProductWrapper style={{ marginTop: "auto" }}>
+          <ProductName>Frontend Mentor</ProductName>
+          <PageName>Feedback Board</PageName>
+        </ProductWrapper>
       </SidebarCard>
-      <CategoryFilterCard>
-        <Badge
-          isActive={categoryToFilter === ""}
-          onClick={() => {
-            filterFeedbackList("");
-          }}
-        >
-          All
-        </Badge>
-        {categories.map((category: ICategory) => {
-          return (
-            <Badge
-              isActive={category.name === categoryToFilter}
-              key={uuidv4()}
-              onClick={() => {
-                filterFeedbackList(category.name);
-              }}
-            >
-              {category.name}
-            </Badge>
-          );
-        })}
-      </CategoryFilterCard>
+      <CategoryCard />
       <StatusCard />
     </Wrapper>
   );
