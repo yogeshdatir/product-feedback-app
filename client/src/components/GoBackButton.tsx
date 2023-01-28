@@ -20,12 +20,10 @@ export const StyledGoBackButton = styled(StyledButton)(
     ":hover": {
       textDecoration: "underline",
     },
-    color: isLightThemed ? pallette.text.white : pallette.text.buttonPrimary,
+    color: isLightThemed ? pallette.text.white : pallette.text.light,
     svg: {
       path: {
-        stroke: isLightThemed
-          ? pallette.text.white
-          : pallette.text.buttonPrimary,
+        stroke: isLightThemed ? pallette.text.white : pallette.info.main,
       },
     },
   })
