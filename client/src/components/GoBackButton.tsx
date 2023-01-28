@@ -8,6 +8,7 @@ interface Props {
   isLightThemed?: boolean;
 }
 
+// TODO: remove any type
 export const StyledGoBackButton = styled(StyledButton)(
   ({ theme: { pallette }, isLightThemed }: any) => ({
     paddingLeft: "0",
@@ -19,10 +20,12 @@ export const StyledGoBackButton = styled(StyledButton)(
     ":hover": {
       textDecoration: "underline",
     },
-    color: isLightThemed ? pallette.text.white : pallette.text.primary,
+    color: isLightThemed ? pallette.text.white : pallette.text.buttonPrimary,
     svg: {
       path: {
-        stroke: isLightThemed ? pallette.text.white : pallette.text.primary,
+        stroke: isLightThemed
+          ? pallette.text.white
+          : pallette.text.buttonPrimary,
       },
     },
   })

@@ -15,6 +15,9 @@ const MobileBarBackground = styled.div(({ theme: { colors }, src }: any) => ({
   alignItems: "center",
   flexWrap: "wrap",
   background: src ? `url(${src})` : "#fff",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
   svg: {
     ":hover": {
       cursor: "pointer",
@@ -45,6 +48,7 @@ const MobileBar = (props: Props) => {
           <MobileProductName>Frontend Mentor</MobileProductName>
           <PageName>Feedback Board</PageName>
         </Wrapper>
+        {/* TODO: Toggle hamburger icon on open and close */}
         <HamburgerIcon
           onClick={() => setShowDrawer((prevState: boolean) => !prevState)}
         />

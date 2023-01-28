@@ -36,16 +36,22 @@ export const SidebarCard = styled.div(
     flexWrap: "wrap",
     borderRadius: "10px",
     background: src ? `url(${src})` : "#fff",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   }),
   mq({
     padding: ["1.1rem", "1.1rem", "1.2rem", "1.5rem"],
   })
 );
 
+export const ProductWrapper = styled.div`
+  margin-top: auto;
+`;
+
 export const ProductName = styled(H2)(
   ({ theme: { colors } }: { theme: ITheme }) => ({
-    paddingTop: "2.5rem",
-
+    paddingTop: "2.4rem",
     color: colors.white,
   })
 );

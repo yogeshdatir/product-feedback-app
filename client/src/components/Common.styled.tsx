@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { mq } from "../utils/themes";
-import { ITheme } from "../utils/types";
+import { mq, TypographyStyles } from "../utils/themes";
+import { ITheme, IColors } from "../utils/types";
 import Badge from "./Badge";
 
 export const ActionHeader = styled.div(
@@ -13,13 +13,19 @@ export const ActionHeader = styled.div(
   })
 );
 
-export const StatusDot = styled.div<any>`
-  border-radius: 50%;
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: ${({ theme, name }) => theme.colors[name]};
-`;
+interface IStatusDot {
+  theme: ITheme;
+  name: string;
+}
 
+export const StatusDot = styled.div(({ theme, name }: IStatusDot) => ({
+  borderRadius: "50%",
+  width: "0.5rem",
+  height: "0.5rem",
+  backgroundColor: theme.colors[name as keyof IColors],
+}));
+
+// TODO: remove all typography elements and use shared css
 export const H1 = styled.h1(({ theme: { typography } }: { theme: ITheme }) => ({
   fontSize: typography.h1.fontSize,
   fontWeight: typography.fontWeight.bold,
@@ -77,11 +83,14 @@ export const ViewBadge = styled(Badge)`
   pointer-events: none;
 `;
 
+interface IStyledButton {
+  theme: ITheme;
+  isLight: boolean;
+}
+
 export const StyledButton = styled.button(
-  ({ theme: { colors, typography }, isLight }: any) => ({
+  ({ theme: { colors, typography }, isLight }: IStyledButton) => ({
     fontWeight: typography.fontWeight.bold,
-    fontSize: typography.h4.fontSize,
-    lineHeight: typography.h4.lineHeight,
     color: isLight ? colors.white : colors.darkBlueGray,
     border: "none",
     background: "transparent",
@@ -98,5 +107,6 @@ export const StyledButton = styled.button(
     ":hover": {
       textDecorationLine: "underline",
     },
-  })
+  }),
+  TypographyStyles.h4
 );

@@ -35,6 +35,7 @@ export interface ITheme {
   typography: ITypography;
 }
 
+// TODO: Deprecate use of Colors property of theme
 export interface IColors {
   "in-progress": string;
   heliotrope: string;

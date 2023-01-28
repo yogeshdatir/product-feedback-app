@@ -1,5 +1,6 @@
 import { IThemes, ITypography } from "./types";
 import facepaint from "facepaint";
+import { css } from "@emotion/react";
 
 const breakpoints = [375, 768, 1200];
 
@@ -83,4 +84,30 @@ export const themes: IThemes = {
     },
     typography: { ...Typography },
   },
+};
+
+export const TypographyStyles = {
+  h1: css({
+    fontSize: "24px",
+    lineHeight: "35px",
+    letterSpacing: "-0.33px",
+  }),
+  h2: css({
+    fontSize: "20px",
+    lineHeight: "29px",
+    letterSpacing: "-0.25px",
+  }),
+  h3: css({
+    fontSize: "18px",
+    lineHeight: "26px",
+    letterSpacing: "-0.25px",
+  }),
+  h4: css({
+    fontSize: "14px",
+    lineHeight: "20px",
+    letterSpacing: "-0.194444px",
+  }),
+  body1: css({ fontSize: "16px", lineHeight: "23px" }),
+  body2: css({ fontSize: "15px", lineHeight: "22px" }),
+  body3: css({ fontSize: "13px", lineHeight: "19px" }),
 };

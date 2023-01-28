@@ -4,7 +4,6 @@ import { ReactComponent as SuggestionsIcon } from "../assets/suggestions/icon-su
 import { useFeedbacks } from "../contexts/FeedbackContext";
 import GoBackButton from "./GoBackButton";
 import Button from "./Button";
-import { goBack } from "../utils/sharedFunctions";
 import { useNavigate } from "react-router";
 import useMediaQuery from "../hooks/useMediaQuery";
 
