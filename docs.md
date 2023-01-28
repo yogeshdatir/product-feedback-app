@@ -45,7 +45,15 @@ Tables: feedbacks, users, categories, status
   onBlur event of parent select field gets in the way of onClick event of the options (from child tree).
   **So onMouseDown event is used to resolve this issue.**
   The click event failing to go through is a result of the events being fired in the following order:
-    1. mousedown
-    2. blur
-    3. mouseup
-    4. click
+    i. mousedown
+    ii. blur
+    iii. mouseup
+    iv. click
+
+2. Scrolling overloads out of the select dropdown, scrolling the parent element. There’s an easy way to prevent an element from scrolling its parent.
+You can do this with a single CSS rule!
+Thanks to the CSS property: `overscroll-behavior`
+To stop the scroll at the end of an element, set on the element’s CSS:
+**`overscroll-behavior: contain;`**
+This way, if the user reaches the end of the scroll of an element, it will stop there and not “scroll-chain” to the body or parent element.
+Reference: [Article](https://getcssscan.com/blog/prevent-page-scrolling-while-scrolling-div-element#:~:text=You%20can%20do%20this%20with%20a%20single%20CSS%20rule!&text=To%20stop%20the%20scroll%20at,the%20body%20or%20parent%20element)
