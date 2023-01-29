@@ -1,7 +1,6 @@
-import { Theme } from "@emotion/react";
-import styled, { StyledComponent } from "@emotion/styled";
+import styled from "@emotion/styled";
 import React from "react";
-import { H4 } from "../../components/Common.styled";
+import { TypographyStyles } from "../../utils/themes";
 import { ITheme } from "../../utils/types";
 
 interface Props
@@ -12,18 +11,20 @@ interface Props
   error?: string;
 }
 
-export const StyledLabel = styled(H4)(
+export const StyledLabel = styled("h4")(
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.main,
-  })
+  }),
+  TypographyStyles.h4
 );
 
-export const StyledSubLabel = styled(H4)(
+export const StyledSubLabel = styled("h4")(
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     color: pallette.text.light,
     fontWeight: typography.fontWeight.regular,
     paddingBottom: "1rem",
-  })
+  }),
+  TypographyStyles.h4
 );
 
 export const StyledInput = styled.input(
@@ -34,8 +35,6 @@ export const StyledInput = styled.input(
     borderRadius: "5px",
     width: "100%",
     fontWeight: typography.fontWeight.regular,
-    fontSize: typography.body2.fontSize,
-    lineHeight: typography.body2.lineHeight,
     color: pallette.text.main,
     ":focus": {
       outline: error
@@ -43,16 +42,16 @@ export const StyledInput = styled.input(
         : `1.5px solid ${pallette.info.main}`,
     },
     outline: error ? `1.5px solid ${pallette.error.main}` : ``,
-  })
+  }),
+  TypographyStyles.body2
 );
 
 export const ErrorMessage = styled.span(
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     fontWeight: typography.fontWeight.regular,
-    fontSize: typography.body2.fontSize,
-    lineHeight: typography.body2.lineHeight,
     color: pallette.error.main,
-  })
+  }),
+  TypographyStyles.body2
 );
 
 const InputField = ({ label, subLabel, error, ...inputAttributes }: Props) => {

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ActionHeader, ViewBadge } from "../../components/Common.styled";
 import { getFeedback } from "../../services/feedbackAPIs";
 import { IFeedback } from "../../utils/types";
@@ -17,7 +17,6 @@ import { mq } from "../../utils/themes";
 
 const Container = styled.div(
   {
-    width: "730px",
     margin: "auto",
   },
   mq({
@@ -25,9 +24,7 @@ const Container = styled.div(
   })
 );
 
-interface Props {}
-
-const Feedback = (props: Props) => {
+const Feedback = () => {
   const { id } = useParams();
   const [feedback, setFeedback] = useState<IFeedback | null>(null);
   const [loading, setLoading] = useState(true);

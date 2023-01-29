@@ -17,7 +17,7 @@ export const Wrapper = styled.div(
     mq({
       borderRadius: [0, 0, "10px"],
       padding: isRoadmapPage ? ["1.5rem", "1.75rem 2rem"] : ["1rem"],
-      marginTop: ["83px", "83px", 0],
+      marginTop: isRoadmapPage ? [0] : ["83px", "83px", 0],
     })
 );
 

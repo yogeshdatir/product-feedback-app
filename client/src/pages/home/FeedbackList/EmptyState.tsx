@@ -6,12 +6,9 @@ import {
 } from "./EmptyState.styled";
 import IllustrationEmpty from "../../../assets/suggestions/illustration-empty.svg";
 import Button from "../../../components/Button";
-import { goBack } from "../../../utils/sharedFunctions";
 import { useNavigate } from "react-router";
 
-interface Props {}
-
-const EmptyState = (props: Props) => {
+const EmptyState = () => {
   const navigate = useNavigate();
 
   return (

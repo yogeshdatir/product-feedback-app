@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  MouseEvent,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { ActionHeader } from "../../components/Common.styled";
@@ -26,7 +20,6 @@ import {
   FeedbackFormWrapper,
   Form,
   FormActionsWrapper,
-  FormField,
   FormTitle,
   FormWrapper,
 } from "./FeedbackForm.styled";

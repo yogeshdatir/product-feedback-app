@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Body1Typography, H3, ViewBadge } from "../../components/Common.styled";
-import { mq } from "../../utils/themes";
+import { mq, TypographyStyles } from "../../utils/themes";
 import { ITheme } from "../../utils/types";
 import {
   FeedbackCard,
@@ -17,7 +17,7 @@ export const BoardContainer = styled.div(
   },
   mq({
     gap: ["10px", "10px", "10px", "2rem"],
-    padding: ["1.5rem", "1.5rem", "2rem 0", "2rem 0"],
+    padding: ["1.5rem", "1.5rem", "2rem 0"],
   })
 );
 
@@ -40,16 +40,16 @@ export const ListDescription = styled(Body1Typography)(
 );
 
 export const BoardFeedbackCardWrapper = styled.div(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
+  {
     padding: "1rem 0",
-  }),
+  },
   mq({
     padding: ["0.5rem 0", "0.5rem 0", "0.5rem 0", "1rem 0"],
   })
 );
 
 export const BoardFeedbackCard = styled(FeedbackCard)(
-  ({ theme: { colors, typography }, statusName }: any) => ({
+  ({ theme: { colors }, statusName }: any) => ({
     padding: "2rem",
     borderRadius: "5px",
     borderTop: `6px solid ${colors[statusName]}`,
@@ -59,7 +59,6 @@ export const BoardFeedbackCard = styled(FeedbackCard)(
   })
 );
 
-// TODO: reuse Body1Typography
 export const FeedbackCardHeader = styled.div(
   ({ theme: { colors, typography } }: { theme: ITheme }) => ({
     display: "flex",
@@ -69,10 +68,9 @@ export const FeedbackCardHeader = styled.div(
     paddingBottom: "0.5rem",
 
     fontWeight: typography.fontWeight.regular,
-    fontSize: typography.body1.fontSize,
-    lineHeight: typography.body1.lineHeight,
     color: colors.darkBlueGray,
   }),
+  TypographyStyles.body1,
   mq({
     paddingBottom: ["1rem", "1rem", "1rem", "0.5rem"],
   })

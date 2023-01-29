@@ -12,13 +12,11 @@ import TabletBackgroundHeader from "../../../assets/suggestions/tablet/backgroun
 import CategoryCard from "./CategoryCard";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 
-interface Props {}
-
-const Sidebar = (props: Props) => {
+const Sidebar = () => {
   const isTabletDevice = useMediaQuery(
     "(min-width: 767px) and (max-width: 1109px)"
   );
-  console.log(isTabletDevice);
+
   return (
     <Wrapper>
       <SidebarCard

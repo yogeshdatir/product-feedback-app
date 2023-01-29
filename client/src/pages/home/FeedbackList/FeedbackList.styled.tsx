@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import { mq } from "../../../utils/themes";
+import { mq, TypographyStyles } from "../../../utils/themes";
 import { ITheme } from "../../../utils/types";
 
 export const ContentWrapper = styled.div(
   {
-    margin: "1.5rem 0",
     display: "flex",
     flexDirection: "column",
     gap: "1.25rem",
@@ -15,15 +14,14 @@ export const ContentWrapper = styled.div(
 );
 
 export const FeedbackCard = styled.div(
-  ({ theme: { colors }, isForView }: any) => ({
-    padding: "28px 32px",
-    background: colors.white,
+  ({ theme: { pallette }, isForView }: any) => ({
+    background: pallette.common.white,
     borderRadius: "10px",
-    color: colors.americanBlue,
+    color: pallette.secondary.dark,
 
     ":hover": {
       "${FeedbackTitle}": {
-        color: isForView ? colors.americanBlue : colors.royalBlue,
+        color: isForView ? pallette.secondary.dark : pallette.info.main,
       },
     },
   }),
@@ -32,17 +30,18 @@ export const FeedbackCard = styled.div(
   })
 );
 
-export const FeedbackTitle = styled.p`
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: -0.25px;
-`;
+export const FeedbackTitle = styled.p(
+  ({ theme: { typography } }: { theme: ITheme }) => ({
+    fontWeight: typography.fontWeight.bold,
+  }),
+  TypographyStyles.h3
+);
 
-export const FeedbackDescription = styled.p`
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
+export const FeedbackDescription = styled.p(
+  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
+    fontWeight: typography.fontWeight.semiBold,
 
-  color: #647196;
-`;
+    color: pallette.text.light,
+  }),
+  TypographyStyles.body1
+);

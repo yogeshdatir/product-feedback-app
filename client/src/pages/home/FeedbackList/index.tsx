@@ -11,9 +11,7 @@ import {
 import { useFeedbacks } from "../../../contexts/FeedbackContext";
 import { ViewBadge } from "../../../components/Common.styled";
 
-interface Props {}
-
-const FeedbackList = (props: Props) => {
+const FeedbackList = () => {
   const {
     feedbackList,
     loading,
@@ -37,33 +35,31 @@ const FeedbackList = (props: Props) => {
     <ContentWrapper>
       {categoryToFilter
         ? filteredFeedbackList.map((feedback: IFeedback) => {
-            return (
-              <Link to={`/view/${feedback.id}`} key={uuidv4()}>
-                <FeedbackCard>
-                  <FeedbackTitle>{feedback.title}</FeedbackTitle>
-                  <FeedbackDescription style={{ marginTop: "0.25rem" }}>
-                    {feedback.description}
-                  </FeedbackDescription>
-                  <ViewBadge>{feedback.category}</ViewBadge>
-                </FeedbackCard>
-              </Link>
-            );
+            return <FeedbackCardWrapper feedback={feedback} />;
           })
         : feedbackList.map((feedback: IFeedback) => {
-            return (
-              <Link to={`/view/${feedback.id}`} key={uuidv4()}>
-                <FeedbackCard>
-                  <FeedbackTitle>{feedback.title}</FeedbackTitle>
-                  <FeedbackDescription style={{ marginTop: "0.25rem" }}>
-                    {feedback.description}
-                  </FeedbackDescription>
-                  <ViewBadge>{feedback.category}</ViewBadge>
-                </FeedbackCard>
-              </Link>
-            );
+            return <FeedbackCardWrapper feedback={feedback} />;
           })}
     </ContentWrapper>
   );
 };
+
+function FeedbackCardWrapper({
+  feedback: { id, title, description, category },
+}: {
+  feedback: IFeedback;
+}) {
+  return (
+    <Link to={`/view/${id}`} key={uuidv4()}>
+      <FeedbackCard>
+        <FeedbackTitle>{title}</FeedbackTitle>
+        <FeedbackDescription style={{ marginTop: "0.25rem" }}>
+          {description}
+        </FeedbackDescription>
+        <ViewBadge>{category}</ViewBadge>
+      </FeedbackCard>
+    </Link>
+  );
+}
 
 export default FeedbackList;

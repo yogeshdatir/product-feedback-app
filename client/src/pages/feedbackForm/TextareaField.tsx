@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { TypographyStyles } from "../../utils/themes";
 import { ITheme } from "../../utils/types";
 import { ErrorMessage, StyledLabel, StyledSubLabel } from "./InputField";
 
@@ -14,8 +15,6 @@ interface Props
 export const StyledTextarea = styled.textarea(
   ({ theme: { pallette, typography }, error }: any) => ({
     fontWeight: typography.fontWeight.regular,
-    fontSize: typography.body2.fontSize,
-    lineHeight: typography.body2.lineHeight,
     color: pallette.text.main,
     backgroundColor: pallette.grey.light,
     padding: "0.75rem 1.5rem",
@@ -32,7 +31,8 @@ export const StyledTextarea = styled.textarea(
         : `1.5px solid ${pallette.info.main}`,
     },
     outline: error ? `1.5px solid ${pallette.error.main}` : ``,
-  })
+  }),
+  TypographyStyles.body2
 );
 
 const TextareaField = ({

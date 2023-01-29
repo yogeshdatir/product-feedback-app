@@ -18,7 +18,7 @@ interface IStatusDot {
   name: string;
 }
 
-export const StatusDot = styled.div(({ theme, name }: IStatusDot) => ({
+export const StatusDot = styled.div(({ theme, name }: any) => ({
   borderRadius: "50%",
   width: "0.5rem",
   height: "0.5rem",

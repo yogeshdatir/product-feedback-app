@@ -6,9 +6,7 @@ import { Container, ContentWrapper } from "./Home.styled";
 import Sidebar from "./Sidebar";
 import MobileBar from "./Sidebar/Mobile/MobileBar";
 
-interface Props {}
-
-const Home = (props: Props) => {
+const Home = () => {
   const isMobileDevice = useMediaQuery("(max-width: 767px)");
 
   return (

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Body1Typography, H1 } from "../../../components/Common.styled";
+import { TypographyStyles } from "../../../utils/themes";
 import { ITheme } from "../../../utils/types";
 
 export const Container = styled.div`
@@ -15,18 +15,20 @@ export const Container = styled.div`
   }
 `;
 
-export const EmptyStateTitle = styled(H1)(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
-    color: colors.americanBlue,
+export const EmptyStateTitle = styled("h1")(
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
+    color: pallette.secondary.dark,
     textAlign: "center",
-  })
+  }),
+  TypographyStyles.h1
 );
 
-export const EmptyStateContent = styled(Body1Typography)(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
-    color: colors.darkBlueGray,
+export const EmptyStateContent = styled("p")(
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
+    color: pallette.text.light,
     textAlign: "center",
 
     padding: "1rem 0 4rem 0",
-  })
+  }),
+  TypographyStyles.body1
 );

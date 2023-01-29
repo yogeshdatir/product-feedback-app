@@ -16,9 +16,7 @@ import { StatusTableHeaderRow, StatusName } from "./Sidebar.styled";
 import { useNavigate } from "react-router-dom";
 import { StatusDot } from "../../../components/Common.styled";
 
-interface Props {}
-
-const StatusCard = (props: Props) => {
+const StatusCard = () => {
   const { statusCounts } = useFeedbacks();
   const { status } = useStatus();
   const navigate = useNavigate();

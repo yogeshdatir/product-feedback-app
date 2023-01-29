@@ -6,9 +6,7 @@ import { ICategory } from "../../../utils/types";
 import { CategoryFilterCard } from "./Sidebar.styled";
 import { v4 as uuidv4 } from "uuid";
 
-interface Props {}
-
-const CategoryCard = (props: Props) => {
+const CategoryCard = () => {
   const { filterFeedbackList, categoryToFilter } = useFeedbacks();
   const { categories } = useCategories();
 

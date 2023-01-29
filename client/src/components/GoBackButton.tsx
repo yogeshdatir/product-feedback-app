@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
-import { goBack } from "../utils/sharedFunctions";
 import { StyledButton } from "./Common.styled";
 import { ReactComponent as LeftArrow } from "../assets/shared/icon-arrow-left.svg";
 import styled from "@emotion/styled";
+import { NavigateFunction } from "react-router-dom";
 
 interface Props {
   isLightThemed?: boolean;
@@ -31,6 +31,11 @@ export const StyledGoBackButton = styled(StyledButton)(
 
 const GoBackButton = ({ isLightThemed = false }: Props) => {
   const navigate = useNavigate();
+
+  const goBack = (navigate: NavigateFunction) => {
+    navigate(-1);
+  };
+
   return (
     <StyledGoBackButton
       onClick={() => goBack(navigate)}

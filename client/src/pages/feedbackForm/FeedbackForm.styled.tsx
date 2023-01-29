@@ -11,8 +11,6 @@ export const FeedbackFormWrapper = styled.div`
 
 export const FormWrapper = styled.div(
   {
-    marginTop: "4.25rem",
-    padding: "2.625rem 3.25rem",
     background: "#ffffff",
     borderRadius: "10px",
   },

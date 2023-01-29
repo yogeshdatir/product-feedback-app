@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 import { IFeedback, IStatus } from "../../utils/types";
-import { StatusDot, ViewBadge } from "../../components/Common.styled";
+import { StatusDot } from "../../components/Common.styled";
 import {
   ListHeader,
   ListTitle,
@@ -13,11 +13,7 @@ import {
   RoadmapViewBadge,
 } from "./Roadmap.styled";
 import { Link } from "react-router-dom";
-import {
-  FeedbackDescription,
-  FeedbackTitle,
-} from "../home/FeedbackList/FeedbackList.styled";
-import Badge from "../../components/Badge";
+import { FeedbackTitle } from "../home/FeedbackList/FeedbackList.styled";
 
 interface Props {
   statusWiseFilteredFeedbackList: IFeedback[];

@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import CategoryCard from "../CategoryCard";
 import StatusCard from "../StatusCard";
+import { ITheme } from "../../../../utils/types";
 
 export const DrawerContainer = styled.div`
   position: absolute;
@@ -12,20 +13,20 @@ export const DrawerContainer = styled.div`
   height: calc(100vh - 83px);
 `;
 
-export const Content = styled.div`
-  background: #f7f8fd;
-  width: 72%;
-  height: 100%;
-  margin-left: auto;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-`;
+export const Content = styled.div(
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
+    background: pallette.grey.light,
+    width: "72%",
+    height: "100%",
+    marginLeft: "auto",
+    padding: "1.5rem",
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.5rem",
+  })
+);
 
-interface Props {}
-
-const Drawer = (props: Props) => {
+const Drawer = () => {
   return (
     <DrawerContainer>
       <Content>

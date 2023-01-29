@@ -6,7 +6,7 @@ import { ITheme } from "../../../../utils/types";
 import { ReactComponent as HamburgerIcon } from "../../../../assets/shared/mobile/icon-hamburger.svg";
 import Drawer from "./Drawer";
 
-const MobileBarBackground = styled.div(({ theme: { colors }, src }: any) => ({
+const MobileBarBackground = styled.div(({ theme: { pallette }, src }: any) => ({
   position: "fixed",
   width: "100%",
   padding: "1rem 1.5rem",
@@ -14,7 +14,7 @@ const MobileBarBackground = styled.div(({ theme: { colors }, src }: any) => ({
   justifyContent: "space-between",
   alignItems: "center",
   flexWrap: "wrap",
-  background: src ? `url(${src})` : "#fff",
+  background: src ? `url(${src})` : pallette.common.white,
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
@@ -31,15 +31,13 @@ export const Wrapper = styled.div({
 });
 
 export const MobileProductName = styled(ProductName)(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
     padding: 0,
-    color: colors.white,
+    color: pallette.common.white,
   })
 );
 
-interface Props {}
-
-const MobileBar = (props: Props) => {
+const MobileBar = () => {
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   return (
     <>

@@ -1,26 +1,16 @@
 import styled from "@emotion/styled";
 import { ITheme } from "../../../utils/types";
-import {
-  Body1Typography,
-  Body2Typography,
-  H2,
-  H3,
-} from "../../../components/Common.styled";
-import { mq } from "../../../utils/themes";
+import { mq, TypographyStyles } from "../../../utils/themes";
 
 export const Wrapper = styled.div(
   {
     height: "max-content",
     display: "flex",
     flexDirection: "column",
-    gap: "1.5rem 0",
-    position: "sticky",
-    top: "4rem",
     margin: "0 auto",
   },
   mq({
     flexDirection: ["column", "column", "row", "column"],
-    // width: ["100%", "100%", "100%", "16rem"],
     flex: [1, 1, 1, 1],
     gap: ["10px", "10px", "10px", "1.5rem 0"],
     position: ["relative", "relative", "relative", "sticky"],
@@ -29,13 +19,12 @@ export const Wrapper = styled.div(
 );
 
 export const SidebarCard = styled.div(
-  ({ theme: { colors }, src }: any) => ({
+  ({ theme: { pallette }, src }: any) => ({
     width: "100%",
-    padding: "1.5rem",
     display: "flex",
     flexWrap: "wrap",
     borderRadius: "10px",
-    background: src ? `url(${src})` : "#fff",
+    background: src ? `url(${src})` : pallette.common.white,
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -49,18 +38,20 @@ export const ProductWrapper = styled.div`
   margin-top: auto;
 `;
 
-export const ProductName = styled(H2)(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
+export const ProductName = styled("h2")(
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
     paddingTop: "2.4rem",
-    color: colors.white,
-  })
+    color: pallette.common.white,
+  }),
+  TypographyStyles.h2
 );
 
-export const PageName = styled(Body2Typography)(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
-    color: colors.white,
+export const PageName = styled("p")(
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
+    color: pallette.common.white,
     mixBlendMode: "normal",
-  })
+  }),
+  TypographyStyles.body2
 );
 
 export const CategoryFilterCard = styled(SidebarCard)`
@@ -71,18 +62,18 @@ export const StatusTable = styled.div`
   width: 100%;
 `;
 
-export const Title = styled(H3)(({ theme: { colors } }: { theme: ITheme }) => ({
-  color: colors.americanBlue,
-}));
+export const Title = styled("h3")(
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
+    color: pallette.secondary.dark,
+  }),
+  TypographyStyles.h3
+);
 
-// TODO: reuse Body3Typography
 export const ViewButton = styled.button(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     fontWeight: typography.fontWeight.semiBold,
-    fontSize: typography.body3.fontSize,
-    lineHeight: typography.body3.lineHeight,
     textDecorationLine: "underline",
-    color: colors.royalBlue,
+    color: pallette.info.main,
     mixBlendMode: "normal",
     border: "none",
     background: "transparent",
@@ -90,9 +81,10 @@ export const ViewButton = styled.button(
     marginLeft: "auto",
 
     ":hover": {
-      color: colors.lightCobaltBlue,
+      color: "#8397F8",
     },
-  })
+  }),
+  TypographyStyles.body3
 );
 
 export const StatusTableBody = styled.div`
@@ -111,17 +103,19 @@ export const StatusTableHeaderRow = styled(StatusTableRow)`
   padding-bottom: 1.5rem;
 `;
 
-export const StatusName = styled(Body1Typography)(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+export const StatusName = styled("p")(
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
     padding: "0 1rem",
-    color: colors.darkBlueGray,
-  })
+    color: pallette.text.light,
+  }),
+  TypographyStyles.body1
 );
 
-export const FeedbackCount = styled(Body1Typography)(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+export const FeedbackCount = styled("p")(
+  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     marginLeft: "auto",
     fontWeight: typography.fontWeight.bold,
-    color: colors.darkBlueGray,
-  })
+    color: pallette.text.light,
+  }),
+  TypographyStyles.body1
 );
