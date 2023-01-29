@@ -16,7 +16,7 @@ interface Props extends TCustomHTMLButtonAttributes, IButtonColors {
   children?: ReactNode;
 }
 
-// TODO: reuse Body1Typography
+// TODO: reuse body3, h4 Typography
 interface IStyledButton {
   theme: ITheme;
   backgroundColor?: keyof Omit<IPallette, "common" | "status">;

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { TypographyStyles } from "../utils/themes";
 
-// TODO: remove any type, colors property
+// TODO: remove any type
 export const Container = styled.span(
   ({ theme: { pallette, typography }, isActive }: any) => ({
     fontWeight: typography.fontWeight.semiBold,
