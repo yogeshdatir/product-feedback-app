@@ -3,10 +3,10 @@ import { TypographyStyles } from "../utils/themes";
 
 // TODO: remove any type, colors property
 export const Container = styled.span(
-  ({ theme: { colors, typography }, isActive }: any) => ({
+  ({ theme: { pallette, typography }, isActive }: any) => ({
     fontWeight: typography.fontWeight.semiBold,
-    color: isActive ? colors.white : colors.royalBlue,
-    background: isActive ? colors.royalBlue : colors.aliceBlue,
+    color: isActive ? pallette.common.white : pallette.info.main,
+    background: isActive ? pallette.info.main : pallette.grey.main,
     padding: "5px 1rem",
     borderRadius: "10px",
     display: "flex",
@@ -16,7 +16,7 @@ export const Container = styled.span(
     cursor: "pointer",
 
     ":hover": {
-      background: isActive ? colors.royalBlue : colors.lavenderBlue,
+      background: isActive ? pallette.info.main : pallette.grey.dark,
     },
   }),
   TypographyStyles.body3

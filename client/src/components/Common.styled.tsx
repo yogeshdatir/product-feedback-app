@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { mq, TypographyStyles } from "../utils/themes";
-import { ITheme, IColors } from "../utils/types";
+import { ITheme, IColors, IPallette } from "../utils/types";
 import Badge from "./Badge";
 
 export const ActionHeader = styled.div(
@@ -22,7 +22,7 @@ export const StatusDot = styled.div(({ theme, name }: any) => ({
   borderRadius: "50%",
   width: "0.5rem",
   height: "0.5rem",
-  backgroundColor: theme.colors[name as keyof IColors],
+  backgroundColor: theme.pallette[name as keyof IPallette],
 }));
 
 // TODO: remove all typography elements and use shared css
@@ -89,9 +89,9 @@ interface IStyledButton {
 }
 
 export const StyledButton = styled.button(
-  ({ theme: { colors, typography }, isLight }: IStyledButton) => ({
+  ({ theme: { pallette, typography }, isLight }: IStyledButton) => ({
     fontWeight: typography.fontWeight.bold,
-    color: isLight ? colors.white : colors.darkBlueGray,
+    color: isLight ? pallette.common.white : pallette.text.light,
     border: "none",
     background: "transparent",
     display: "flex",
@@ -100,7 +100,7 @@ export const StyledButton = styled.button(
     cursor: "pointer",
     svg: {
       path: {
-        stroke: isLight ? colors.white : colors.royalBlue,
+        stroke: isLight ? pallette.common.white : pallette.info.main,
       },
     },
 

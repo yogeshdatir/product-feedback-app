@@ -23,7 +23,7 @@ interface IStyledButton {
   color?: keyof ITextColorShades;
 }
 
-// TODO: remove any type, colors property
+// TODO: remove any type
 export const StyledButton = styled.button(
   ({ theme: { typography, pallette }, backgroundColor, color }: any) => ({
     padding: "0.75rem 1.5rem",

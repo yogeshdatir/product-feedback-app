@@ -3,7 +3,8 @@ import { PageName, ProductName } from "../Sidebar.styled";
 import MobileBackgroundHeader from "../../../../assets/suggestions/mobile/background-header.png";
 import styled from "@emotion/styled";
 import { ITheme } from "../../../../utils/types";
-import { ReactComponent as HamburgerIcon } from "../../../../assets/shared/mobile/icon-hamburger.svg";
+import HamburgerIcon from "../../../../assets/shared/mobile/icon-hamburger.svg";
+import CloseIcon from "../../../../assets/shared/mobile/icon-close.svg";
 import Drawer from "./Drawer";
 
 const MobileBarBackground = styled.div(({ theme: { pallette }, src }: any) => ({
@@ -18,7 +19,7 @@ const MobileBarBackground = styled.div(({ theme: { pallette }, src }: any) => ({
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  svg: {
+  img: {
     ":hover": {
       cursor: "pointer",
     },
@@ -46,8 +47,8 @@ const MobileBar = () => {
           <MobileProductName>Frontend Mentor</MobileProductName>
           <PageName>Feedback Board</PageName>
         </Wrapper>
-        {/* TODO: Toggle hamburger icon on open and close */}
-        <HamburgerIcon
+        <img
+          src={showDrawer ? CloseIcon : HamburgerIcon}
           onClick={() => setShowDrawer((prevState: boolean) => !prevState)}
         />
         {showDrawer && <Drawer />}

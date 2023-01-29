@@ -35,10 +35,10 @@ const FeedbackList = () => {
     <ContentWrapper>
       {categoryToFilter
         ? filteredFeedbackList.map((feedback: IFeedback) => {
-            return <FeedbackCardWrapper feedback={feedback} />;
+            return <FeedbackCardWrapper key={uuidv4()} feedback={feedback} />;
           })
         : feedbackList.map((feedback: IFeedback) => {
-            return <FeedbackCardWrapper feedback={feedback} />;
+            return <FeedbackCardWrapper key={uuidv4()} feedback={feedback} />;
           })}
     </ContentWrapper>
   );
@@ -50,7 +50,7 @@ function FeedbackCardWrapper({
   feedback: IFeedback;
 }) {
   return (
-    <Link to={`/view/${id}`} key={uuidv4()}>
+    <Link to={`/view/${id}`}>
       <FeedbackCard>
         <FeedbackTitle>{title}</FeedbackTitle>
         <FeedbackDescription style={{ marginTop: "0.25rem" }}>

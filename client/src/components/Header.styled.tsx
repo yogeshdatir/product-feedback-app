@@ -7,9 +7,9 @@ interface IHeaderWrapper {
 }
 
 export const Wrapper = styled.div(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
     width: "100%",
-    background: colors.americanBlue,
+    background: pallette.secondary.dark,
     display: "flex",
     alignItems: "center",
   }),
@@ -22,16 +22,16 @@ export const Wrapper = styled.div(
 );
 
 export const HeaderTitle = styled("h3")(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
     padding: "0 1rem",
-    color: colors.white,
+    color: pallette.common.white,
   }),
   TypographyStyles.h3
 );
 
 export const RoadmapTitle = styled("h1")(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
-    color: colors.white,
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
+    color: pallette.common.white,
     paddingTop: "0.25rem",
   }),
   TypographyStyles.h1

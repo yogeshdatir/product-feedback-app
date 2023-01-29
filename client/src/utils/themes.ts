@@ -8,7 +8,7 @@ export const mq = facepaint(
   breakpoints.map((bp) => `@media (min-width: ${bp}px)`)
 );
 
-// TODO: Find way to share common css properties
+// TODO: Get rid of Typography
 const Typography: ITypography = {
   fontFamily: "Jost, Raleway, Arial",
   fontWeight: {
@@ -43,21 +43,6 @@ const Typography: ITypography = {
 
 export const themes: IThemes = {
   light: {
-    colors: {
-      "in-progress": "#AD1FEA",
-      heliotrope: "#C75AF6",
-      royalBlue: "#4661E6",
-      royalBlueHovered: "#7C91F9",
-      americanBlue: "#373F68",
-      white: "#FFFFFF",
-      aliceBlue: "#F2F4FF",
-      ghostWhite: "#F7F8FD",
-      darkBlueGray: "#647196",
-      planned: "#F49F85",
-      live: "#62BCFA",
-      lavenderBlue: "#CFD7FF",
-      lightCobaltBlue: "#8397F8",
-    },
     pallette: {
       common: {
         black: "#000",

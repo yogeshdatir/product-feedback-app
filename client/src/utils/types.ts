@@ -30,26 +30,8 @@ export interface IThemes {
 }
 
 export interface ITheme {
-  colors: IColors;
   pallette: IPallette;
   typography: ITypography;
-}
-
-// TODO: Deprecate use of Colors property of theme
-export interface IColors {
-  "in-progress": string;
-  heliotrope: string;
-  royalBlue: string;
-  royalBlueHovered: string;
-  americanBlue: string;
-  white: string;
-  aliceBlue: string;
-  ghostWhite: string;
-  darkBlueGray: string;
-  planned: string;
-  live: string;
-  lavenderBlue: string;
-  lightCobaltBlue: string;
 }
 
 export interface IPallette {

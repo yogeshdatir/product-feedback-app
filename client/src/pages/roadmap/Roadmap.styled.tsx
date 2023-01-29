@@ -26,16 +26,16 @@ export const ListHeader = styled.div`
 `;
 
 export const ListTitle = styled(H3)(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
-    color: colors.americanBlue,
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
+    color: pallette.secondary.dark,
     textTransform: "capitalize",
     paddingBottom: "0.25rem",
   })
 );
 
 export const ListDescription = styled(Body1Typography)(
-  ({ theme: { colors } }: { theme: ITheme }) => ({
-    color: colors.darkBlueGray,
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
+    color: pallette.text.light,
   })
 );
 
@@ -49,10 +49,10 @@ export const BoardFeedbackCardWrapper = styled.div(
 );
 
 export const BoardFeedbackCard = styled(FeedbackCard)(
-  ({ theme: { colors }, statusName }: any) => ({
+  ({ theme: { pallette }, statusName }: any) => ({
     padding: "2rem",
     borderRadius: "5px",
-    borderTop: `6px solid ${colors[statusName]}`,
+    borderTop: `6px solid ${pallette[statusName]}`,
   }),
   mq({
     padding: ["1.5rem 1.25rem", "1.5rem 1.25rem", "1.5rem 1.25rem", "2rem"],
@@ -60,7 +60,7 @@ export const BoardFeedbackCard = styled(FeedbackCard)(
 );
 
 export const FeedbackCardHeader = styled.div(
-  ({ theme: { colors, typography } }: { theme: ITheme }) => ({
+  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     display: "flex",
     alignItems: "center",
     gap: "1rem",
@@ -68,7 +68,7 @@ export const FeedbackCardHeader = styled.div(
     paddingBottom: "0.5rem",
 
     fontWeight: typography.fontWeight.regular,
-    color: colors.darkBlueGray,
+    color: pallette.text.light,
   }),
   TypographyStyles.body1,
   mq({
