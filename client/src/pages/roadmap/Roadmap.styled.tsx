@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Body1Typography, H3, ViewBadge } from "../../components/Common.styled";
+import { ViewBadge } from "../../components/Common.styled";
 import { mq, TypographyStyles } from "../../utils/themes";
 import { ITheme } from "../../utils/types";
 import {
@@ -25,18 +25,20 @@ export const ListHeader = styled.div`
   padding-bottom: 1rem;
 `;
 
-export const ListTitle = styled(H3)(
+export const ListTitle = styled("h3")(
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.secondary.dark,
     textTransform: "capitalize",
     paddingBottom: "0.25rem",
-  })
+  }),
+  TypographyStyles.h3
 );
 
-export const ListDescription = styled(Body1Typography)(
+export const ListDescription = styled("p")(
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.light,
-  })
+  }),
+  TypographyStyles.body1
 );
 
 export const BoardFeedbackCardWrapper = styled.div(

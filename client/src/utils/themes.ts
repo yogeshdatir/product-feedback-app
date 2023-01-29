@@ -20,25 +20,29 @@ const Typography: ITypography = {
     fontSize: "24px",
     lineHeight: "35px",
     letterSpacing: "-0.33px",
+    fontWeight: 700,
   },
   h2: {
     fontSize: "20px",
     lineHeight: "29px",
     letterSpacing: "-0.25px",
+    fontWeight: 700,
   },
   h3: {
     fontSize: "18px",
     lineHeight: "26px",
     letterSpacing: "-0.25px",
+    fontWeight: 700,
   },
   h4: {
     fontSize: "14px",
     lineHeight: "20px",
     letterSpacing: "-0.194444px",
+    fontWeight: 700,
   },
-  body1: { fontSize: "16px", lineHeight: "23px" },
-  body2: { fontSize: "15px", lineHeight: "22px" },
-  body3: { fontSize: "13px", lineHeight: "19px" },
+  body1: { fontSize: "16px", lineHeight: "23px", fontWeight: 500 },
+  body2: { fontSize: "15px", lineHeight: "22px", fontWeight: 500 },
+  body3: { fontSize: "13px", lineHeight: "19px", fontWeight: 500 },
 };
 
 export const themes: IThemes = {

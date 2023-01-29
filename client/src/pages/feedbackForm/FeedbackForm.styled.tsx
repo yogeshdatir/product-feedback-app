@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import Button from "../../components/Button";
-import { H1 } from "../../components/Common.styled";
-import { mq } from "../../utils/themes";
+import { mq, TypographyStyles } from "../../utils/themes";
 import { ITheme } from "../../utils/types";
 
 export const FeedbackFormWrapper = styled.div`
@@ -37,10 +36,11 @@ export const Form = styled.form(
   })
 );
 
-export const FormTitle = styled(H1)(
+export const FormTitle = styled("h1")(
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.main,
-  })
+  }),
+  TypographyStyles.h1
 );
 
 export const FormField = styled.div`

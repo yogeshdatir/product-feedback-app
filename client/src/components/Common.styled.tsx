@@ -22,7 +22,7 @@ export const StatusDot = styled.div(({ theme, name }: any) => ({
   borderRadius: "50%",
   width: "0.5rem",
   height: "0.5rem",
-  backgroundColor: theme.pallette[name as keyof IPallette],
+  backgroundColor: theme.pallette.status[name as keyof IPallette],
 }));
 
 export const ViewBadge = styled(Badge)`

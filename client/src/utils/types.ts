@@ -90,6 +90,7 @@ export interface IHeaderFontStyle {
   fontSize: string;
   lineHeight: string;
   letterSpacing: string;
+  fontWeight: number;
 }
 
 export type IBodyFontStyle = Omit<IHeaderFontStyle, "letterSpacing">;
