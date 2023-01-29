@@ -3,6 +3,7 @@ import { TypographyStyles } from "../utils/themes";
 
 // TODO: remove any type
 export const Container = styled.span(
+  TypographyStyles.body3,
   ({ theme: { pallette, typography }, isActive }: any) => ({
     fontWeight: typography.fontWeight.semiBold,
     color: isActive ? pallette.common.white : pallette.info.main,
@@ -18,6 +19,5 @@ export const Container = styled.span(
     ":hover": {
       background: isActive ? pallette.info.main : pallette.grey.dark,
     },
-  }),
-  TypographyStyles.body3
+  })
 );

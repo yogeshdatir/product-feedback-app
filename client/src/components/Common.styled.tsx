@@ -36,6 +36,7 @@ interface IStyledButton {
 }
 
 export const StyledButton = styled.button(
+  TypographyStyles.h4,
   ({ theme: { pallette, typography }, isLight }: IStyledButton) => ({
     fontWeight: typography.fontWeight.bold,
     color: isLight ? pallette.common.white : pallette.text.light,
@@ -54,6 +55,5 @@ export const StyledButton = styled.button(
     ":hover": {
       textDecorationLine: "underline",
     },
-  }),
-  TypographyStyles.h4
+  })
 );

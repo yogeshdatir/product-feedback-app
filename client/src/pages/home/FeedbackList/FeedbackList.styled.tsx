@@ -31,17 +31,15 @@ export const FeedbackCard = styled.div(
 );
 
 export const FeedbackTitle = styled.p(
+  TypographyStyles.h3,
   ({ theme: { typography } }: { theme: ITheme }) => ({
     fontWeight: typography.fontWeight.bold,
-  }),
-  TypographyStyles.h3
+  })
 );
 
 export const FeedbackDescription = styled.p(
-  ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
-    fontWeight: typography.fontWeight.semiBold,
-
+  TypographyStyles.body1,
+  ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.light,
-  }),
-  TypographyStyles.body1
+  })
 );

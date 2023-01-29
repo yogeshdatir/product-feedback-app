@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const StyledEditButton = styled.button(
+  TypographyStyles.h4,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     cursor: "pointer",
     padding: "12px 24px",
@@ -21,8 +22,7 @@ export const StyledEditButton = styled.button(
     ":hover": {
       backgroundColor: pallette.info.light,
     },
-  }),
-  TypographyStyles.h4
+  })
 );
 
 const EditButton = ({ feedbackId }: Props) => {

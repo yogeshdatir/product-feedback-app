@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router";
 import { getAllFeedbacks, deleteFeedback } from "../services/feedbackAPIs";
 import { IContextProps, IFeedback } from "../utils/types";
@@ -14,9 +21,7 @@ interface IFeedbackContextState {
   ) => void;
   categoryToFilter: string;
   filteredFeedbackList: IFeedback[];
-  filterFeedbackList: (
-    category: IFeedback["category"]
-  ) => IFeedback[] | undefined;
+  setCategoryToFilter: Dispatch<SetStateAction<string>>;
   loading: boolean;
   error: any;
 }
@@ -26,9 +31,6 @@ const FeedbackContext = createContext<IFeedbackContextState | null>(null);
 export default function FeedbackContextProvider(props: IContextProps) {
   const [feedbackList, setFeedbackList] = useState<IFeedback[]>([]);
   const [categoryToFilter, setCategoryToFilter] = useState<string>("");
-  const [filteredFeedbackList, setFilteredFeedbackList] = useState<IFeedback[]>(
-    []
-  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -109,14 +111,15 @@ export default function FeedbackContextProvider(props: IContextProps) {
   };
 
   const filterFeedbackList = (category: IFeedback["category"]) => {
-    setCategoryToFilter(category);
     if (!category) return feedbackList;
     const filteredList = feedbackList.filter((feedback: IFeedback) => {
       if (feedback.category === category) return feedback;
     });
 
-    setFilteredFeedbackList(filteredList);
+    return filteredList;
   };
+
+  let filteredFeedbackList: IFeedback[] = filterFeedbackList(categoryToFilter);
 
   const FeedbackContextState = {
     statusCounts,
@@ -125,7 +128,7 @@ export default function FeedbackContextProvider(props: IContextProps) {
     updateOrAddToFeedbackList,
     categoryToFilter,
     filteredFeedbackList,
-    filterFeedbackList,
+    setCategoryToFilter,
     loading,
     error,
   };

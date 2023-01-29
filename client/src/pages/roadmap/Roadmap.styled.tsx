@@ -26,19 +26,19 @@ export const ListHeader = styled.div`
 `;
 
 export const ListTitle = styled("h3")(
+  TypographyStyles.h3,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.secondary.dark,
     textTransform: "capitalize",
     paddingBottom: "0.25rem",
-  }),
-  TypographyStyles.h3
+  })
 );
 
 export const ListDescription = styled("p")(
+  TypographyStyles.body1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.light,
-  }),
-  TypographyStyles.body1
+  })
 );
 
 export const BoardFeedbackCardWrapper = styled.div(
@@ -62,6 +62,7 @@ export const BoardFeedbackCard = styled(FeedbackCard)(
 );
 
 export const FeedbackCardHeader = styled.div(
+  TypographyStyles.body1,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     display: "flex",
     alignItems: "center",
@@ -72,7 +73,6 @@ export const FeedbackCardHeader = styled.div(
     fontWeight: typography.fontWeight.regular,
     color: pallette.text.light,
   }),
-  TypographyStyles.body1,
   mq({
     paddingBottom: ["1rem", "1rem", "1rem", "0.5rem"],
   })

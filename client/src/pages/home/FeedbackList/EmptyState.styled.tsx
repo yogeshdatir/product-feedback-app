@@ -16,19 +16,19 @@ export const Container = styled.div`
 `;
 
 export const EmptyStateTitle = styled("h1")(
+  TypographyStyles.h1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.secondary.dark,
     textAlign: "center",
-  }),
-  TypographyStyles.h1
+  })
 );
 
 export const EmptyStateContent = styled("p")(
+  TypographyStyles.body1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.light,
     textAlign: "center",
 
     padding: "1rem 0 4rem 0",
-  }),
-  TypographyStyles.body1
+  })
 );

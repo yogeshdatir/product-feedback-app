@@ -13,6 +13,7 @@ export const StyledSelect = styled.div(
 );
 
 export const StyledSelectInput = styled.div(
+  TypographyStyles.body2,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     backgroundColor: pallette.grey.light,
     border: "none",
@@ -37,8 +38,7 @@ export const StyledSelectInput = styled.div(
       paddingTop: "3px",
       height: "10px",
     },
-  }),
-  TypographyStyles.body2
+  })
 );
 
 export const SelectDropdown = styled.ul`
@@ -54,6 +54,7 @@ export const SelectDropdown = styled.ul`
 `;
 
 export const StyledOption = styled.li(
+  TypographyStyles.body1,
   ({ theme: { pallette }, isHighlightedIndex }: any) => ({
     padding: "0.75rem 1.5rem",
     textTransform: "capitalize",
@@ -67,8 +68,7 @@ export const StyledOption = styled.li(
       borderBottom: "1.5px solid rgba(58, 67, 116, 0.15)",
     },
     ":hover": { color: pallette.text.dark },
-  }),
-  TypographyStyles.body1
+  })
 );
 
 interface IStyledArrowDown {

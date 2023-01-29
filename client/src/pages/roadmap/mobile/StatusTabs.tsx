@@ -9,6 +9,7 @@ export const TabWrapper = styled.div`
 `;
 
 export const Tab = styled.div(
+  TypographyStyles.body3,
   ({ theme: { pallette, typography }, isActive }: any) => ({
     flex: 1,
     position: "relative",
@@ -31,8 +32,7 @@ export const Tab = styled.div(
       left: "0",
       background: pallette.text.dark,
     },
-  }),
-  TypographyStyles.body3
+  })
 );
 
 interface Props {

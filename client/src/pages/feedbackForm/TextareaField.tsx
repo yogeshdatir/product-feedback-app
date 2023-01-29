@@ -13,6 +13,7 @@ interface Props
 }
 
 export const StyledTextarea = styled.textarea(
+  TypographyStyles.body2,
   ({ theme: { pallette, typography }, error }: any) => ({
     fontWeight: typography.fontWeight.regular,
     color: pallette.text.main,
@@ -31,8 +32,7 @@ export const StyledTextarea = styled.textarea(
         : `1.5px solid ${pallette.info.main}`,
     },
     outline: error ? `1.5px solid ${pallette.error.main}` : ``,
-  }),
-  TypographyStyles.body2
+  })
 );
 
 const TextareaField = ({

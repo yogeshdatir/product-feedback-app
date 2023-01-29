@@ -7,7 +7,7 @@ import { CategoryFilterCard } from "./Sidebar.styled";
 import { v4 as uuidv4 } from "uuid";
 
 const CategoryCard = () => {
-  const { filterFeedbackList, categoryToFilter } = useFeedbacks();
+  const { categoryToFilter, setCategoryToFilter } = useFeedbacks();
   const { categories } = useCategories();
 
   return (
@@ -15,7 +15,7 @@ const CategoryCard = () => {
       <Badge
         isActive={categoryToFilter === ""}
         onClick={() => {
-          filterFeedbackList("");
+          setCategoryToFilter("");
         }}
       >
         All
@@ -26,7 +26,7 @@ const CategoryCard = () => {
             isActive={category.name === categoryToFilter}
             key={uuidv4()}
             onClick={() => {
-              filterFeedbackList(category.name);
+              setCategoryToFilter(category.name);
             }}
           >
             {category.name}

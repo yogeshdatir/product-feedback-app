@@ -37,10 +37,10 @@ export const Form = styled.form(
 );
 
 export const FormTitle = styled("h1")(
+  TypographyStyles.h1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.main,
-  }),
-  TypographyStyles.h1
+  })
 );
 
 export const FormField = styled.div`

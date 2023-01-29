@@ -39,19 +39,19 @@ export const ProductWrapper = styled.div`
 `;
 
 export const ProductName = styled("h2")(
+  TypographyStyles.h2,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     paddingTop: "2.4rem",
     color: pallette.common.white,
-  }),
-  TypographyStyles.h2
+  })
 );
 
 export const PageName = styled("p")(
+  TypographyStyles.body2,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.common.white,
     mixBlendMode: "normal",
-  }),
-  TypographyStyles.body2
+  })
 );
 
 export const CategoryFilterCard = styled(SidebarCard)`
@@ -63,13 +63,14 @@ export const StatusTable = styled.div`
 `;
 
 export const Title = styled("h3")(
+  TypographyStyles.h3,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.secondary.dark,
-  }),
-  TypographyStyles.h3
+  })
 );
 
 export const ViewButton = styled.button(
+  TypographyStyles.body3,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     fontWeight: typography.fontWeight.semiBold,
     textDecorationLine: "underline",
@@ -83,8 +84,7 @@ export const ViewButton = styled.button(
     ":hover": {
       color: "#8397F8",
     },
-  }),
-  TypographyStyles.body3
+  })
 );
 
 export const StatusTableBody = styled.div`
@@ -104,18 +104,18 @@ export const StatusTableHeaderRow = styled(StatusTableRow)`
 `;
 
 export const StatusName = styled("p")(
+  TypographyStyles.body1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     padding: "0 1rem",
     color: pallette.text.light,
-  }),
-  TypographyStyles.body1
+  })
 );
 
 export const FeedbackCount = styled("p")(
+  TypographyStyles.body1,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     marginLeft: "auto",
     fontWeight: typography.fontWeight.bold,
     color: pallette.text.light,
-  }),
-  TypographyStyles.body1
+  })
 );

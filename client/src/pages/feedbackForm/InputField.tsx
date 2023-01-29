@@ -12,22 +12,23 @@ interface Props
 }
 
 export const StyledLabel = styled("h4")(
+  TypographyStyles.h4,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.main,
-  }),
-  TypographyStyles.h4
+  })
 );
 
 export const StyledSubLabel = styled("h4")(
+  TypographyStyles.h4,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     color: pallette.text.light,
     fontWeight: typography.fontWeight.regular,
     paddingBottom: "1rem",
-  }),
-  TypographyStyles.h4
+  })
 );
 
 export const StyledInput = styled.input(
+  TypographyStyles.body2,
   ({ theme: { pallette, typography }, error }: any) => ({
     backgroundColor: pallette.grey.light,
     padding: "0.75rem 1.5rem",
@@ -42,16 +43,15 @@ export const StyledInput = styled.input(
         : `1.5px solid ${pallette.info.main}`,
     },
     outline: error ? `1.5px solid ${pallette.error.main}` : ``,
-  }),
-  TypographyStyles.body2
+  })
 );
 
 export const ErrorMessage = styled.span(
+  TypographyStyles.body2,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     fontWeight: typography.fontWeight.regular,
     color: pallette.error.main,
-  }),
-  TypographyStyles.body2
+  })
 );
 
 const InputField = ({ label, subLabel, error, ...inputAttributes }: Props) => {

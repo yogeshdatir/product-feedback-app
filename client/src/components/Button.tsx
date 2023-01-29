@@ -25,6 +25,7 @@ interface IStyledButton {
 
 // TODO: remove any type
 export const StyledButton = styled.button(
+  TypographyStyles.h4,
   ({ theme: { typography, pallette }, backgroundColor, color }: any) => ({
     padding: "0.75rem 1.5rem",
     borderRadius: "10px",
@@ -43,7 +44,6 @@ export const StyledButton = styled.button(
         : "transparent",
     },
   }),
-  TypographyStyles.h4,
   ({ theme: { typography } }: Pick<IStyledButton, "theme">) =>
     mq({
       padding: [

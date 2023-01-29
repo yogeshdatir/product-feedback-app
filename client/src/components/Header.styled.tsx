@@ -22,17 +22,17 @@ export const Wrapper = styled.div(
 );
 
 export const HeaderTitle = styled("h3")(
+  TypographyStyles.h3,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     padding: "0 1rem",
     color: pallette.common.white,
-  }),
-  TypographyStyles.h3
+  })
 );
 
 export const RoadmapTitle = styled("h1")(
+  TypographyStyles.h1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.common.white,
     paddingTop: "0.25rem",
-  }),
-  TypographyStyles.h1
+  })
 );
