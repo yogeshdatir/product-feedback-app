@@ -4,6 +4,11 @@ import FeedbackForm from "./pages/feedbackForm";
 import Feedback from "./pages/feedback";
 import Roadmap from "./pages/roadmap";
 
+// TODO: Add upvotes feature
+// TODO: Add comments feature
+// TODO: Add error boundary and write an article about it
+// TODO: Add lazy loading and suspense with skeleton loading, write article on it
+// TODO: Add notification system
 function App() {
   return (
     <>
