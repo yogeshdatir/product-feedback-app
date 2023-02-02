@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 function useMediaQuery(query: string): boolean {
   const getMatches = (query: string): boolean => {
     // Prevents SSR issues
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       return window.matchMedia(query).matches;
     }
     return false;
@@ -22,10 +22,10 @@ function useMediaQuery(query: string): boolean {
     handleChange();
 
     // Listen matchMedia
-    matchMedia.addEventListener("change", handleChange);
+    matchMedia.addEventListener('change', handleChange);
 
     return () => {
-      matchMedia.removeEventListener("change", handleChange);
+      matchMedia.removeEventListener('change', handleChange);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);

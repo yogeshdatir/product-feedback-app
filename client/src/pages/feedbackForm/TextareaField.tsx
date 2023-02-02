@@ -1,15 +1,15 @@
-import styled from "@emotion/styled";
-import React from "react";
-import { TypographyStyles } from "../../utils/themes";
-import { ITheme } from "../../utils/types";
-import { ErrorMessage, StyledLabel, StyledSubLabel } from "./InputField";
+import styled from '@emotion/styled';
+import React from 'react';
+import { TypographyStyles } from '../../utils/themes';
+import { ITheme } from '../../utils/types';
+import { ErrorMessage, StyledLabel, StyledSubLabel } from './InputField';
 
 interface Props
   extends React.ClassAttributes<HTMLTextAreaElement>,
-    React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label: string;
-  subLabel: string;
-  error?: string;
+  React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label: string
+  subLabel: string
+  error?: string
 }
 
 export const StyledTextarea = styled.textarea(
@@ -18,29 +18,29 @@ export const StyledTextarea = styled.textarea(
     fontWeight: typography.fontWeight.regular,
     color: pallette.text.main,
     backgroundColor: pallette.grey.light,
-    padding: "0.75rem 1.5rem",
-    border: "none",
-    borderRadius: "5px",
-    width: "100%",
-    maxWidth: "100%",
-    "::-webkit-resizer": {
-      display: "none",
+    padding: '0.75rem 1.5rem',
+    border: 'none',
+    borderRadius: '5px',
+    width: '100%',
+    maxWidth: '100%',
+    '::-webkit-resizer': {
+      display: 'none',
     },
-    ":focus": {
+    ':focus': {
       outline: error
         ? `1.5px solid ${pallette.error.main}`
         : `1.5px solid ${pallette.info.main}`,
     },
-    outline: error ? `1.5px solid ${pallette.error.main}` : ``,
-  })
+    outline: error ? `1.5px solid ${pallette.error.main}` : '',
+  }),
 );
 
-const TextareaField = ({
+function TextareaField({
   label,
   subLabel,
   error,
   ...textareaAttributes
-}: Props) => {
+}: Props) {
   return (
     <div>
       <StyledLabel as="label">{label}</StyledLabel>
@@ -49,6 +49,6 @@ const TextareaField = ({
       {error && <ErrorMessage>{error}</ErrorMessage>}
     </div>
   );
-};
+}
 
 export default TextareaField;

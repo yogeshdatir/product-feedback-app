@@ -1,22 +1,12 @@
-import { IFeedback, IFeedbackFormState } from "../utils/types";
-import AxiosCommon from "./AxiosCommon";
+import { type IFeedback, type IFeedbackFormState } from '../utils/types';
+import AxiosCommon from './AxiosCommon';
 
-export const getAllFeedbacks = () => {
-  return AxiosCommon.get("feedbacks");
-};
+export const getAllFeedbacks = async () => AxiosCommon.get('feedbacks');
 
-export const addFeedback = (data: IFeedbackFormState) => {
-  return AxiosCommon.post("feedbacks", data);
-};
+export const addFeedback = async (data: IFeedbackFormState) => AxiosCommon.post('feedbacks', data);
 
-export const getFeedback = (id: IFeedback["id"]) => {
-  return AxiosCommon.get(`feedbacks/${id}`);
-};
+export const getFeedback = async (id: IFeedback['id']) => AxiosCommon.get(`feedbacks/${id}`);
 
-export const updateFeedback = (data: IFeedbackFormState) => {
-  return AxiosCommon.put("feedbacks", data);
-};
+export const updateFeedback = async (data: IFeedbackFormState) => AxiosCommon.put('feedbacks', data);
 
-export const deleteFeedback = (id: IFeedback["id"]) => {
-  return AxiosCommon.delete("feedbacks", { data: { id } });
-};
+export const deleteFeedback = async (id: IFeedback['id']) => AxiosCommon.delete('feedbacks', { data: { id } });

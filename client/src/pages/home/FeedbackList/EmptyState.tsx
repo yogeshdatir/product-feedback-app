@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
+import { useNavigate } from 'react-router';
 import {
   Container,
   EmptyStateContent,
   EmptyStateTitle,
-} from "./EmptyState.styled";
-import IllustrationEmpty from "../../../assets/suggestions/illustration-empty.svg";
-import Button from "../../../components/Button";
-import { useNavigate } from "react-router";
+} from './EmptyState.styled';
+import IllustrationEmpty from '../../../assets/suggestions/illustration-empty.svg';
+import Button from '../../../components/Button';
 
-const EmptyState = () => {
+function EmptyState() {
   const navigate = useNavigate();
 
   return (
@@ -23,13 +23,13 @@ const EmptyState = () => {
         backgroundColor="primary"
         color="buttonPrimary"
         onClick={() => {
-          navigate("/add");
+          navigate('/add');
         }}
       >
         + Add Feedback
       </Button>
     </Container>
   );
-};
+}
 
 export default EmptyState;

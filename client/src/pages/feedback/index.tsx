@@ -1,44 +1,44 @@
-import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { ActionHeader, ViewBadge } from "../../components/Common.styled";
-import { getFeedback } from "../../services/feedbackAPIs";
-import { IFeedback } from "../../utils/types";
+import styled from '@emotion/styled';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { ActionHeader, ViewBadge } from '../../components/Common.styled';
+import { getFeedback } from '../../services/feedbackAPIs';
+import { type IFeedback } from '../../utils/types';
 import {
   FeedbackCard,
   FeedbackTitle,
   FeedbackDescription,
   ContentWrapper,
-} from "../home/FeedbackList/FeedbackList.styled";
-import { useFeedbacks } from "../../contexts/FeedbackContext";
-import GoBackButton from "../../components/GoBackButton";
-import EditButton from "./EditButton";
-import { mq } from "../../utils/themes";
+} from '../home/FeedbackList/FeedbackList.styled';
+import { useFeedbacks } from '../../contexts/FeedbackContext';
+import GoBackButton from '../../components/GoBackButton';
+import EditButton from './EditButton';
+import { mq } from '../../utils/themes';
 
 const Container = styled.div(
   {
-    margin: "auto",
+    margin: 'auto',
   },
   mq({
-    width: ["100%", "100%", "689px", "730px"],
-  })
+    width: ['100%', '100%', '689px', '730px'],
+  }),
 );
 
-const Feedback = () => {
+function Feedback() {
   const { id } = useParams();
   const [feedback, setFeedback] = useState<IFeedback | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { feedbackList } = useFeedbacks();
 
-  const fetchFeedback = async (id: IFeedback["id"]) => {
+  const fetchFeedback = async (id: IFeedback['id']) => {
     const feedbackFromContext = await feedbackList.find(
       (feedback: IFeedback) => {
         if (feedback.id === id) return feedback;
-      }
+      },
     );
 
-    if (feedbackFromContext) {
+    if (feedbackFromContext != null) {
       setFeedback(feedbackFromContext);
       setLoading(false);
     } else {
@@ -64,19 +64,19 @@ const Feedback = () => {
     <Container>
       <ActionHeader>
         <GoBackButton />
-        {feedback && <EditButton feedbackId={id} />}
+        {(feedback != null) && <EditButton feedbackId={id} />}
       </ActionHeader>
       <ContentWrapper>
         {loading ? (
           <p>loading</p>
         ) : error ? (
           <p>error</p>
-        ) : !feedback ? (
+        ) : (feedback == null) ? (
           <p>Not found</p>
         ) : (
           <FeedbackCard isForView>
             <FeedbackTitle>{feedback.title}</FeedbackTitle>
-            <FeedbackDescription style={{ marginTop: "0.25rem" }}>
+            <FeedbackDescription style={{ marginTop: '0.25rem' }}>
               {feedback.description}
             </FeedbackDescription>
             <ViewBadge>{feedback.category}</ViewBadge>
@@ -85,6 +85,6 @@ const Feedback = () => {
       </ContentWrapper>
     </Container>
   );
-};
+}
 
 export default Feedback;

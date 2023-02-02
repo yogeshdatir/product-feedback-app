@@ -1,21 +1,20 @@
-import React from "react";
-import { HeaderTitle, RoadmapTitle, Wrapper } from "./Header.styled";
-import { ReactComponent as SuggestionsIcon } from "../assets/suggestions/icon-suggestions.svg";
-import { useFeedbacks } from "../contexts/FeedbackContext";
-import GoBackButton from "./GoBackButton";
-import Button from "./Button";
-import { useNavigate } from "react-router";
-import useMediaQuery from "../hooks/useMediaQuery";
+import React from 'react';
+import { useNavigate } from 'react-router';
+import { HeaderTitle, RoadmapTitle, Wrapper } from './Header.styled';
+import { ReactComponent as SuggestionsIcon } from '../assets/suggestions/icon-suggestions.svg';
+import { useFeedbacks } from '../contexts/FeedbackContext';
+import GoBackButton from './GoBackButton';
+import Button from './Button';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 interface Props {
-  forRoadmap?: boolean;
+  forRoadmap?: boolean
 }
 
-const Header = ({ forRoadmap }: Props) => {
-  const { filteredFeedbackList, feedbackList, categoryToFilter } =
-    useFeedbacks();
+function Header({ forRoadmap }: Props) {
+  const { filteredFeedbackList, feedbackList, categoryToFilter } = useFeedbacks();
   const navigate = useNavigate();
-  const isMobileDevice = useMediaQuery("(max-width: 767px)");
+  const isMobileDevice = useMediaQuery('(max-width: 767px)');
 
   const suggestionCount = categoryToFilter
     ? filteredFeedbackList.length
@@ -37,17 +36,17 @@ const Header = ({ forRoadmap }: Props) => {
         )
       )}
       <Button
-        style={{ marginLeft: "auto" }}
+        style={{ marginLeft: 'auto' }}
         backgroundColor="primary"
         color="buttonPrimary"
         onClick={() => {
-          navigate("/add");
+          navigate('/add');
         }}
       >
         + Add Feedback
       </Button>
     </Wrapper>
   );
-};
+}
 
 export default Header;

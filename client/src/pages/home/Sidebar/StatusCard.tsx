@@ -1,4 +1,6 @@
-import React from "react";
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 import {
   FeedbackCount,
   SidebarCard,
@@ -7,22 +9,20 @@ import {
   StatusTableRow,
   Title,
   ViewButton,
-} from "./Sidebar.styled";
-import { useFeedbacks } from "../../../contexts/FeedbackContext";
-import { IStatus } from "../../../utils/types";
-import { v4 as uuidv4 } from "uuid";
-import { useStatus } from "../../../contexts/StatusContext";
-import { StatusTableHeaderRow, StatusName } from "./Sidebar.styled";
-import { useNavigate } from "react-router-dom";
-import { StatusDot } from "../../../components/Common.styled";
+  StatusTableHeaderRow, StatusName,
+} from './Sidebar.styled';
+import { useFeedbacks } from '../../../contexts/FeedbackContext';
+import { type IStatus } from '../../../utils/types';
+import { useStatus } from '../../../contexts/StatusContext';
+import { StatusDot } from '../../../components/Common.styled';
 
-const StatusCard = () => {
+function StatusCard() {
   const { statusCounts } = useFeedbacks();
   const { status } = useStatus();
   const navigate = useNavigate();
 
   const redirectToRoadmap = () => {
-    navigate("roadmap");
+    navigate('roadmap');
   };
 
   return (
@@ -34,7 +34,7 @@ const StatusCard = () => {
         </StatusTableHeaderRow>
         <StatusTableBody>
           {status.map(({ name }: IStatus) => {
-            if (name === "suggestion") return;
+            if (name === 'suggestion') return;
             return (
               <StatusTableRow key={uuidv4()}>
                 <StatusDot name={name} />
@@ -47,6 +47,6 @@ const StatusCard = () => {
       </StatusTable>
     </SidebarCard>
   );
-};
+}
 
 export default StatusCard;

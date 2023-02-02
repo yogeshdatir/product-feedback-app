@@ -1,12 +1,14 @@
-import React, { useEffect, createContext, useContext, useState } from "react";
-import { getAllCategories } from "../services/categoryAPIs";
-import { ICategory, IContextProps } from "../utils/types";
+import React, {
+  useEffect, createContext, useContext, useState,
+} from 'react';
+import { getAllCategories } from '../services/categoryAPIs';
+import { type ICategory, type IContextProps } from '../utils/types';
 
 interface ICategoryContextState {
-  categories: ICategory[];
-  setCategories: React.Dispatch<React.SetStateAction<ICategory[]>>;
-  loading: boolean;
-  error: any;
+  categories: ICategory[]
+  setCategories: React.Dispatch<React.SetStateAction<ICategory[]>>
+  loading: boolean
+  error: any
 }
 
 const CategoryContext = createContext<ICategoryContextState | null>(null);
@@ -50,7 +52,7 @@ export function useCategories() {
   const context = useContext(CategoryContext);
   if (context === null) {
     throw new Error(
-      "useCategory must be used within a CategoryContextProvider"
+      'useCategory must be used within a CategoryContextProvider',
     );
   }
   return context;

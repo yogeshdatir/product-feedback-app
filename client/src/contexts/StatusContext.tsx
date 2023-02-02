@@ -1,12 +1,14 @@
-import React, { useEffect, createContext, useContext, useState } from "react";
-import { getAllStatus } from "../services/statusAPIs";
-import { IStatus } from "../utils/types";
+import React, {
+  useEffect, createContext, useContext, useState,
+} from 'react';
+import { getAllStatus } from '../services/statusAPIs';
+import { type IStatus } from '../utils/types';
 
 interface IStatusContextState {
-  status: IStatus[];
-  setStatus: React.Dispatch<React.SetStateAction<IStatus[]>>;
-  loading: boolean;
-  error: null;
+  status: IStatus[]
+  setStatus: React.Dispatch<React.SetStateAction<IStatus[]>>
+  loading: boolean
+  error: null
 }
 
 const StatusContext = createContext<IStatusContextState | null>(null);
@@ -49,7 +51,7 @@ export default function StatusContextProvider(props: any) {
 export function useStatus() {
   const context = useContext(StatusContext);
   if (context === null) {
-    throw new Error("useStatus must be used within a StatusContextProvider");
+    throw new Error('useStatus must be used within a StatusContextProvider');
   }
   return context;
 }

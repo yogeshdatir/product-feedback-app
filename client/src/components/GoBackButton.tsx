@@ -1,24 +1,24 @@
-import { useNavigate } from "react-router";
-import { StyledButton } from "./Common.styled";
-import { ReactComponent as LeftArrow } from "../assets/shared/icon-arrow-left.svg";
-import styled from "@emotion/styled";
-import { NavigateFunction } from "react-router-dom";
+import { useNavigate } from 'react-router';
+import styled from '@emotion/styled';
+import { type NavigateFunction } from 'react-router-dom';
+import { StyledButton } from './Common.styled';
+import { ReactComponent as LeftArrow } from '../assets/shared/icon-arrow-left.svg';
 
 interface Props {
-  isLightThemed?: boolean;
+  isLightThemed?: boolean
 }
 
 // TODO: remove any type
 export const StyledGoBackButton = styled(StyledButton)(
   ({ theme: { pallette }, isLightThemed }: any) => ({
-    paddingLeft: "0",
-    paddingRight: "0",
-    display: "flex",
-    gap: "1rem",
-    alignItems: "center",
-    textTransform: "capitalize",
-    ":hover": {
-      textDecoration: "underline",
+    paddingLeft: '0',
+    paddingRight: '0',
+    display: 'flex',
+    gap: '1rem',
+    alignItems: 'center',
+    textTransform: 'capitalize',
+    ':hover': {
+      textDecoration: 'underline',
     },
     color: isLightThemed ? pallette.text.white : pallette.text.light,
     svg: {
@@ -26,10 +26,10 @@ export const StyledGoBackButton = styled(StyledButton)(
         stroke: isLightThemed ? pallette.text.white : pallette.info.main,
       },
     },
-  })
+  }),
 );
 
-const GoBackButton = ({ isLightThemed = false }: Props) => {
+function GoBackButton({ isLightThemed = false }: Props) {
   const navigate = useNavigate();
 
   const goBack = (navigate: NavigateFunction) => {
@@ -38,13 +38,13 @@ const GoBackButton = ({ isLightThemed = false }: Props) => {
 
   return (
     <StyledGoBackButton
-      onClick={() => goBack(navigate)}
+      onClick={() => { goBack(navigate); }}
       isLightThemed={isLightThemed}
     >
       <LeftArrow />
       Go back
     </StyledGoBackButton>
   );
-};
+}
 
 export default GoBackButton;

@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import React from "react";
-import CategoryCard from "../CategoryCard";
-import StatusCard from "../StatusCard";
-import { ITheme } from "../../../../utils/types";
+import styled from '@emotion/styled';
+import React from 'react';
+import CategoryCard from '../CategoryCard';
+import StatusCard from '../StatusCard';
+import { type ITheme } from '../../../../utils/types';
 
 export const DrawerContainer = styled.div`
   position: absolute;
@@ -16,17 +16,17 @@ export const DrawerContainer = styled.div`
 export const Content = styled.div(
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     background: pallette.grey.light,
-    width: "72%",
-    height: "100%",
-    marginLeft: "auto",
-    padding: "1.5rem",
-    display: "flex",
-    flexDirection: "column",
-    gap: "1.5rem",
-  })
+    width: '72%',
+    height: '100%',
+    marginLeft: 'auto',
+    padding: '1.5rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.5rem',
+  }),
 );
 
-const Drawer = () => {
+function Drawer() {
   return (
     <DrawerContainer>
       <Content>
@@ -35,6 +35,6 @@ const Drawer = () => {
       </Content>
     </DrawerContainer>
   );
-};
+}
 
 export default Drawer;
