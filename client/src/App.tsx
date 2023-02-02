@@ -4,6 +4,7 @@ import FeedbackForm from './pages/feedbackForm';
 import Feedback from './pages/feedback';
 import Roadmap from './pages/roadmap';
 
+// TODO: Add husky and prettier
 // TODO: Add upvotes feature
 // TODO: Add comments feature
 // TODO: Add error boundary and write an article about it
