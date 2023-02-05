@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ActionHeader, ViewBadge } from '../../components/Common.styled';
 import { getFeedback } from '../../services/feedbackAPIs';
@@ -21,7 +21,7 @@ const Container = styled.div(
   },
   mq({
     width: ['100%', '100%', '689px', '730px'],
-  }),
+  })
 );
 
 function Feedback() {
@@ -31,47 +31,49 @@ function Feedback() {
   const [error, setError] = useState(null);
   const { feedbackList } = useFeedbacks();
 
-  const fetchFeedback = async (id: IFeedback['id']) => {
-    const feedbackFromContext = await feedbackList.find(
-      (feedback: IFeedback) => {
-        if (feedback.id === id) return feedback;
-      },
-    );
+  const fetchFeedback = useCallback(
+    async (feedbackID: IFeedback['id']) => {
+      const feedbackFromContext = feedbackList.find((fb: IFeedback) => {
+        if (fb.id === feedbackID) return feedback;
+        return null;
+      });
 
-    if (feedbackFromContext != null) {
-      setFeedback(feedbackFromContext);
-      setLoading(false);
-    } else {
-      try {
-        const result = await getFeedback(id);
-        setFeedback(result.data[0]);
+      if (feedbackFromContext != null) {
+        setFeedback(feedbackFromContext);
         setLoading(false);
-      } catch (err: any) {
-        console.log(err);
-        setError(error);
-        setLoading(false);
+      } else if (id !== undefined) {
+        try {
+          const result = await getFeedback(id);
+          setFeedback(result.data[0]);
+          setLoading(false);
+        } catch (err: any) {
+          console.error(err);
+          setError(error);
+          setLoading(false);
+        }
       }
-    }
-  };
+    },
+    [error, feedback, feedbackList, id]
+  );
 
   useEffect(() => {
-    if (id) {
+    if (id !== undefined) {
       fetchFeedback(id);
     }
-  }, [id]);
+  }, [id, fetchFeedback]);
 
   return (
     <Container>
       <ActionHeader>
         <GoBackButton />
-        {(feedback != null) && <EditButton feedbackId={id} />}
+        {feedback != null && <EditButton feedbackId={id} />}
       </ActionHeader>
       <ContentWrapper>
         {loading ? (
           <p>loading</p>
         ) : error ? (
           <p>error</p>
-        ) : (feedback == null) ? (
+        ) : feedback == null ? (
           <p>Not found</p>
         ) : (
           <FeedbackCard isForView>

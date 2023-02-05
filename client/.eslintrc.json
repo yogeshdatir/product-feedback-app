@@ -24,6 +24,17 @@
     "@emotion/jsx-import": "error",
     "@emotion/no-vanilla": "error",
     "@emotion/import-from-emotion": "error",
-    "@emotion/styled-import": "error"
+    "@emotion/styled-import": "error",
+    // suppress errors for missing 'import React' in files
+    "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": "off",
+    "semi": "off",
+    "@typescript-eslint/semi": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/member-delimiter-style": "off"
   }
 }

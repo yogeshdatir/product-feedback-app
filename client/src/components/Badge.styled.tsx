@@ -1,10 +1,18 @@
 import styled from '@emotion/styled';
 import { TypographyStyles } from '../utils/themes';
+import { ITheme } from '../utils/types';
 
-// TODO: remove any type
+type IContainer = {
+  theme: ITheme;
+  as?: React.ElementType<any> | undefined;
+} & React.ClassAttributes<HTMLSpanElement> &
+  React.HTMLAttributes<HTMLSpanElement> & {
+    isActive: boolean;
+  };
+
 export const Container = styled.span(
   TypographyStyles.body3,
-  ({ theme: { pallette, typography }, isActive }: any) => ({
+  ({ theme: { pallette, typography }, isActive }: IContainer) => ({
     fontWeight: typography.fontWeight.semiBold,
     color: isActive ? pallette.common.white : pallette.info.main,
     background: isActive ? pallette.info.main : pallette.grey.main,
@@ -19,5 +27,5 @@ export const Container = styled.span(
     ':hover': {
       background: isActive ? pallette.info.main : pallette.grey.dark,
     },
-  }),
+  })
 );
