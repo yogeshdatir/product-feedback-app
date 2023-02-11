@@ -1,6 +1,6 @@
 {
   "*.{ts,tsx}": [
-    "eslint"
+    "npx eslint . --ext .js,.jsx,.ts,.tsx"
   ],
   "*.{ts,tsx,js,jsx}": [
     "prettier --write"
