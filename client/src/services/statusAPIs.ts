@@ -1,3 +1,3 @@
-import AxiosCommon from './AxiosCommon';
+import AxiosCommon from "./AxiosCommon";
 
-export const getAllStatus = async () => AxiosCommon.get('status');
+export const getAllStatus = async () => AxiosCommon.get("status");

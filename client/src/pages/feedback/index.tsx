@@ -1,26 +1,26 @@
-import styled from '@emotion/styled';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { ActionHeader, ViewBadge } from '../../components/Common.styled';
-import { getFeedback } from '../../services/feedbackAPIs';
-import { type IFeedback } from '../../utils/types';
+import styled from "@emotion/styled";
+import React, { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { ActionHeader, ViewBadge } from "../../components/Common.styled";
+import { getFeedback } from "../../services/feedbackAPIs";
+import { type IFeedback } from "../../utils/types";
 import {
   FeedbackCard,
   FeedbackTitle,
   FeedbackDescription,
   ContentWrapper,
-} from '../home/FeedbackList/FeedbackList.styled';
-import { useFeedbacks } from '../../contexts/FeedbackContext';
-import GoBackButton from '../../components/GoBackButton';
-import EditButton from './EditButton';
-import { mq } from '../../utils/themes';
+} from "../home/FeedbackList/FeedbackList.styled";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
+import GoBackButton from "../../components/GoBackButton";
+import EditButton from "./EditButton";
+import { mq } from "../../utils/themes";
 
 const Container = styled.div(
   {
-    margin: 'auto',
+    margin: "auto",
   },
   mq({
-    width: ['100%', '100%', '689px', '730px'],
+    width: ["100%", "100%", "689px", "730px"],
   })
 );
 
@@ -32,7 +32,7 @@ function Feedback() {
   const { feedbackList } = useFeedbacks();
 
   const fetchFeedback = useCallback(
-    async (feedbackID: IFeedback['id']) => {
+    async (feedbackID: IFeedback["id"]) => {
       const feedbackFromContext = feedbackList.find((fb: IFeedback) => {
         if (fb.id === feedbackID) return feedback;
         return null;
@@ -78,7 +78,7 @@ function Feedback() {
         ) : (
           <FeedbackCard isForView>
             <FeedbackTitle>{feedback.title}</FeedbackTitle>
-            <FeedbackDescription style={{ marginTop: '0.25rem' }}>
+            <FeedbackDescription style={{ marginTop: "0.25rem" }}>
               {feedback.description}
             </FeedbackDescription>
             <ViewBadge>{feedback.category}</ViewBadge>

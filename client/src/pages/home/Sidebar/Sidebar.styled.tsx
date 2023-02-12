@@ -1,57 +1,57 @@
-import styled from '@emotion/styled';
-import { type ITheme } from '../../../utils/types';
-import { mq, TypographyStyles } from '../../../utils/themes';
+import styled from "@emotion/styled";
+import { type ITheme } from "../../../utils/types";
+import { mq, TypographyStyles } from "../../../utils/themes";
 
 export const Wrapper = styled.div(
   {
-    height: 'max-content',
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '0 auto',
+    height: "max-content",
+    display: "flex",
+    flexDirection: "column",
+    margin: "0 auto",
   },
   mq({
-    flexDirection: ['column', 'column', 'row', 'column'],
+    flexDirection: ["column", "column", "row", "column"],
     flex: [1, 1, 1, 1],
-    gap: ['10px', '10px', '10px', '1.5rem 0'],
-    position: ['relative', 'relative', 'relative', 'sticky'],
-    top: ['0', '0', '0', '4rem'],
-  }),
+    gap: ["10px", "10px", "10px", "1.5rem 0"],
+    position: ["relative", "relative", "relative", "sticky"],
+    top: ["0", "0", "0", "4rem"],
+  })
 );
 
 export const SidebarCard = styled.div(
   ({ theme: { pallette }, src }: any) => ({
-    width: '100%',
-    display: 'flex',
-    flexWrap: 'wrap',
-    borderRadius: '10px',
+    width: "100%",
+    display: "flex",
+    flexWrap: "wrap",
+    borderRadius: "10px",
     background: src ? `url(${src})` : pallette.common.white,
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   }),
   mq({
-    padding: ['1.1rem', '1.1rem', '1.2rem', '1.5rem'],
-  }),
+    padding: ["1.1rem", "1.1rem", "1.2rem", "1.5rem"],
+  })
 );
 
 export const ProductWrapper = styled.div`
   margin-top: auto;
 `;
 
-export const ProductName = styled('h2')(
+export const ProductName = styled("h2")(
   TypographyStyles.h2,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
-    paddingTop: '2.4rem',
+    paddingTop: "2.4rem",
     color: pallette.common.white,
-  }),
+  })
 );
 
-export const PageName = styled('p')(
+export const PageName = styled("p")(
   TypographyStyles.body2,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.common.white,
-    mixBlendMode: 'normal',
-  }),
+    mixBlendMode: "normal",
+  })
 );
 
 export const CategoryFilterCard = styled(SidebarCard)`
@@ -62,29 +62,29 @@ export const StatusTable = styled.div`
   width: 100%;
 `;
 
-export const Title = styled('h3')(
+export const Title = styled("h3")(
   TypographyStyles.h3,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.secondary.dark,
-  }),
+  })
 );
 
 export const ViewButton = styled.button(
   TypographyStyles.body3,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
     fontWeight: typography.fontWeight.semiBold,
-    textDecorationLine: 'underline',
+    textDecorationLine: "underline",
     color: pallette.info.main,
-    mixBlendMode: 'normal',
-    border: 'none',
-    background: 'transparent',
-    cursor: 'pointer',
-    marginLeft: 'auto',
+    mixBlendMode: "normal",
+    border: "none",
+    background: "transparent",
+    cursor: "pointer",
+    marginLeft: "auto",
 
-    ':hover': {
-      color: '#8397F8',
+    ":hover": {
+      color: "#8397F8",
     },
-  }),
+  })
 );
 
 export const StatusTableBody = styled.div`
@@ -103,19 +103,19 @@ export const StatusTableHeaderRow = styled(StatusTableRow)`
   padding-bottom: 1.5rem;
 `;
 
-export const StatusName = styled('p')(
+export const StatusName = styled("p")(
   TypographyStyles.body1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
-    padding: '0 1rem',
+    padding: "0 1rem",
     color: pallette.text.light,
-  }),
+  })
 );
 
-export const FeedbackCount = styled('p')(
+export const FeedbackCount = styled("p")(
   TypographyStyles.body1,
   ({ theme: { pallette, typography } }: { theme: ITheme }) => ({
-    marginLeft: 'auto',
+    marginLeft: "auto",
     fontWeight: typography.fontWeight.bold,
     color: pallette.text.light,
-  }),
+  })
 );

@@ -1,64 +1,69 @@
-import styled from '@emotion/styled';
-import React, { type CSSProperties, type ReactNode } from 'react';
-import { mq, TypographyStyles } from '../utils/themes';
-import { type IPallette, type ITextColorShades, type ITheme } from '../utils/types';
+import styled from "@emotion/styled";
+import React, { type CSSProperties, type ReactNode } from "react";
+import { mq, TypographyStyles } from "../utils/themes";
+import {
+  type IPallette,
+  type ITextColorShades,
+  type ITheme,
+} from "../utils/types";
 
 type TCustomHTMLButtonAttributes = Omit<
-React.DetailedHTMLProps<
-React.ButtonHTMLAttributes<HTMLButtonElement>,
-HTMLButtonElement
->,
-'color' | 'backgroundColor'
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >,
+  "color" | "backgroundColor"
 >;
 
 interface Props extends TCustomHTMLButtonAttributes, IButtonColors {
-  style?: CSSProperties
-  children?: ReactNode
+  style?: CSSProperties;
+  children?: ReactNode;
 }
 
 // TODO: reuse body3, h4 Typography
 interface IStyledButton {
-  theme: ITheme
-  backgroundColor?: keyof Omit<IPallette, 'common' | 'status'>
-  color?: keyof ITextColorShades
+  theme: ITheme;
+  backgroundColor?: keyof Omit<IPallette, "common" | "status">;
+  color?: keyof ITextColorShades;
 }
 
 // TODO: remove any type
 export const StyledButton = styled.button(
   TypographyStyles.h4,
   ({ theme: { typography, pallette }, backgroundColor, color }: any) => ({
-    padding: '0.75rem 1.5rem',
-    borderRadius: '10px',
+    padding: "0.75rem 1.5rem",
+    borderRadius: "10px",
     backgroundColor: backgroundColor
       ? pallette[backgroundColor].main
-      : 'transparent',
-    border: 'none',
-    cursor: 'pointer',
+      : "transparent",
+    border: "none",
+    cursor: "pointer",
 
     fontWeight: typography.fontWeight.bold,
-    color: color ? pallette.text[color] : '',
+    color: color ? pallette.text[color] : "",
 
-    ':hover': {
+    ":hover": {
       backgroundColor: backgroundColor
         ? pallette[backgroundColor].light
-        : 'transparent',
+        : "transparent",
     },
   }),
-  ({ theme: { typography } }: Pick<IStyledButton, 'theme'>) => mq({
-    padding: [
-      '0.7rem 1rem',
-      '0.7rem 1rem',
-      '0.75rem 1.5rem',
-      '0.75rem 1.5rem',
-    ],
-    fontSize: [typography.body3.fontSize, typography.h4.fontSize],
-    lineHeight: [typography.body3.lineHeight, typography.h4.lineHeight],
-  }),
+  ({ theme: { typography } }: Pick<IStyledButton, "theme">) =>
+    mq({
+      padding: [
+        "0.7rem 1rem",
+        "0.7rem 1rem",
+        "0.75rem 1.5rem",
+        "0.75rem 1.5rem",
+      ],
+      fontSize: [typography.body3.fontSize, typography.h4.fontSize],
+      lineHeight: [typography.body3.lineHeight, typography.h4.lineHeight],
+    })
 );
 
 export interface IButtonColors {
-  backgroundColor?: 'primary' | 'secondary' | 'error' | 'info'
-  color?: keyof ITextColorShades
+  backgroundColor?: "primary" | "secondary" | "error" | "info";
+  color?: keyof ITextColorShades;
 }
 
 function Button({ style = {}, children, ...buttonAttributes }: Props) {

@@ -1,19 +1,19 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
+import React from "react";
+import { useNavigate } from "react-router";
 import {
   Container,
   EmptyStateContent,
   EmptyStateTitle,
-} from './EmptyState.styled';
-import IllustrationEmpty from '../../../assets/suggestions/illustration-empty.svg';
-import Button from '../../../components/Button';
+} from "./EmptyState.styled";
+import IllustrationEmpty from "../../../assets/suggestions/illustration-empty.svg";
+import Button from "../../../components/Button";
 
 function EmptyState() {
   const navigate = useNavigate();
 
   return (
     <Container>
-      <img src={IllustrationEmpty} />
+      <img alt="empty state illustration" src={IllustrationEmpty} />
       <EmptyStateTitle>There is no feedback yet.</EmptyStateTitle>
       <EmptyStateContent>
         Got a suggestion? Found a bug that needs to be squashed? We love hearing
@@ -23,7 +23,7 @@ function EmptyState() {
         backgroundColor="primary"
         color="buttonPrimary"
         onClick={() => {
-          navigate('/add');
+          navigate("/add");
         }}
       >
         + Add Feedback

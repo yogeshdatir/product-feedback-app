@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
-import { TypographyStyles } from '../../../utils/themes';
-import { type ITheme } from '../../../utils/types';
+import styled from "@emotion/styled";
+import { TypographyStyles } from "../../../utils/themes";
+import { type ITheme } from "../../../utils/types";
 
 export const Container = styled.div`
   padding-top: 7rem;
@@ -15,20 +15,20 @@ export const Container = styled.div`
   }
 `;
 
-export const EmptyStateTitle = styled('h1')(
+export const EmptyStateTitle = styled("h1")(
   TypographyStyles.h1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.secondary.dark,
-    textAlign: 'center',
-  }),
+    textAlign: "center",
+  })
 );
 
-export const EmptyStateContent = styled('p')(
+export const EmptyStateContent = styled("p")(
   TypographyStyles.body1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.light,
-    textAlign: 'center',
+    textAlign: "center",
 
-    padding: '1rem 0 4rem 0',
-  }),
+    padding: "1rem 0 4rem 0",
+  })
 );

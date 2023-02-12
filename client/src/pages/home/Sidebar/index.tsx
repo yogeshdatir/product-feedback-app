@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 import {
   SidebarCard,
   Wrapper,
   ProductName,
   PageName,
   ProductWrapper,
-} from './Sidebar.styled';
-import StatusCard from './StatusCard';
-import DesktopBackgroundHeader from '../../../assets/suggestions/desktop/background-header.png';
-import TabletBackgroundHeader from '../../../assets/suggestions/tablet/background-header.png';
-import CategoryCard from './CategoryCard';
-import useMediaQuery from '../../../hooks/useMediaQuery';
+} from "./Sidebar.styled";
+import StatusCard from "./StatusCard";
+import DesktopBackgroundHeader from "../../../assets/suggestions/desktop/background-header.png";
+import TabletBackgroundHeader from "../../../assets/suggestions/tablet/background-header.png";
+import CategoryCard from "./CategoryCard";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 
 function Sidebar() {
   const isTabletDevice = useMediaQuery(
-    '(min-width: 767px) and (max-width: 1109px)',
+    "(min-width: 767px) and (max-width: 1109px)"
   );
 
   return (
@@ -22,7 +22,7 @@ function Sidebar() {
       <SidebarCard
         src={isTabletDevice ? TabletBackgroundHeader : DesktopBackgroundHeader}
       >
-        <ProductWrapper style={{ marginTop: 'auto' }}>
+        <ProductWrapper style={{ marginTop: "auto" }}>
           <ProductName>Frontend Mentor</ProductName>
           <PageName>Feedback Board</PageName>
         </ProductWrapper>

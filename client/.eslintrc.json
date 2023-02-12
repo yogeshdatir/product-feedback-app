@@ -10,6 +10,7 @@
     "airbnb-typescript",
     "eslint-config-prettier"
   ],
+  "ignorePatterns": [".eslintrc.js", "*.config.[jt]s"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -27,13 +28,22 @@
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
     "import/prefer-default-export": "off",
-    "indent": "off",
-    "@typescript-eslint/indent": "off",
-    "semi": "off",
-    "@typescript-eslint/semi": "off",
-    "comma-dangle": "off",
-    "@typescript-eslint/comma-dangle": "off",
-    "@typescript-eslint/consistent-type-imports": "off",
-    "@typescript-eslint/member-delimiter-style": "off"
+    "react/require-default-props": "off",
+    // this rule allows console.error in code
+    "no-console": "off",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+        "message": "Unexpected property on console object was called"
+      }
+    ],
+    "no-nested-ternary": "off",
+    "no-unneeded-ternary": "error",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": "off",
+    // Note: you must disable the base rule as it can report incorrect errors
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "warn"
   }
 }

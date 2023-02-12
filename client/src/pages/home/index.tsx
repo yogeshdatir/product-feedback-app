@@ -1,13 +1,13 @@
-import React from 'react';
-import Header from '../../components/Header';
-import useMediaQuery from '../../hooks/useMediaQuery';
-import FeedbackList from './FeedbackList';
-import { Container, ContentWrapper } from './Home.styled';
-import Sidebar from './Sidebar';
-import MobileBar from './Sidebar/Mobile/MobileBar';
+import React from "react";
+import Header from "../../components/Header";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import FeedbackList from "./FeedbackList";
+import { Container, ContentWrapper } from "./Home.styled";
+import Sidebar from "./Sidebar";
+import MobileBar from "./Sidebar/Mobile/MobileBar";
 
 function Home() {
-  const isMobileDevice = useMediaQuery('(max-width: 767px)');
+  const isMobileDevice = useMediaQuery("(max-width: 767px)");
 
   return (
     <Container>

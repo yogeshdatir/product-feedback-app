@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
-import Button from '../../components/Button';
-import { mq, TypographyStyles } from '../../utils/themes';
-import { type ITheme } from '../../utils/types';
+import styled from "@emotion/styled";
+import Button from "../../components/Button";
+import { mq, TypographyStyles } from "../../utils/themes";
+import { type ITheme } from "../../utils/types";
 
 export const FeedbackFormWrapper = styled.div`
   max-width: 540px;
@@ -10,37 +10,37 @@ export const FeedbackFormWrapper = styled.div`
 
 export const FormWrapper = styled.div(
   {
-    background: '#ffffff',
-    borderRadius: '10px',
+    background: "#ffffff",
+    borderRadius: "10px",
   },
   mq({
-    margin: ['0 1.5rem', '0 1.5rem', 0],
-    marginTop: ['3rem', '3rem', '4.25rem'],
-    padding: ['3rem 1.5rem', '3rem 1.5rem', '2.625rem 3.25rem'],
-  }),
+    margin: ["0 1.5rem", "0 1.5rem", 0],
+    marginTop: ["3rem", "3rem", "4.25rem"],
+    padding: ["3rem 1.5rem", "3rem 1.5rem", "2.625rem 3.25rem"],
+  })
 );
 
 export const Form = styled.form(
   {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1.5rem',
-    position: 'relative',
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.5rem",
+    position: "relative",
   },
   mq({
-    '.feedback-icon': [
-      { position: 'absolute', top: '-75px' },
-      { position: 'absolute', top: '-75px' },
-      { position: 'absolute', top: '-70px' },
+    ".feedback-icon": [
+      { position: "absolute", top: "-75px" },
+      { position: "absolute", top: "-75px" },
+      { position: "absolute", top: "-70px" },
     ],
-  }),
+  })
 );
 
-export const FormTitle = styled('h1')(
+export const FormTitle = styled("h1")(
   TypographyStyles.h1,
   ({ theme: { pallette } }: { theme: ITheme }) => ({
     color: pallette.text.main,
-  }),
+  })
 );
 
 export const FormField = styled.div`
@@ -50,16 +50,16 @@ export const FormField = styled.div`
 
 export const FormActionsWrapper = styled.div(
   {
-    display: 'flex',
-    gap: '1rem',
+    display: "flex",
+    gap: "1rem",
   },
   mq({
-    flexDirection: ['column', 'column', 'row'],
-  }),
+    flexDirection: ["column", "column", "row"],
+  })
 );
 
 export const CancelButton = styled(Button)(
   mq({
-    marginLeft: ['none', 'none', 'auto'],
-  }),
+    marginLeft: ["none", "none", "auto"],
+  })
 );

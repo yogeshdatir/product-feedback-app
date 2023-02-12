@@ -39,6 +39,8 @@ ii. Add @emotion plugin in .eslintrc: `"plugins": ["@emotion"]`
     "@emotion/styled-import": "error"
   }
 
+> Note: Using `eslint-html-reporter` package for linting errors report.
+
 ```
 
 ---

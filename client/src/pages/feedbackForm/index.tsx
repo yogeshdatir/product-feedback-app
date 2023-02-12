@@ -1,22 +1,26 @@
 import React, {
-  type ChangeEvent, type FormEvent, useEffect, useState,
-} from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import Button from '../../components/Button';
-import { ActionHeader } from '../../components/Common.styled';
-import GoBackButton from '../../components/GoBackButton';
-import { useFeedbacks } from '../../contexts/FeedbackContext';
+  type ChangeEvent,
+  type FormEvent,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import { ActionHeader } from "../../components/Common.styled";
+import GoBackButton from "../../components/GoBackButton";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 import {
   addFeedback,
   getFeedback,
   updateFeedback,
-} from '../../services/feedbackAPIs';
+} from "../../services/feedbackAPIs";
 import {
   type IFeedback,
   type IFeedbackFormState,
   type IStatus,
   type ICategory,
-} from '../../utils/types';
+} from "../../utils/types";
 import {
   CancelButton,
   FeedbackFormWrapper,
@@ -24,36 +28,38 @@ import {
   FormActionsWrapper,
   FormTitle,
   FormWrapper,
-} from './FeedbackForm.styled';
-import { ReactComponent as EditFeedbackIcon } from '../../assets/shared/icon-edit-feedback1.svg';
-import { ReactComponent as NewFeedbackIcon } from '../../assets/shared/icon-new-feedback.svg';
-import InputField from './InputField';
-import TextareaField from './TextareaField';
-import SelectField, { type IOption } from '../../components/selectField';
-import { useStatus } from '../../contexts/StatusContext';
-import { useCategories } from '../../contexts/CategoryContext';
+} from "./FeedbackForm.styled";
+import { ReactComponent as EditFeedbackIcon } from "../../assets/shared/icon-edit-feedback1.svg";
+import { ReactComponent as NewFeedbackIcon } from "../../assets/shared/icon-new-feedback.svg";
+import InputField from "./InputField";
+import TextareaField from "./TextareaField";
+import SelectField, { type IOption } from "../../components/selectField";
+import { useStatus } from "../../contexts/StatusContext";
+import { useCategories } from "../../contexts/CategoryContext";
 
 interface Props {
-  isEdit?: boolean
+  isEdit?: boolean;
 }
 
 const EmptyFeedbackForm: IFeedbackFormState = {
-  title: '',
-  category: 'feature',
-  description: '',
-  status: '',
+  title: "",
+  category: "feature",
+  description: "",
+  status: "",
 };
 
 // TODO: Add immediate error handling feedback feature
 function FeedbackForm({ isEdit = false }: Props) {
   const { id } = useParams();
-  const [formState, setFormState] = useState<IFeedbackFormState>(EmptyFeedbackForm);
+  const [formState, setFormState] =
+    useState<IFeedbackFormState>(EmptyFeedbackForm);
   const [feedback, setFeedback] = useState<IFeedback | null>(null);
   const [formError, setFormError] = useState(EmptyFeedbackForm);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { feedbackList, removeFeedback, updateOrAddToFeedbackList } = useFeedbacks();
+  const { feedbackList, removeFeedback, updateOrAddToFeedbackList } =
+    useFeedbacks();
   const { status } = useStatus();
   const statusDropdownOptions = status.map(({ name }: IStatus) => ({
     value: name,
@@ -65,68 +71,74 @@ function FeedbackForm({ isEdit = false }: Props) {
     displayValue: name,
   }));
 
-  const fetchFeedback = async (id: IFeedback['id']) => {
-    const feedbackFromContext = await feedbackList.find(
-      (feedback: IFeedback) => {
-        if (feedback.id === id) return feedback;
-      },
-    );
+  const fetchFeedback = useCallback(
+    async (feedbackID: IFeedback["id"]) => {
+      const feedbackFromContext = feedbackList.find(
+        (feedbackElement: IFeedback) => {
+          if (feedbackElement.id === feedbackID) return feedbackElement;
+          return null;
+        }
+      );
 
-    if (feedbackFromContext != null) {
-      setFeedback(feedbackFromContext);
-      setFormState({
-        ...feedbackFromContext,
-      });
-      setLoading(false);
-    } else {
-      try {
-        const result = await getFeedback(id);
-        setFeedback(result.data[0]);
+      if (feedbackFromContext != null) {
+        setFeedback(feedbackFromContext);
         setFormState({
-          ...result.data[0],
+          ...feedbackFromContext,
         });
         setLoading(false);
-      } catch (error: any) {
-        setError(error);
-        console.error(error);
-        setLoading(false);
+      } else {
+        try {
+          if (id) {
+            const result = await getFeedback(id);
+            setFeedback(result.data[0]);
+            setFormState({
+              ...result.data[0],
+            });
+          }
+          setLoading(false);
+        } catch (err: any) {
+          setError(err);
+          console.error(err);
+          setLoading(false);
+        }
       }
-    }
-  };
+    },
+    [feedbackList, id]
+  );
 
   useEffect(() => {
     if (id) {
       fetchFeedback(id);
     }
-  }, [id]);
+  }, [id, fetchFeedback]);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormState((formState: IFeedbackFormState) => ({
-      ...formState,
+    setFormState((prevFormState: IFeedbackFormState) => ({
+      ...prevFormState,
       [e.target.name]: e.target.value,
     }));
   };
 
   const updateSelectedStatus = (selectedStatus: IOption) => {
     // TODO: remove toString by correcting types
-    setFormState((formState: IFeedbackFormState) => ({
-      ...formState,
+    setFormState((prevFormState: IFeedbackFormState) => ({
+      ...prevFormState,
       status: selectedStatus.displayValue.toString(),
     }));
   };
 
   const updateSelectedCategory = (selectedCategory: IOption) => {
     // TODO: remove toString by correcting types
-    setFormState((formState: IFeedbackFormState) => ({
-      ...formState,
+    setFormState((prevFormState: IFeedbackFormState) => ({
+      ...prevFormState,
       category: selectedCategory.displayValue.toString(),
     }));
   };
 
-  const handleDelete = (id: IFeedback['id']) => {
-    removeFeedback(id);
+  const handleDelete = (feedbackID: IFeedback["id"]) => {
+    removeFeedback(feedbackID);
   };
 
   const handleCancel = () => {
@@ -140,7 +152,7 @@ function FeedbackForm({ isEdit = false }: Props) {
   const validateForm = () => {
     let isError = false;
     Object.keys(formError).forEach((formStatePropertyName: string) => {
-      if ((feedback == null) && formStatePropertyName === 'status') return;
+      if (feedback == null && formStatePropertyName === "status") return;
       if (
         !formState[formStatePropertyName as keyof IFeedbackFormState].trim()
       ) {
@@ -152,7 +164,7 @@ function FeedbackForm({ isEdit = false }: Props) {
       } else {
         setFormError((prevState: IFeedbackFormState) => ({
           ...prevState,
-          [formStatePropertyName]: '',
+          [formStatePropertyName]: "",
         }));
         isError = isError || false;
       }
@@ -171,9 +183,9 @@ function FeedbackForm({ isEdit = false }: Props) {
         updateOrAddToFeedbackList(result.data[0]);
         setLoading(false);
         navigate(-1);
-      } catch (error: any) {
-        setError(error);
-        console.error(error);
+      } catch (err: any) {
+        setError(err);
+        console.error(err);
         setLoading(false);
       }
     } else {
@@ -181,10 +193,10 @@ function FeedbackForm({ isEdit = false }: Props) {
         const result = await addFeedback(formState);
         updateOrAddToFeedbackList(result.data[0], true);
         setLoading(false);
-        navigate('/');
-      } catch (error: any) {
-        setError(error);
-        console.error(error);
+        navigate("/");
+      } catch (err: any) {
+        setError(err);
+        console.error(err);
         setLoading(false);
       }
     }
@@ -200,17 +212,19 @@ function FeedbackForm({ isEdit = false }: Props) {
           <p>loading</p>
         ) : isEdit && error ? (
           <p>error</p>
-        ) : isEdit && (feedback == null) ? (
+        ) : isEdit && feedback == null ? (
           <p>Not Found</p>
         ) : (
           <Form onSubmit={handleSubmit}>
-            {(feedback != null) ? (
+            {feedback != null ? (
               <EditFeedbackIcon className="feedback-icon" />
             ) : (
               <NewFeedbackIcon className="feedback-icon" />
             )}
             <FormTitle>
-              {(feedback != null) ? `Editing ${feedback.title}` : 'Create New Feedback'}
+              {feedback != null
+                ? `Editing ${feedback.title}`
+                : "Create New Feedback"}
             </FormTitle>
             <InputField
               label="Feedback Title"
@@ -231,7 +245,7 @@ function FeedbackForm({ isEdit = false }: Props) {
               setSelectedOption={updateSelectedCategory}
               options={categoryDropdownOptions}
             />
-            {(feedback != null) && (
+            {feedback != null && (
               <SelectField
                 label="Update Status"
                 subLabel="Change feature state"
@@ -253,12 +267,14 @@ function FeedbackForm({ isEdit = false }: Props) {
               error={formError.description}
             />
             <FormActionsWrapper>
-              {(feedback != null) && (
+              {feedback != null && (
                 <Button
                   backgroundColor="error"
                   color="buttonPrimary"
                   type="button"
-                  onClick={(e) => { handleDelete(feedback.id); }}
+                  onClick={() => {
+                    handleDelete(feedback.id);
+                  }}
                 >
                   Delete
                 </Button>
@@ -276,7 +292,7 @@ function FeedbackForm({ isEdit = false }: Props) {
                 backgroundColor="primary"
                 color="buttonPrimary"
               >
-                {(feedback != null) ? 'Update Feedback' : 'Add Feedback'}
+                {feedback != null ? "Update Feedback" : "Add Feedback"}
               </Button>
             </FormActionsWrapper>
           </Form>

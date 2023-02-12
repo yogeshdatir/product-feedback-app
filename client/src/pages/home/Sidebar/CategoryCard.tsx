@@ -1,10 +1,10 @@
-import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import Badge from '../../../components/Badge';
-import { useCategories } from '../../../contexts/CategoryContext';
-import { useFeedbacks } from '../../../contexts/FeedbackContext';
-import { type ICategory } from '../../../utils/types';
-import { CategoryFilterCard } from './Sidebar.styled';
+import React from "react";
+import { v4 as uuidv4 } from "uuid";
+import Badge from "../../../components/Badge";
+import { useCategories } from "../../../contexts/CategoryContext";
+import { useFeedbacks } from "../../../contexts/FeedbackContext";
+import { type ICategory } from "../../../utils/types";
+import { CategoryFilterCard } from "./Sidebar.styled";
 
 function CategoryCard() {
   const { categoryToFilter, setCategoryToFilter } = useFeedbacks();
@@ -13,9 +13,9 @@ function CategoryCard() {
   return (
     <CategoryFilterCard>
       <Badge
-        isActive={categoryToFilter === ''}
+        isActive={categoryToFilter === ""}
         onClick={() => {
-          setCategoryToFilter('');
+          setCategoryToFilter("");
         }}
       >
         All
