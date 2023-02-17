@@ -27,7 +27,7 @@ function Board({ activeTabIndex, isMobileDevice }: Props) {
   return (
     <BoardContainer>
       {status.map((statusObj: IStatus, index: number) => {
-        if (statusObj.name === "suggestion" || index !== activeTabIndex)
+        if (statusObj.name === "suggestion" || (isMobileDevice && index !== activeTabIndex))
           return null;
         if (!isMobileDevice) {
           return (
