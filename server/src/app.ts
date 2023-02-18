@@ -7,6 +7,7 @@ import categoryRouter from './routes/categoryRoutes';
 import cors from 'cors';
 import userRouter from './routes/userRoutes';
 import commentRouter from './routes/commentRoutes';
+import replyRouter from './routes/replyRoutes';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use('/status', statusRouter);
 app.use('/categories', categoryRouter);
 app.use('/users', userRouter);
 app.use('/comments', commentRouter);
+app.use('/replies', replyRouter);
 
 app.listen(PORT, () =>
   console.log(`server running at http://localhost:${PORT}`)
