@@ -43,11 +43,22 @@ Tables: feedbacks, users, categories, status
 
 #### **comments table**
 
-| column name | datatype | default | nullable | key     | constraint |
-| ----------- | -------- | ------- | -------- | ------- | ---------- |
-| id          | uuid     |         | false    | primary |            |
-| content     | text     |         | false    |         |            |
-| user        | uuid     |         | false    | foreign |            |
+| column name    | datatype | default | nullable | key     | constraint |
+| -------------- | -------- | ------- | -------- | ------- | ---------- |
+| id             | uuid     |         | false    | primary |            |
+| content        | text     |         | false    |         |            |
+| user           | uuid     |         | false    | foreign |            |
+| parentFeedback | uuid     |         | false    | foreign |            |
+
+#### **replies table**
+
+| column name   | datatype | default | nullable | key     | constraint |
+| ------------- | -------- | ------- | -------- | ------- | ---------- |
+| id            | uuid     |         | false    | primary |            |
+| content       | text     |         | false    |         |            |
+| replyingTo    | uuid     |         | false    | foreign |            |
+| user          | uuid     |         | false    | foreign |            |
+| parentComment | uuid     |         | false    | foreign |            |
 
 ## Notes
 

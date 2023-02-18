@@ -6,6 +6,7 @@ import statusRouter from './routes/statusRoutes';
 import categoryRouter from './routes/categoryRoutes';
 import cors from 'cors';
 import userRouter from './routes/userRoutes';
+import commentRouter from './routes/commentRoutes';
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use('/feedbacks', feedbackRouter);
 app.use('/status', statusRouter);
 app.use('/categories', categoryRouter);
 app.use('/users', userRouter);
+app.use('/comments', commentRouter);
 
 app.listen(PORT, () =>
   console.log(`server running at http://localhost:${PORT}`)
