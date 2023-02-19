@@ -14,9 +14,9 @@ const feedbackController = {
             S.NAME AS STATUS,
             CT.NAME AS CATEGORY,
             COALESCE(COUNT(RPCM.ID),
-              0) AS COMMENTCOUNT,
+              0) AS "commentsCount",
             COALESCE(SUM(RPCM.RS),
-              0) AS REPLIESCOUNT
+              0) AS "repliesCount"
           FROM FEEDBACKS F
           LEFT JOIN STATUS S ON F.STATUS = S.ID
           LEFT JOIN CATEGORIES CT ON F.CATEGORY = CT.ID
