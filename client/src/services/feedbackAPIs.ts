@@ -14,3 +14,6 @@ export const updateFeedback = async (data: IFeedbackFormState) =>
 
 export const deleteFeedback = async (id: IFeedback["id"]) =>
   AxiosCommon.delete("feedbacks", { data: { id } });
+
+export const getCommentsForFeedback = async (feedbackId: IFeedback["id"]) =>
+  AxiosCommon.get(`comments/feedback/${feedbackId}`);
