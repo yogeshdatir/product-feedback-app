@@ -5,6 +5,7 @@ import commentsController from '../controllers/commentsController';
 const {
   getAllComments,
   getCommentById,
+  getCommentByFeedbackId,
   addComment,
   updateComment,
   deleteComment,
@@ -19,5 +20,6 @@ commentRouter
   .delete('/', deleteComment);
 
 commentRouter.get('/:id', getCommentById);
+commentRouter.get('/feedback/:feedbackId', getCommentByFeedbackId);
 
 export default commentRouter;

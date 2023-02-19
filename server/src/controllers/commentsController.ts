@@ -26,6 +26,60 @@ const commentsController = {
       res.status(500).json({ error: 'something went wrong...' });
     }
   },
+  getCommentByFeedbackId: async (req: Request, res: Response) => {
+    const { feedbackId: id } = req.params;
+    try {
+      const commentQueryResult: QueryResult = await pool.query(
+        `SELECT CM.ID,
+          CM.CONTENT,
+          U.NAME AS "authorName",
+          U.USERNAME AS "authorUsername",
+          U.IMAGE AS "authorImage"
+        FROM COMMENTS CM
+        LEFT JOIN USERS U ON CM.USER = U.ID
+        WHERE "parentFeedback" = $1`,
+        [id]
+      );
+      const comments = commentQueryResult.rows;
+
+      const repliesQueryResult: QueryResult = await pool.query(
+        `SELECT RP.ID,
+          RP.CONTENT,
+          "rp"."parentComment",
+          "rp"."replyingTo",
+          RP.USER,
+                  U.NAME AS "authorName",
+                  U.USERNAME AS "authorUsername",
+                  U.IMAGE AS "authorImage",
+          RPU.NAME AS "replyingToName",
+          RPU.USERNAME AS "replyingToUsername",
+          RPU.IMAGE AS "replyingToImage"
+        FROM REPLIES RP
+        LEFT JOIN COMMENTS CM ON CM.ID = "rp"."parentComment"
+        LEFT JOIN USERS U ON RP.USER = U.ID
+        LEFT JOIN USERS RPU ON "rp"."replyingTo" = RPU.ID
+        WHERE "cm"."parentFeedback" = $1`,
+        [id]
+      );
+      const replies = repliesQueryResult.rows;
+
+      const allInteractions = comments.map((comment: any) => {
+        const associatedReplies = replies.filter(
+          (reply: any) => reply.parentComment === comment.id
+        );
+        if (associatedReplies.length) {
+          return { ...comment, replies: associatedReplies };
+        } else {
+          return comment;
+        }
+      });
+
+      res.status(200).json(allInteractions);
+    } catch (err: any) {
+      console.log(err.stack, err.code);
+      res.status(500).json({ error: 'something went wrong...' });
+    }
+  },
   addComment: async (req: Request, res: Response) => {
     const { content, user, parentFeedback } = req.body;
     const id = uuidv4();
