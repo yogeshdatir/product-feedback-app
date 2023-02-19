@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 import { ActionHeader } from "../../components/Common.styled";
 import { getFeedback } from "../../services/feedbackAPIs";
 import { type IFeedback } from "../../utils/types";
-import { ContentWrapper } from "../home/FeedbackList/FeedbackList.styled";
+import {
+  ContentWrapper,
+  StyledFeedbackCard,
+} from "../home/FeedbackList/FeedbackList.styled";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import GoBackButton from "../../components/GoBackButton";
 import EditButton from "./EditButton";
@@ -19,6 +22,8 @@ const Container = styled.div(
     width: ["100%", "100%", "689px", "730px"],
   })
 );
+
+const CommentSectionHeader = styled.p``;
 
 function Feedback() {
   const { id } = useParams();
@@ -64,17 +69,24 @@ function Feedback() {
         <GoBackButton />
         {feedback != null && <EditButton feedbackId={id} />}
       </ActionHeader>
-      <ContentWrapper>
-        {loading ? (
-          <p>loading</p>
-        ) : error ? (
-          <p>error</p>
-        ) : feedback == null ? (
-          <p>Not found</p>
-        ) : (
-          <FeedbackCard feedback={feedback} isForView />
-        )}
-      </ContentWrapper>
+      {loading ? (
+        <p>loading</p>
+      ) : error ? (
+        <p>error</p>
+      ) : feedback == null ? (
+        <p>Not found</p>
+      ) : (
+        <>
+          <ContentWrapper>
+            <FeedbackCard feedback={feedback} isForView />
+          </ContentWrapper>
+          <StyledFeedbackCard>
+            <CommentSectionHeader>
+              {+feedback.commentcount + +feedback.repliescount} comments
+            </CommentSectionHeader>
+          </StyledFeedbackCard>
+        </>
+      )}
     </Container>
   );
 }

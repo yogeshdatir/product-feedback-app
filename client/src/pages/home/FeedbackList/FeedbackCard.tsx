@@ -28,7 +28,7 @@ function FeedbackCard({ feedback, onClick, isForView }: Props) {
         }}
       >
         <UpArrow />
-        <span>155</span>
+        <span>{feedback.upvotes}</span>
       </Upvotes>
       <FeedbackContentWrapper>
         <FeedbackTitle className="feedback-title">
@@ -41,7 +41,9 @@ function FeedbackCard({ feedback, onClick, isForView }: Props) {
       </FeedbackContentWrapper>
       <CommentCountWrapper>
         <CommentsIcon />
-        <CommentCount>1</CommentCount>
+        <CommentCount>
+          {+feedback.commentcount + +feedback.repliescount}
+        </CommentCount>
       </CommentCountWrapper>
     </StyledFeedbackCard>
   );
