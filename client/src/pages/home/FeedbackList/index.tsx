@@ -1,15 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { type IFeedback } from "../../../utils/types";
 import EmptyState from "./EmptyState";
-import {
-  FeedbackCard,
-  FeedbackDescription,
-  FeedbackTitle,
-  ContentWrapper,
-} from "./FeedbackList.styled";
+import { ContentWrapper } from "./FeedbackList.styled";
 import { useFeedbacks } from "../../../contexts/FeedbackContext";
-import { ViewBadge } from "../../../components/Common.styled";
+import FeedbackCard from "./FeedbackCard";
 
 function FeedbackList() {
   const {
@@ -46,22 +41,13 @@ function FeedbackList() {
   );
 }
 
-function FeedbackCardWrapper({
-  feedback: { id, title, description, category },
-}: {
-  feedback: IFeedback;
-}) {
-  return (
-    <Link to={`/view/${id}`}>
-      <FeedbackCard>
-        <FeedbackTitle>{title}</FeedbackTitle>
-        <FeedbackDescription style={{ marginTop: "0.25rem" }}>
-          {description}
-        </FeedbackDescription>
-        <ViewBadge>{category}</ViewBadge>
-      </FeedbackCard>
-    </Link>
-  );
+function FeedbackCardWrapper({ feedback }: { feedback: IFeedback }) {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/view/${feedback.id}`);
+  };
+
+  return <FeedbackCard feedback={feedback} onClick={handleClick} />;
 }
 
 export default FeedbackList;

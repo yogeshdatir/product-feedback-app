@@ -3,7 +3,7 @@ import { ViewBadge } from "../../components/Common.styled";
 import { mq, TypographyStyles } from "../../utils/themes";
 import { type ITheme } from "../../utils/types";
 import {
-  FeedbackCard,
+  StyledFeedbackCard,
   FeedbackDescription,
 } from "../home/FeedbackList/FeedbackList.styled";
 
@@ -50,11 +50,13 @@ export const BoardFeedbackCardWrapper = styled.div(
   })
 );
 
-export const BoardFeedbackCard = styled(FeedbackCard)(
+export const BoardFeedbackCard = styled(StyledFeedbackCard)(
   ({ theme: { pallette }, statusName }: any) => ({
     padding: "2rem",
     borderRadius: "5px",
     borderTop: `6px solid ${pallette[statusName]}`,
+    flexDirection: "column",
+    gap: 0,
   }),
   mq({
     padding: ["1.5rem 1.25rem", "1.5rem 1.25rem", "1.5rem 1.25rem", "2rem"],

@@ -1,19 +1,15 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ActionHeader, ViewBadge } from "../../components/Common.styled";
+import { ActionHeader } from "../../components/Common.styled";
 import { getFeedback } from "../../services/feedbackAPIs";
 import { type IFeedback } from "../../utils/types";
-import {
-  FeedbackCard,
-  FeedbackTitle,
-  FeedbackDescription,
-  ContentWrapper,
-} from "../home/FeedbackList/FeedbackList.styled";
+import { ContentWrapper } from "../home/FeedbackList/FeedbackList.styled";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import GoBackButton from "../../components/GoBackButton";
 import EditButton from "./EditButton";
 import { mq } from "../../utils/themes";
+import FeedbackCard from "../home/FeedbackList/FeedbackCard";
 
 const Container = styled.div(
   {
@@ -76,13 +72,7 @@ function Feedback() {
         ) : feedback == null ? (
           <p>Not found</p>
         ) : (
-          <FeedbackCard isForView>
-            <FeedbackTitle>{feedback.title}</FeedbackTitle>
-            <FeedbackDescription style={{ marginTop: "0.25rem" }}>
-              {feedback.description}
-            </FeedbackDescription>
-            <ViewBadge>{feedback.category}</ViewBadge>
-          </FeedbackCard>
+          <FeedbackCard feedback={feedback} isForView />
         )}
       </ContentWrapper>
     </Container>
