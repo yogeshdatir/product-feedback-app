@@ -7,7 +7,29 @@ const feedbackController = {
   getAllFeedbacks: async (req: Request, res: Response) => {
     try {
       const result: QueryResult = await pool.query(
-        'select f.id, f.title, f.description, f.upvotes, s.name as status, c.name as category from feedbacks as f inner join status as s on f.status = s.id inner join categories as c on f.category = c.id'
+        `SELECT F.ID,
+            F.TITLE,
+            F.DESCRIPTION,
+            F.UPVOTES,
+            S.NAME AS STATUS,
+            CT.NAME AS CATEGORY,
+            COALESCE(COUNT(RPCM.ID),
+              0) AS COMMENTCOUNT,
+            COALESCE(SUM(RPCM.RS),
+              0) AS REPLIESCOUNT
+          FROM FEEDBACKS F
+          LEFT JOIN STATUS S ON F.STATUS = S.ID
+          LEFT JOIN CATEGORIES CT ON F.CATEGORY = CT.ID
+          LEFT JOIN
+            (SELECT CM.ID,
+                "cm"."parentFeedback",
+                COUNT(RP.ID) AS RS
+              FROM COMMENTS CM
+              LEFT JOIN REPLIES RP ON "rp"."parentComment" = CM.ID
+              GROUP BY CM.ID) RPCM ON "rpcm"."parentFeedback" = F.ID
+          GROUP BY F.ID,
+            S.ID,
+            CT.ID`
       );
       res.status(200).json(result.rows);
     } catch (err: any) {
