@@ -7,8 +7,8 @@ export interface IFeedback {
   category: string;
   status: string;
   upvotes: number;
-  commentcount: number;
-  repliescount: number;
+  commentsCount: number;
+  repliesCount: number;
 }
 
 export type IFeedbackFormState = Omit<IFeedback, "id">;

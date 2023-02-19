@@ -82,7 +82,7 @@ function Feedback() {
           </ContentWrapper>
           <StyledFeedbackCard>
             <CommentSectionHeader>
-              {+feedback.commentcount + +feedback.repliescount} comments
+              {+feedback.commentsCount + +feedback.repliesCount} comments
             </CommentSectionHeader>
           </StyledFeedbackCard>
         </>

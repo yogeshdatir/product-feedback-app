@@ -42,7 +42,7 @@ function FeedbackCard({ feedback, onClick, isForView }: Props) {
       <CommentCountWrapper>
         <CommentsIcon />
         <CommentCount>
-          {+feedback.commentcount + +feedback.repliescount}
+          {+feedback.commentsCount + +feedback.repliesCount}
         </CommentCount>
       </CommentCountWrapper>
     </StyledFeedbackCard>
