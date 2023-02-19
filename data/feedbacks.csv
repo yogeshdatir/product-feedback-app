@@ -1,0 +1,13 @@
+id,title,description,status,category,upvotes
+954ef564-3284-4fce-912e-b349e8c374df,Add tags for solutions,Easier to search for solutions based on a specific stack.,02fd00d6-9ed0-4c41-9a6e-0f72b9e9160d,02c3b395-b3dd-481f-a757-7d4bb544f793,112
+ce684d50-7ee2-4fdb-9459-3e494475c6e5,Add a dark theme option,It would help people with light sensitivities and who prefer dark mode.,02fd00d6-9ed0-4c41-9a6e-0f72b9e9160d,7ad57d64-43bc-48f7-8e0a-6acf205179f7,99
+f74b00bf-1a24-408e-a112-c3563b8e0bda,Q&A within the challenge hubs,Challenge-specific Q&A would make for easy reference.,02fd00d6-9ed0-4c41-9a6e-0f72b9e9160d,7ad57d64-43bc-48f7-8e0a-6acf205179f7,65
+98f7fe01-251d-4d72-82dc-f44710f4feae,Add image/video upload to feedback,Images and screencasts can enhance comments on solutions.,02fd00d6-9ed0-4c41-9a6e-0f72b9e9160d,02c3b395-b3dd-481f-a757-7d4bb544f793,51
+49c2370a-45fc-4f2f-b1dc-59327ad17276,Ability to follow others,Stay updated on comments and solutions other people post.,02fd00d6-9ed0-4c41-9a6e-0f72b9e9160d,7ad57d64-43bc-48f7-8e0a-6acf205179f7,42
+2506c2aa-a2e5-4e70-86be-f7fb7bf8fa45,Preview images not loading,Challenge preview images are missing when you apply a filter.,02fd00d6-9ed0-4c41-9a6e-0f72b9e9160d,a758a4cc-885f-4430-9a36-476225d82144,3
+7fa48ce7-14f1-4287-8a49-4a808f5f3662,More comprehensive reports,It would be great to see a more detailed breakdown of solutions.,2adf3c55-ad6d-4064-baf7-d2c5c2cdc9d3,7ad57d64-43bc-48f7-8e0a-6acf205179f7,123
+b9db491f-01ed-498b-8060-7396aba9878f,Learning paths,Sequenced projects for different goals to help people improve.,2adf3c55-ad6d-4064-baf7-d2c5c2cdc9d3,7ad57d64-43bc-48f7-8e0a-6acf205179f7,28
+33516cc2-2ff0-44c8-b402-11cc27deed2d,One-click portfolio generation,Add ability to create professional looking portfolio from profile.,2479ea08-72a4-485e-8633-b169809b1b01,7ad57d64-43bc-48f7-8e0a-6acf205179f7,62
+a8389820-8769-46df-a1f2-20c60569f93d,Bookmark challenges,Be able to bookmark challenges to take later on.,2479ea08-72a4-485e-8633-b169809b1b01,7ad57d64-43bc-48f7-8e0a-6acf205179f7,31
+cf654bda-f6fa-4e26-b411-40ba868fe7bb,Animated solution screenshots,Screenshots of solutions with animations don’t display correctly.,2479ea08-72a4-485e-8633-b169809b1b01,a758a4cc-885f-4430-9a36-476225d82144,9
+7f4bca56-c6fc-47a7-b343-c55548037fa6,Add micro-interactions,Small animations at specific points can add delight.,8163d37d-33b9-4f85-a921-ba513d13d5fe,02c3b395-b3dd-481f-a757-7d4bb544f793,71
