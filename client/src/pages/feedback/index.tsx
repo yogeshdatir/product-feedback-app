@@ -107,7 +107,7 @@ function Feedback() {
               {+feedback.commentsCount + +feedback.repliesCount} comments
             </CommentSectionHeader>
             <CommentSectionContent>
-              {comments.map((comment: any) => (
+              {comments?.map((comment: any) => (
                 <Comment>
                   <img
                     src={`../.${comment.authorImage}`}
