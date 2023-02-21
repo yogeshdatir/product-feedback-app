@@ -107,15 +107,17 @@ function Feedback() {
               {+feedback.commentsCount + +feedback.repliesCount} comments
             </CommentSectionHeader>
             <CommentSectionContent>
-              {comments?.map((comment: any) => (
-                <Comment>
-                  <img
-                    src={`../.${comment.authorImage}`}
-                    alt={comment.authorName}
-                  />
-                  {comment.content}
-                </Comment>
-              ))}
+              {comments?.map((comment: any) => {
+                const url = `/src/${comment.authorImage}`;
+                // eslint-disable-next-line global-require, import/no-dynamic-require
+                const image = require(url);
+                return (
+                  <Comment>
+                    <img src={image} alt={comment.authorName} />
+                    {comment.content}
+                  </Comment>
+                );
+              })}
             </CommentSectionContent>
           </StyledFeedbackCard>
         </>
