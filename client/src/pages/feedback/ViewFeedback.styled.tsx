@@ -21,7 +21,7 @@ export const CommentSectionCard = styled.div(
     color: pallette.secondary.dark,
   }),
   mq({
-    padding: ["1.5rem", "1.5rem", "28px 32px"],
+    padding: ["1.5rem", "1.5rem", "1.5rem 2rem 3rem 2rem"],
   })
 );
 
@@ -40,9 +40,15 @@ export const CommentSectionContent = styled.div`
   gap: 2rem;
 `;
 
+export const ReplySectionContent = styled(CommentSectionContent)({
+  paddingTop: "2rem",
+  marginLeft: "-1.5rem",
+});
+
 export const CommentWrapper = styled.div`
   display: flex;
   gap: 2rem;
+  position: relative;
 `;
 
 export const AuthorName = styled.span(
@@ -83,13 +89,46 @@ export const Content = styled.p(
   })
 );
 
+export const ReplyingToUsername = styled.span(
+  ({ theme: { pallette, typography } }: any) => ({
+    fontWeight: typography.fontWeight.bold,
+    color: pallette.text.dark,
+    paddingRight: "0.5rem",
+  })
+);
+
 export const Avatar = styled.img`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
 `;
 
-export const AvatarGrid = styled.div``;
+export const AvatarGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
+export const Timeline = styled.div(({ theme: { pallette } }: any) => ({
+  width: "1.5px",
+  height: "100%",
+  background: pallette.text.light,
+  mixBlendMode: "normal",
+  opacity: 0.1,
+}));
+
+export const HidePartialTimeline = styled.div(
+  ({ theme: { pallette } }: any) => ({
+    position: "absolute",
+    marginTop: "22.5px",
+    width: "1.5px",
+    height: "calc(100% - 22.5px)",
+    background: pallette.common.white,
+    mixBlendMode: "normal",
+    marginLeft: "-1.8rem",
+  })
+);
 
 export const ContentGrid = styled.div`
   display: flex;
