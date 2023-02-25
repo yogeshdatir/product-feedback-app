@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ActionHeader } from "../../components/Common.styled";
@@ -6,84 +5,68 @@ import {
   getCommentsForFeedback,
   getFeedback,
 } from "../../services/feedbackAPIs";
-import { type IFeedback } from "../../utils/types";
-import {
-  ContentWrapper,
-  StyledFeedbackCard,
-} from "../home/FeedbackList/FeedbackList.styled";
+import { IComment, IFeedback } from "../../utils/types";
+import { ContentWrapper } from "../home/FeedbackList/FeedbackList.styled";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import GoBackButton from "../../components/GoBackButton";
 import EditButton from "./EditButton";
-import { mq } from "../../utils/themes";
 import FeedbackCard from "../home/FeedbackList/FeedbackCard";
-
-const Container = styled.div(
-  {
-    margin: "auto",
-  },
-  mq({
-    width: ["100%", "100%", "689px", "730px"],
-  })
-);
-
-const CommentSectionHeader = styled.p``;
-
-const CommentSectionContent = styled.div``;
-
-const Comment = styled.div``;
+import {
+  Container,
+  CommentSectionHeader,
+  CommentSectionContent,
+  CommentSectionCard,
+} from "./ViewFeedback.styled";
+import Comment from "./Comment";
 
 function Feedback() {
   const { id } = useParams();
   const [feedback, setFeedback] = useState<IFeedback | null>(null);
-  const [comments, setComments] = useState<any>(null);
+  const [comments, setComments] = useState<IComment[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { feedbackList } = useFeedbacks();
 
   const fetchFeedback = useCallback(
     async (feedbackID: IFeedback["id"]) => {
-      const feedbackFromContext = feedbackList.find((fb: IFeedback) => {
-        if (fb.id === feedbackID) return feedback;
-        return null;
-      });
+      const feedbackFromContext = feedbackList.filter(
+        (fb: IFeedback) => fb.id === feedbackID
+      )[0];
 
-      if (feedbackFromContext != null) {
-        setFeedback(feedbackFromContext);
-        setLoading(false);
-      } else {
-        try {
+      try {
+        if (feedbackFromContext != null) {
+          setFeedback(feedbackFromContext);
+          setLoading(false);
+        } else {
           const result = await getFeedback(feedbackID);
           setFeedback(result.data[0]);
-          setLoading(false);
-        } catch (err: any) {
-          console.error(err);
-          setError(err);
-          setLoading(false);
         }
+        const result = await getCommentsForFeedback(feedbackID);
+        setComments(result.data);
+        setLoading(false);
+      } catch (err: any) {
+        console.error(err);
+        setError(err);
+        setLoading(false);
       }
     },
-    [feedback, feedbackList]
+    [feedbackList]
   );
 
-  const fetchComments = useCallback(async (feedbackID: IFeedback["id"]) => {
-    setLoading(true);
-    try {
-      const result = await getCommentsForFeedback(feedbackID);
-      setComments(result.data);
-      setLoading(false);
-    } catch (err: any) {
-      console.error(err);
-      setError(err);
-      setLoading(false);
-    }
-  }, []);
+  const fetchData = useCallback(
+    (feedbackId: IFeedback["id"]) => {
+      fetchFeedback(feedbackId);
+    },
+    [fetchFeedback]
+  );
 
   useEffect(() => {
     if (id !== undefined) {
-      fetchFeedback(id);
-      fetchComments(id);
+      fetchData(id);
     }
-  }, [id, fetchFeedback, fetchComments]);
+  }, [fetchData, id]);
+
+  const commentCount = comments?.length;
 
   return (
     <Container>
@@ -102,24 +85,20 @@ function Feedback() {
           <ContentWrapper>
             <FeedbackCard feedback={feedback} isForView />
           </ContentWrapper>
-          <StyledFeedbackCard style={{ flexDirection: "column" }}>
+          <CommentSectionCard>
             <CommentSectionHeader>
               {+feedback.commentsCount + +feedback.repliesCount} comments
             </CommentSectionHeader>
             <CommentSectionContent>
-              {comments?.map((comment: any) => {
-                const url = `/src/${comment.authorImage}`;
-                // eslint-disable-next-line global-require, import/no-dynamic-require
-                const image = require(url);
-                return (
-                  <Comment>
-                    <img src={image} alt={comment.authorName} />
-                    {comment.content}
-                  </Comment>
-                );
-              })}
+              {comments?.map((comment: IComment, index: number) => (
+                <Comment
+                  key={comment.authorUsername}
+                  comment={comment}
+                  isLastComment={commentCount === index + 1}
+                />
+              ))}
             </CommentSectionContent>
-          </StyledFeedbackCard>
+          </CommentSectionCard>
         </>
       )}
     </Container>

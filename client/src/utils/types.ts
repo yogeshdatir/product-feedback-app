@@ -97,3 +97,26 @@ export interface IHeaderFontStyle {
 }
 
 export type IBodyFontStyle = Omit<IHeaderFontStyle, "letterSpacing">;
+
+export type IComment = {
+  id: string;
+  content: string;
+  authorName: string;
+  authorUsername: string;
+  authorImage: string;
+  replies?: IReply[];
+};
+
+export type IReply = {
+  id: string;
+  content: string;
+  parentComment: string;
+  replyingTo: string;
+  user: string;
+  authorName: string;
+  authorUsername: string;
+  authorImage: string;
+  replyingToName: string;
+  replyingToUsername: string;
+  replyingToImage: string;
+};

@@ -80,6 +80,7 @@ export const ViewButton = styled.button(
     background: "transparent",
     cursor: "pointer",
     marginLeft: "auto",
+    height: "max-content",
 
     ":hover": {
       color: "#8397F8",
