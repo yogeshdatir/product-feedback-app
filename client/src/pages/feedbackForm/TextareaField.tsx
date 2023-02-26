@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { CSSProperties } from "react";
 import { TypographyStyles } from "../../utils/themes";
 import { ErrorMessage, StyledLabel, StyledSubLabel } from "./InputField";
 
@@ -9,6 +9,7 @@ interface Props
   label: string;
   subLabel: string;
   error?: string;
+  fieldContainerStyle?: CSSProperties;
 }
 
 export const StyledTextarea = styled.textarea(
@@ -41,12 +42,13 @@ function TextareaField({
   label,
   subLabel,
   error,
+  fieldContainerStyle,
   ...textareaAttributes
 }: Props) {
   return (
-    <div>
-      <StyledLabel as="label">{label}</StyledLabel>
-      <StyledSubLabel as="p">{subLabel}</StyledSubLabel>
+    <div style={fieldContainerStyle}>
+      {label && <StyledLabel as="label">{label}</StyledLabel>}
+      {subLabel && <StyledSubLabel as="p">{subLabel}</StyledSubLabel>}
       <StyledTextarea error={error} {...textareaAttributes} />
       {error && <ErrorMessage>{error}</ErrorMessage>}
     </div>

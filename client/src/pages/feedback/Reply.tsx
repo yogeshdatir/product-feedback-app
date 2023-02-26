@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AvatarGrid,
   Avatar,
@@ -14,6 +14,7 @@ import {
   HidePartialTimeline,
 } from "./ViewFeedback.styled";
 import { IReply } from "../../utils/types";
+import ReplyForm from "./ReplyForm";
 
 interface Props {
   reply: IReply;
@@ -24,6 +25,11 @@ function Reply({ reply, isLastReply }: Props) {
   const url = `/src/${reply.authorImage}`;
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const image = require(url);
+  const [displayNewReplyForm, setDisplayNewReplyForm] = useState(false);
+
+  const handleNewReply = () => {
+    setDisplayNewReplyForm((prevState: boolean) => !prevState);
+  };
 
   return (
     <CommentWrapper>
@@ -37,12 +43,13 @@ function Reply({ reply, isLastReply }: Props) {
             <AuthorName>{reply.authorName}</AuthorName>
             <AuthorUsername>{`@${reply.authorUsername}`}</AuthorUsername>
           </ContentHeaderGrid>
-          <ReplyButton>Reply</ReplyButton>
+          <ReplyButton onClick={handleNewReply}>Reply</ReplyButton>
         </ContentHeader>
         <Content>
           <ReplyingToUsername>{`@${reply.replyingToUsername}`}</ReplyingToUsername>
           {reply.content}
         </Content>
+        {displayNewReplyForm && <ReplyForm />}
       </ContentGrid>
     </CommentWrapper>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IComment, IReply } from "../../utils/types";
 import {
   AuthorName,
@@ -16,6 +16,7 @@ import {
   Timeline,
 } from "./ViewFeedback.styled";
 import Reply from "./Reply";
+import ReplyForm from "./ReplyForm";
 
 interface Props {
   comment: IComment;
@@ -27,6 +28,11 @@ function Comment({ comment, isLastComment }: Props) {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const image = require(url);
   const replyCount = comment.replies?.length;
+  const [displayNewReplyForm, setDisplayNewReplyForm] = useState(false);
+
+  const handleNewReply = () => {
+    setDisplayNewReplyForm((prevState: boolean) => !prevState);
+  };
 
   return (
     <>
@@ -41,9 +47,10 @@ function Comment({ comment, isLastComment }: Props) {
               <AuthorName>{comment.authorName}</AuthorName>
               <AuthorUsername>{`@${comment.authorUsername}`}</AuthorUsername>
             </ContentHeaderGrid>
-            <ReplyButton>Reply</ReplyButton>
+            <ReplyButton onClick={handleNewReply}>Reply</ReplyButton>
           </ContentHeader>
           <Content>{comment.content}</Content>
+          {displayNewReplyForm && <ReplyForm />}
           {comment.replies && (
             <ReplySectionContent>
               {comment.replies?.map((reply: IReply, index: number) => (

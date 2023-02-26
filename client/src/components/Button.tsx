@@ -38,7 +38,7 @@ export const StyledButton = styled.button(
       : "transparent",
     border: "none",
     cursor: "pointer",
-
+    height: "max-content",
     fontWeight: typography.fontWeight.bold,
     color: color ? pallette.text[color] : "",
 

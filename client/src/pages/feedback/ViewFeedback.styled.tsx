@@ -171,3 +171,10 @@ export const NewCommentFormFooterRow = styled.div(
     paddingTop: "1rem",
   })
 );
+
+export const ReplyFormContainer = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  padding-top: 1.5rem;
+`;
