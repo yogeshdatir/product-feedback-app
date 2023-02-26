@@ -1,4 +1,8 @@
-import { type IFeedback, type IFeedbackFormState } from "../utils/types";
+import {
+  IFeedback,
+  IFeedbackFormState,
+  ICommentFormState,
+} from "../utils/types";
 import AxiosCommon from "./AxiosCommon";
 
 export const getAllFeedbacks = async () => AxiosCommon.get("feedbacks");
@@ -17,3 +21,6 @@ export const deleteFeedback = async (id: IFeedback["id"]) =>
 
 export const getCommentsForFeedback = async (feedbackId: IFeedback["id"]) =>
   AxiosCommon.get(`comments/feedback/${feedbackId}`);
+
+export const addCommentForFeedback = async (data: ICommentFormState) =>
+  AxiosCommon.post("comments", data);

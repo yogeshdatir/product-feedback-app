@@ -30,6 +30,9 @@ export const StyledTextarea = styled.textarea(
         ? `1.5px solid ${pallette.error.main}`
         : `1.5px solid ${pallette.info.main}`,
     },
+    "::placeholder": {
+      color: pallette.text.light,
+    },
     outline: error ? `1.5px solid ${pallette.error.main}` : "",
   })
 );

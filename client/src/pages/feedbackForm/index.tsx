@@ -46,6 +46,9 @@ const EmptyFeedbackForm: IFeedbackFormState = {
   category: "feature",
   description: "",
   status: "",
+  upvotes: 0,
+  commentsCount: 0,
+  repliesCount: 0,
 };
 
 // TODO: Add immediate error handling feedback feature
@@ -154,7 +157,9 @@ function FeedbackForm({ isEdit = false }: Props) {
     Object.keys(formError).forEach((formStatePropertyName: string) => {
       if (feedback == null && formStatePropertyName === "status") return;
       if (
-        !formState[formStatePropertyName as keyof IFeedbackFormState].trim()
+        !formState[formStatePropertyName as keyof IFeedbackFormState]
+          .toString()
+          .trim()
       ) {
         setFormError((prevState: IFeedbackFormState) => ({
           ...prevState,

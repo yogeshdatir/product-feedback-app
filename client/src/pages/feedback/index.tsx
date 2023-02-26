@@ -18,6 +18,7 @@ import {
   CommentSectionCard,
 } from "./ViewFeedback.styled";
 import Comment from "./Comment";
+import NewCommentForm from "./NewCommentForm";
 
 function Feedback() {
   const { id } = useParams();
@@ -92,13 +93,17 @@ function Feedback() {
             <CommentSectionContent>
               {comments?.map((comment: IComment, index: number) => (
                 <Comment
-                  key={comment.authorUsername}
+                  key={comment.id}
                   comment={comment}
                   isLastComment={commentCount === index + 1}
                 />
               ))}
             </CommentSectionContent>
           </CommentSectionCard>
+          <NewCommentForm
+            parentFeedbackId={feedback.id}
+            setComments={setComments}
+          />
         </>
       )}
     </Container>

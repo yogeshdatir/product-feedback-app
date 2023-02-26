@@ -84,6 +84,8 @@ const commentsController = {
     const { content, user, parentFeedback } = req.body;
     const id = uuidv4();
     try {
+      // TODO: return comment with same data as getCommentByFeedbackId controller returns
+      // TODO: add default user as there is no auth
       const result: QueryResult = await pool.query(
         'INSERT INTO comments VALUES ($1, $2, $3, $4) RETURNING *',
         [id, content, user, parentFeedback]

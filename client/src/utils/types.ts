@@ -120,3 +120,9 @@ export type IReply = {
   replyingToUsername: string;
   replyingToImage: string;
 };
+
+export type ICommentFormState = {
+  content: string;
+  user: string;
+  parentFeedback: IFeedback["id"];
+};

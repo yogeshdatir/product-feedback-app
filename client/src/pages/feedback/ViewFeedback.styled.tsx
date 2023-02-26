@@ -5,6 +5,9 @@ import { ViewButton } from "../home/Sidebar/Sidebar.styled";
 export const Container = styled.div(
   {
     margin: "auto",
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.5rem",
   },
   mq({
     width: ["100%", "100%", "689px", "730px"],
@@ -25,6 +28,15 @@ export const CommentSectionCard = styled.div(
   })
 );
 
+export const NewCommentFormCard = styled(CommentSectionCard)(
+  {
+    gap: 0,
+  },
+  mq({
+    padding: ["1.5rem", "1.5rem", "1.5rem 2rem 2rem 2rem"],
+  })
+);
+
 export const CommentSectionHeader = styled.p(
   TypographyStyles.h3,
   ({ theme: { pallette, typography } }: any) => ({
@@ -33,6 +45,10 @@ export const CommentSectionHeader = styled.p(
     textTransform: "capitalize",
   })
 );
+
+export const NewCommentFormHeader = styled(CommentSectionHeader)({
+  paddingBottom: "0.5rem",
+});
 
 export const CommentSectionContent = styled.div`
   display: flex;
@@ -144,3 +160,14 @@ export const CommentDivider = styled.div`
   mix-blend-mode: normal;
   opacity: 0.25;
 `;
+
+export const NewCommentFormFooterRow = styled.div(
+  TypographyStyles.body2,
+  ({ theme: { pallette } }: any) => ({
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    color: pallette.text.light,
+    paddingTop: "1rem",
+  })
+);
