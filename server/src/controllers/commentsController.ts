@@ -83,14 +83,28 @@ const commentsController = {
   addComment: async (req: Request, res: Response) => {
     const { content, user, parentFeedback } = req.body;
     const id = uuidv4();
+
+    const userQuery = user
+      ? 'select * from users where id = $1'
+      : 'select * from users limit 1';
+
+    const userQueryValues = user ? [user] : [];
     try {
-      // TODO: return comment with same data as getCommentByFeedbackId controller returns
-      // TODO: add default user as there is no auth
+      const userResult: QueryResult = await pool.query(
+        userQuery,
+        userQueryValues
+      );
       const result: QueryResult = await pool.query(
         'INSERT INTO comments VALUES ($1, $2, $3, $4) RETURNING *',
-        [id, content, user, parentFeedback]
+        [id, content, userResult.rows[0].id, parentFeedback]
       );
-      res.status(201).json(result.rows);
+      const designedResponse = {
+        ...result.rows[0],
+        authorName: userResult.rows[0].name,
+        authorUsername: userResult.rows[0].username,
+        authorImage: userResult.rows[0].image,
+      };
+      res.status(201).json([designedResponse]);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: 'something went wrong...' });
