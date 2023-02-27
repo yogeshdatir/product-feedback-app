@@ -101,6 +101,7 @@ export type IBodyFontStyle = Omit<IHeaderFontStyle, "letterSpacing">;
 export type IComment = {
   id: string;
   content: string;
+  authorUserId: string;
   authorName: string;
   authorUsername: string;
   authorImage: string;
@@ -125,4 +126,11 @@ export type ICommentFormState = {
   content: string;
   user: string;
   parentFeedback: IFeedback["id"];
+};
+
+export type IReplyFormState = {
+  content: string;
+  user: string;
+  replyingTo: string;
+  parentComment: IFeedback["id"];
 };

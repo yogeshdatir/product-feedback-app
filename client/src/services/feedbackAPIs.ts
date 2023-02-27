@@ -24,3 +24,5 @@ export const getCommentsForFeedback = async (feedbackId: IFeedback["id"]) =>
 
 export const addCommentForFeedback = async (data: ICommentFormState) =>
   AxiosCommon.post("comments", data);
+
+export const addReply = async (data: any) => AxiosCommon.post("replies", data);

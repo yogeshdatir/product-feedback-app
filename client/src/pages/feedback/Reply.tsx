@@ -13,15 +13,16 @@ import {
   ReplyingToUsername,
   HidePartialTimeline,
 } from "./ViewFeedback.styled";
-import { IReply } from "../../utils/types";
+import { IFeedback, IReply } from "../../utils/types";
 import ReplyForm from "./ReplyForm";
 
 interface Props {
   reply: IReply;
   isLastReply: boolean;
+  parentFeedbackId?: IFeedback["id"];
 }
 
-function Reply({ reply, isLastReply }: Props) {
+function Reply({ reply, isLastReply, parentFeedbackId }: Props) {
   const url = `/src/${reply.authorImage}`;
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const image = require(url);
@@ -49,7 +50,9 @@ function Reply({ reply, isLastReply }: Props) {
           <ReplyingToUsername>{`@${reply.replyingToUsername}`}</ReplyingToUsername>
           {reply.content}
         </Content>
-        {displayNewReplyForm && <ReplyForm />}
+        {displayNewReplyForm && (
+          <ReplyForm parentFeedbackId={parentFeedbackId} />
+        )}
       </ContentGrid>
     </CommentWrapper>
   );

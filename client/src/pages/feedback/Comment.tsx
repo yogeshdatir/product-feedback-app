@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IComment, IReply } from "../../utils/types";
+import { IComment, IReply, IFeedback } from "../../utils/types";
 import {
   AuthorName,
   AuthorUsername,
@@ -21,9 +21,16 @@ import ReplyForm from "./ReplyForm";
 interface Props {
   comment: IComment;
   isLastComment: boolean;
+  parentFeedbackId: IFeedback["id"];
+  addReplyInComments: (reply: IReply) => void;
 }
 
-function Comment({ comment, isLastComment }: Props) {
+function Comment({
+  comment,
+  isLastComment,
+  parentFeedbackId,
+  addReplyInComments,
+}: Props) {
   const url = `/src/${comment.authorImage}`;
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const image = require(url);
@@ -50,7 +57,14 @@ function Comment({ comment, isLastComment }: Props) {
             <ReplyButton onClick={handleNewReply}>Reply</ReplyButton>
           </ContentHeader>
           <Content>{comment.content}</Content>
-          {displayNewReplyForm && <ReplyForm />}
+          {displayNewReplyForm && (
+            <ReplyForm
+              parentFeedbackId={parentFeedbackId}
+              parentCommentId={comment.id}
+              replyingToUserId={comment.authorUserId}
+              addReplyInComments={addReplyInComments}
+            />
+          )}
           {comment.replies && (
             <ReplySectionContent>
               {comment.replies?.map((reply: IReply, index: number) => (

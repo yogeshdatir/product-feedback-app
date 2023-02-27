@@ -32,6 +32,7 @@ const commentsController = {
       const commentQueryResult: QueryResult = await pool.query(
         `SELECT CM.ID,
           CM.CONTENT,
+          U.ID AS "authorUserId",
           U.NAME AS "authorName",
           U.USERNAME AS "authorUsername",
           U.IMAGE AS "authorImage"
@@ -100,6 +101,7 @@ const commentsController = {
       );
       const designedResponse = {
         ...result.rows[0],
+        authorUserId: userResult.rows[0].id,
         authorName: userResult.rows[0].name,
         authorUsername: userResult.rows[0].username,
         authorImage: userResult.rows[0].image,

@@ -5,7 +5,7 @@ import {
   getCommentsForFeedback,
   getFeedback,
 } from "../../services/feedbackAPIs";
-import { IComment, IFeedback } from "../../utils/types";
+import { IComment, IFeedback, IReply } from "../../utils/types";
 import { ContentWrapper } from "../home/FeedbackList/FeedbackList.styled";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import GoBackButton from "../../components/GoBackButton";
@@ -67,6 +67,20 @@ function Feedback() {
     }
   }, [fetchData, id]);
 
+  // ? Add context for replies?
+  const addReplyInComments = (reply: IReply) => {
+    if (!comments) return;
+    const updatedComments = comments?.map((comment: IComment) => {
+      if (comment.id === reply.parentComment) {
+        if (comment.replies)
+          return { ...comment, replies: [reply, ...comment.replies] };
+        return { ...comment, replies: [reply] };
+      }
+      return comment;
+    });
+    setComments(updatedComments);
+  };
+
   const commentCount = comments?.length;
 
   return (
@@ -96,6 +110,8 @@ function Feedback() {
                   key={comment.id}
                   comment={comment}
                   isLastComment={commentCount === index + 1}
+                  parentFeedbackId={feedback.id}
+                  addReplyInComments={addReplyInComments}
                 />
               ))}
             </CommentSectionContent>

@@ -21,6 +21,7 @@ interface IFeedbackContextState {
     updatedOrNewFeedback: IFeedback,
     add?: boolean
   ) => void;
+  updateRepliesCount: (parentFeedback: IFeedback["id"]) => void;
   categoryToFilter: string;
   filteredFeedbackList: IFeedback[];
   setCategoryToFilter: Dispatch<SetStateAction<string>>;
@@ -126,12 +127,29 @@ export default function FeedbackContextProvider({ children }: IContextProps) {
   const filteredFeedbackList: IFeedback[] =
     filterFeedbackList(categoryToFilter);
 
+  // TODO: bug - updating feedbackList calls all the apis on replies page
+  const updateRepliesCount = useCallback(
+    (parentFeedback: IFeedback["id"]) => {
+      const updatedFeedbackList: IFeedback[] = feedbackList.map(
+        (feedback: IFeedback) => {
+          if (feedback.id === parentFeedback) {
+            return { ...feedback, repliesCount: +feedback.repliesCount + 1 };
+          }
+          return feedback;
+        }
+      );
+      setFeedbackList(updatedFeedbackList);
+    },
+    [feedbackList]
+  );
+
   const FeedbackContextState = useMemo(
     () => ({
       statusCounts,
       feedbackList,
       removeFeedback,
       updateOrAddToFeedbackList,
+      updateRepliesCount,
       categoryToFilter,
       filteredFeedbackList,
       setCategoryToFilter,
@@ -139,6 +157,7 @@ export default function FeedbackContextProvider({ children }: IContextProps) {
       error,
     }),
     [
+      updateRepliesCount,
       categoryToFilter,
       error,
       feedbackList,

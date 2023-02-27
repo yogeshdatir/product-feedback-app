@@ -29,12 +29,48 @@ const repliesController = {
   addReply: async (req: Request, res: Response) => {
     const { content, user, parentComment, replyingTo } = req.body;
     const id = uuidv4();
+
+    const userQuery = 'select * from users where id = $1 or id = $2';
+
+    const userQueryValues = [user, replyingTo];
     try {
+      const userResult: QueryResult = await pool.query(
+        userQuery,
+        userQueryValues
+      );
       const result: QueryResult = await pool.query(
         'INSERT INTO replies VALUES ($1, $2, $3, $4, $5) RETURNING *',
         [id, content, replyingTo, user, parentComment]
       );
-      res.status(201).json(result.rows);
+      let designedResponse = {
+        ...result.rows[0],
+      };
+      if (userResult.rows[0].id === user) {
+        designedResponse = {
+          ...designedResponse,
+          authorUserId: userResult.rows[0].id,
+          authorName: userResult.rows[0].name,
+          authorUsername: userResult.rows[0].username,
+          authorImage: userResult.rows[0].image,
+          replyingToUserId: userResult.rows[1].id,
+          replyingToName: userResult.rows[1].name,
+          replyingToUsername: userResult.rows[1].username,
+          replyingToImage: userResult.rows[1].image,
+        };
+      } else {
+        designedResponse = {
+          ...designedResponse,
+          authorUserId: userResult.rows[1].id,
+          authorName: userResult.rows[1].name,
+          authorUsername: userResult.rows[1].username,
+          authorImage: userResult.rows[1].image,
+          replyingToUserId: userResult.rows[0].id,
+          replyingToName: userResult.rows[0].name,
+          replyingToUsername: userResult.rows[0].username,
+          replyingToImage: userResult.rows[0].image,
+        };
+      }
+      res.status(201).json([designedResponse]);
     } catch (err: any) {
       console.log(err.stack, err.code);
       res.status(500).json({ error: 'something went wrong...' });
