@@ -16,6 +16,7 @@ interface Props {
   parentCommentId: IComment["id"];
   replyingToUserId: IComment["id"];
   addReplyInComments: (reply: IReply) => void;
+  setDisplayNewReplyForm: (prevState: boolean) => void;
 }
 
 function ReplyForm({
@@ -23,11 +24,13 @@ function ReplyForm({
   parentCommentId,
   replyingToUserId,
   addReplyInComments,
+  setDisplayNewReplyForm,
 }: Props) {
-  const { updateRepliesCount } = useFeedbacks();
+  const { updateRepliesCount, loggedInUserId } = useFeedbacks();
   const [formState, setFormState] = useState<IReplyFormState>({
     content: "",
-    user: "a3e86c3e-4a61-48d5-a8b8-e51cf7ff668a",
+    // TODO: Add default user from backend
+    user: loggedInUserId,
     replyingTo: replyingToUserId,
     parentComment: parentCommentId,
   });
@@ -40,6 +43,7 @@ function ReplyForm({
       const addedReply = await addReply(formState);
       addReplyInComments(addedReply.data[0] as IReply);
       updateRepliesCount(parentFeedbackId);
+      setDisplayNewReplyForm(false);
     } catch (error) {
       console.error(error);
     } finally {
@@ -61,6 +65,7 @@ function ReplyForm({
             content: e.target.value,
           }))
         }
+        autoFocus
       />
       <Button
         type="button"

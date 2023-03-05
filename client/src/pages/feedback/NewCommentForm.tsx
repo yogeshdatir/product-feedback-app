@@ -8,6 +8,7 @@ import TextareaField from "../feedbackForm/TextareaField";
 import Button from "../../components/Button";
 import { ICommentFormState, IFeedback, IComment } from "../../utils/types";
 import { addCommentForFeedback } from "../../services/feedbackAPIs";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 interface Props {
   parentFeedbackId: IFeedback["id"];
@@ -17,9 +18,10 @@ interface Props {
 const MAX_CHARACTER_LIMIT = 250;
 
 function NewCommentForm({ parentFeedbackId, setComments }: Props) {
+  const { loggedInUserId } = useFeedbacks();
   const EmptyCommentForm: ICommentFormState = {
     content: "",
-    user: "a3e86c3e-4a61-48d5-a8b8-e51cf7ff668a",
+    user: loggedInUserId,
     parentFeedback: parentFeedbackId,
   };
 

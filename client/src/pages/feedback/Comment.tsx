@@ -41,6 +41,7 @@ function Comment({
     setDisplayNewReplyForm((prevState: boolean) => !prevState);
   };
 
+  // TODO: Show loading for comment when comment/reply is being added.
   return (
     <>
       <CommentWrapper>
@@ -63,6 +64,7 @@ function Comment({
               parentCommentId={comment.id}
               replyingToUserId={comment.authorUserId}
               addReplyInComments={addReplyInComments}
+              setDisplayNewReplyForm={setDisplayNewReplyForm}
             />
           )}
           {comment.replies && (
@@ -72,6 +74,8 @@ function Comment({
                   key={reply.id}
                   reply={reply}
                   isLastReply={replyCount === index + 1}
+                  parentFeedbackId={parentFeedbackId}
+                  addReplyInComments={addReplyInComments}
                 />
               ))}
             </ReplySectionContent>

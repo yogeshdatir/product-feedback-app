@@ -15,14 +15,22 @@ import {
 } from "./ViewFeedback.styled";
 import { IFeedback, IReply } from "../../utils/types";
 import ReplyForm from "./ReplyForm";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 interface Props {
   reply: IReply;
   isLastReply: boolean;
-  parentFeedbackId?: IFeedback["id"];
+  parentFeedbackId: IFeedback["id"];
+  addReplyInComments: (reply: IReply) => void;
 }
 
-function Reply({ reply, isLastReply, parentFeedbackId }: Props) {
+function Reply({
+  reply,
+  isLastReply,
+  parentFeedbackId,
+  addReplyInComments,
+}: Props) {
+  const { loggedInUserId } = useFeedbacks();
   const url = `/src/${reply.authorImage}`;
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const image = require(url);
@@ -44,14 +52,22 @@ function Reply({ reply, isLastReply, parentFeedbackId }: Props) {
             <AuthorName>{reply.authorName}</AuthorName>
             <AuthorUsername>{`@${reply.authorUsername}`}</AuthorUsername>
           </ContentHeaderGrid>
-          <ReplyButton onClick={handleNewReply}>Reply</ReplyButton>
+          {loggedInUserId !== reply.user && (
+            <ReplyButton onClick={handleNewReply}>Reply</ReplyButton>
+          )}
         </ContentHeader>
         <Content>
           <ReplyingToUsername>{`@${reply.replyingToUsername}`}</ReplyingToUsername>
           {reply.content}
         </Content>
         {displayNewReplyForm && (
-          <ReplyForm parentFeedbackId={parentFeedbackId} />
+          <ReplyForm
+            parentFeedbackId={parentFeedbackId}
+            parentCommentId={reply.parentComment}
+            replyingToUserId={reply.user}
+            addReplyInComments={addReplyInComments}
+            setDisplayNewReplyForm={setDisplayNewReplyForm}
+          />
         )}
       </ContentGrid>
     </CommentWrapper>

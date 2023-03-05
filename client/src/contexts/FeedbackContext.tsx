@@ -27,6 +27,7 @@ interface IFeedbackContextState {
   setCategoryToFilter: Dispatch<SetStateAction<string>>;
   loading: boolean;
   error: any;
+  loggedInUserId: string;
 }
 
 const FeedbackContext = createContext<IFeedbackContextState | null>(null);
@@ -38,6 +39,7 @@ export default function FeedbackContextProvider({ children }: IContextProps) {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [statusCounts, setStatusCounts] = useState({});
+  const loggedInUserId = "a3e86c3e-4a61-48d5-a8b8-e51cf7ff668a";
 
   const getStatusCounts = (feedbackListParam: IFeedback[]) => {
     const tempStatusCounts: any = {};
@@ -155,6 +157,7 @@ export default function FeedbackContextProvider({ children }: IContextProps) {
       setCategoryToFilter,
       loading,
       error,
+      loggedInUserId,
     }),
     [
       updateRepliesCount,

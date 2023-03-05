@@ -2,6 +2,7 @@ import {
   IFeedback,
   IFeedbackFormState,
   ICommentFormState,
+  IReplyFormState,
 } from "../utils/types";
 import AxiosCommon from "./AxiosCommon";
 
@@ -25,4 +26,5 @@ export const getCommentsForFeedback = async (feedbackId: IFeedback["id"]) =>
 export const addCommentForFeedback = async (data: ICommentFormState) =>
   AxiosCommon.post("comments", data);
 
-export const addReply = async (data: any) => AxiosCommon.post("replies", data);
+export const addReply = async (data: IReplyFormState) =>
+  AxiosCommon.post("replies", data);
