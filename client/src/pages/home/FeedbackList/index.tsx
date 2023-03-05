@@ -29,7 +29,7 @@ function FeedbackList() {
   }
 
   return (
-    <ContentWrapper>
+    <ContentWrapper style={{ paddingTop: "1.5rem" }}>
       {categoryToFilter
         ? filteredFeedbackList.map((feedback: IFeedback) => (
             <FeedbackCardWrapper key={uuidv4()} feedback={feedback} />
