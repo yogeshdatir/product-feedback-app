@@ -100,22 +100,24 @@ function Feedback() {
           <ContentWrapper>
             <FeedbackCard feedback={feedback} isForView />
           </ContentWrapper>
-          <CommentSectionCard>
-            <CommentSectionHeader>
-              {+feedback.commentsCount + +feedback.repliesCount} comments
-            </CommentSectionHeader>
-            <CommentSectionContent>
-              {comments?.map((comment: IComment, index: number) => (
-                <Comment
-                  key={comment.id}
-                  comment={comment}
-                  isLastComment={commentCount === index + 1}
-                  parentFeedbackId={feedback.id}
-                  addReplyInComments={addReplyInComments}
-                />
-              ))}
-            </CommentSectionContent>
-          </CommentSectionCard>
+          {+feedback.commentsCount > 0 && (
+            <CommentSectionCard>
+              <CommentSectionHeader>
+                {+feedback.commentsCount + +feedback.repliesCount} comments
+              </CommentSectionHeader>
+              <CommentSectionContent>
+                {comments?.map((comment: IComment, index: number) => (
+                  <Comment
+                    key={comment.id}
+                    comment={comment}
+                    isLastComment={commentCount === index + 1}
+                    parentFeedbackId={feedback.id}
+                    addReplyInComments={addReplyInComments}
+                  />
+                ))}
+              </CommentSectionContent>
+            </CommentSectionCard>
+          )}
           <NewCommentForm
             parentFeedbackId={feedback.id}
             setComments={setComments}
