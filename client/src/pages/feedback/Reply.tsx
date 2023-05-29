@@ -31,7 +31,7 @@ function Reply({
   addReplyInComments,
 }: Props) {
   const { loggedInUserId } = useFeedbacks();
-  const url = `/src/${reply.authorImage}`;
+  const url = `${reply.authorImage}`;
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const image = require(url);
   const [displayNewReplyForm, setDisplayNewReplyForm] = useState(false);
