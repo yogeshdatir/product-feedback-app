@@ -11,20 +11,6 @@ import replyRouter from './routes/replyRoutes';
 
 dotenv.config();
 
-const DEV_DB_HOST = process.env.DEV_DB_HOST;
-const DEV_DB_USERNAME = process.env.DEV_DB_USERNAME;
-const DEV_DB_PORT = Number(process.env.DEV_DB_PORT);
-const DEV_DB_PASSWORD = process.env.DEV_DB_PASSWORD || '';
-const DEV_DB_NAME = process.env.DEV_DB_NAME;
-
-export const pool = new Pool({
-  host: DEV_DB_HOST,
-  user: DEV_DB_USERNAME,
-  port: DEV_DB_PORT,
-  password: DEV_DB_PASSWORD,
-  database: DEV_DB_NAME,
-});
-
 const app: express.Application = express();
 
 app.use(express.json());
