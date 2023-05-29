@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { QueryResult } from 'pg';
-import { pool } from '../app';
+import { pool } from '../config/db';
 import { v4 as uuidv4 } from 'uuid';
 
 const commentsController = {

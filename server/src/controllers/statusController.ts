@@ -1,16 +1,16 @@
-import { Request, Response } from "express";
-import { QueryResult } from "pg";
-import { pool } from "../app";
-import { v4 as uuidv4 } from "uuid";
+import { Request, Response } from 'express';
+import { QueryResult } from 'pg';
+import { pool } from '../config/db';
+import { v4 as uuidv4 } from 'uuid';
 
 const statusController = {
   getAllStatus: async (req: Request, res: Response) => {
     try {
-      const result: QueryResult = await pool.query("select * from status");
+      const result: QueryResult = await pool.query('select * from status');
       res.status(200).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
-      res.status(500).json({ error: "something went wrong..." });
+      res.status(500).json({ error: 'something went wrong...' });
     }
   },
   addStatus: async (req: Request, res: Response) => {
@@ -18,13 +18,13 @@ const statusController = {
     const id = uuidv4();
     try {
       const result: QueryResult = await pool.query(
-        "INSERT INTO status VALUES ($1, $2) RETURNING *",
+        'INSERT INTO status VALUES ($1, $2) RETURNING *',
         [id, statusName]
       );
       res.status(201).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
-      res.status(500).json({ error: "something went wrong..." });
+      res.status(500).json({ error: 'something went wrong...' });
     }
   },
   updateStatus: async (req: Request, res: Response) => {
@@ -39,7 +39,7 @@ const statusController = {
       res.status(200).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
-      res.status(500).json({ error: "something went wrong..." });
+      res.status(500).json({ error: 'something went wrong...' });
     }
   },
   deleteStatus: async (req: Request, res: Response) => {
@@ -53,7 +53,7 @@ const statusController = {
       res.status(202).json(result.rows);
     } catch (err: any) {
       console.log(err.stack, err.code);
-      res.status(500).json({ error: "something went wrong..." });
+      res.status(500).json({ error: 'something went wrong...' });
     }
   },
 };
