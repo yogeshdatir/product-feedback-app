@@ -31,7 +31,7 @@ function Comment({
   parentFeedbackId,
   addReplyInComments,
 }: Props) {
-  const url = `/src/${comment.authorImage}`;
+  const url = `${comment.authorImage}`;
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const image = require(url);
   const replyCount = comment.replies?.length;
