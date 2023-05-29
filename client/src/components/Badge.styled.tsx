@@ -3,7 +3,7 @@ import { TypographyStyles } from "../utils/themes";
 import { ITheme } from "../utils/types";
 
 type IContainer = {
-  theme: ITheme;
+  theme?: ITheme;
   as?: React.ElementType<any> | undefined;
 } & React.ClassAttributes<HTMLSpanElement> &
   React.HTMLAttributes<HTMLSpanElement> & {
@@ -12,10 +12,12 @@ type IContainer = {
 
 export const Container = styled.span(
   TypographyStyles.body3,
-  ({ theme: { pallette, typography }, isActive }: IContainer) => ({
-    fontWeight: typography.fontWeight.semiBold,
-    color: isActive ? pallette.common.white : pallette.info.main,
-    background: isActive ? pallette.info.main : pallette.grey.main,
+  ({ theme, isActive }: IContainer) => ({
+    fontWeight: theme?.typography.fontWeight.semiBold,
+    color: isActive ? theme?.pallette.common.white : theme?.pallette.info.main,
+    background: isActive
+      ? theme?.pallette.info.main
+      : theme?.pallette.grey.main,
     padding: "5px 1rem",
     borderRadius: "10px",
     display: "flex",
@@ -25,7 +27,9 @@ export const Container = styled.span(
     cursor: "pointer",
 
     ":hover": {
-      background: isActive ? pallette.info.main : pallette.grey.dark,
+      background: isActive
+        ? theme?.pallette.info.main
+        : theme?.pallette.grey.dark,
     },
   })
 );
