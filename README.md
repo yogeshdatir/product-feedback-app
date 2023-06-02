@@ -55,10 +55,10 @@ Users should be able to:
 2. Trying to avoid rerenders caused by context state updates makes the codebase complex exponentially over the time.
 3. You can always refactor a small project to start using Redux later. There is no point in over-engineering a project that doesn’t need to be.
 4. Context and Redux are not alternative to each other. They can be used together.
-5. When to use redux:
-    a. The app is complex and components in the app are interconnected through shared states, changing the shared states frequently.
-    b. Redux can help you manage your application's state in a predictable and efficient way. So if state changes are complex and essential as they are almost all the time, redux should be considered seriously.
-    c. The app has a medium-to-large codebase with several React developers working on it.
+5. When to use redux:  
+    a. The app is complex and components in the app are interconnected through shared states, changing the shared states frequently.  
+    b. Redux can help you manage your application's state in a predictable and efficient way. So if state changes are complex and essential as they are almost all the time, redux should be considered seriously.  
+    c. The app has a medium-to-large codebase with several React developers working on it.  
 6. Nested component rendering
 
 ### Continued development
