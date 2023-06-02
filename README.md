@@ -63,6 +63,9 @@ Users should be able to:
 
 ### Continued development
 
+- See hover states for all interactive elements on the page
+- Receive form validations when trying to create/edit feedback requests
+- Sort suggestions by most/least upvotes and most/least comments
 - I would be using this project to practise reafactoring a project to start using Redux.
 - Upvote feature needs to be added.
 - Possible ways to omptimize context renders. 
